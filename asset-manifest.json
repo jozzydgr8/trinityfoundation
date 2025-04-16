@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/trinityfoundation/static/css/main.a2315d00.css",
-    "main.js": "/trinityfoundation/static/js/main.9bee0bdc.js",
+    "main.css": "/trinityfoundation/static/css/main.61d5f258.css",
+    "main.js": "/trinityfoundation/static/js/main.a38b3f83.js",
     "static/js/453.d103f631.chunk.js": "/trinityfoundation/static/js/453.d103f631.chunk.js",
     "static/media/trinityCEO.jpg": "/trinityfoundation/static/media/trinityCEO.5085101da72f1d4825ae.jpg",
     "static/media/happykids.jpg": "/trinityfoundation/static/media/happykids.fca84d91e4c7d904cef8.jpg",
@@ -9,12 +9,12 @@
     "static/media/Trinity_logo.png": "/trinityfoundation/static/media/Trinity_logo.bbf5a71dadbc711ada8b.png",
     "static/media/supportpicture.jpg": "/trinityfoundation/static/media/supportpicture.202473e10f8133279026.jpg",
     "index.html": "/trinityfoundation/index.html",
-    "main.a2315d00.css.map": "/trinityfoundation/static/css/main.a2315d00.css.map",
-    "main.9bee0bdc.js.map": "/trinityfoundation/static/js/main.9bee0bdc.js.map",
+    "main.61d5f258.css.map": "/trinityfoundation/static/css/main.61d5f258.css.map",
+    "main.a38b3f83.js.map": "/trinityfoundation/static/js/main.a38b3f83.js.map",
     "453.d103f631.chunk.js.map": "/trinityfoundation/static/js/453.d103f631.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a2315d00.css",
-    "static/js/main.9bee0bdc.js"
+    "static/css/main.61d5f258.css",
+    "static/js/main.a38b3f83.js"
   ]
 }
