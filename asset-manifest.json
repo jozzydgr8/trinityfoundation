@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/trinityfoundation/static/css/main.f030622f.css",
+    "main.js": "/trinityfoundation/static/js/main.33eb1ade.js",
+    "static/js/453.2e08463b.chunk.js": "/trinityfoundation/static/js/453.2e08463b.chunk.js",
+    "static/media/trinitygroupimage.jpg": "/trinityfoundation/static/media/trinitygroupimage.a04d9439d30c8b1d611b.jpg",
+    "static/media/trinitysingleimage.jpg": "/trinityfoundation/static/media/trinitysingleimage.86a266f1ccb49b231af1.jpg",
+    "static/media/trinitygrouptwoimage.jpg": "/trinityfoundation/static/media/trinitygrouptwoimage.ddc71c569882befba354.jpg",
+    "static/media/fellowshipevent.jpg": "/trinityfoundation/static/media/fellowshipevent.bf26ac9eae6e98a8c8a2.jpg",
+    "static/media/Olufunmilola.jpg": "/trinityfoundation/static/media/Olufunmilola.a97c71e9b59b12377614.jpg",
+    "static/media/tinuevent.jpg": "/trinityfoundation/static/media/tinuevent.fc429ebb6015f436ccde.jpg",
+    "static/media/yewandeevent.jpg": "/trinityfoundation/static/media/yewandeevent.c7a150ad3d77059f9d2c.jpg",
+    "static/media/taiwo_diyaolu.jpg": "/trinityfoundation/static/media/taiwo_diyaolu.b2d8a13b90249d864d5b.jpg",
+    "static/media/womenmeeting.jpg": "/trinityfoundation/static/media/womenmeeting.24c6464d0aff98e83a0c.jpg",
+    "static/media/funmievent.jpg": "/trinityfoundation/static/media/funmievent.b063500409cc601f76bd.jpg",
+    "static/media/dolapoevent.jpg": "/trinityfoundation/static/media/dolapoevent.e7c7368a1d5d1f12d6a2.jpg",
+    "static/media/happykids.jpg": "/trinityfoundation/static/media/happykids.fca84d91e4c7d904cef8.jpg",
+    "static/media/crystalimg.jpg": "/trinityfoundation/static/media/crystalimg.0d49174f1495719ebc48.jpg",
+    "static/media/trinityjourney.jpg": "/trinityfoundation/static/media/trinityjourney.83216c8e421e5c572ce1.jpg",
+    "static/media/Dayo_otubu.jpg": "/trinityfoundation/static/media/Dayo_otubu.46ffa041671a7ae918f8.jpg",
+    "static/media/Trinity_logo.png": "/trinityfoundation/static/media/Trinity_logo.bbf5a71dadbc711ada8b.png",
+    "static/media/soulevent.jpg": "/trinityfoundation/static/media/soulevent.24f9e9bdae04fa9c59ec.jpg",
+    "static/media/trinitychurchlogo.jpg": "/trinityfoundation/static/media/trinitychurchlogo.2f0b9eefc740043ccbc3.jpg",
+    "static/media/supportpicture.jpg": "/trinityfoundation/static/media/supportpicture.202473e10f8133279026.jpg",
+    "index.html": "/trinityfoundation/index.html",
+    "main.f030622f.css.map": "/trinityfoundation/static/css/main.f030622f.css.map",
+    "main.33eb1ade.js.map": "/trinityfoundation/static/js/main.33eb1ade.js.map",
+    "453.2e08463b.chunk.js.map": "/trinityfoundation/static/js/453.2e08463b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f030622f.css",
+    "static/js/main.33eb1ade.js"
+  ]
+}
