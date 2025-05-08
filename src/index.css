@@ -1,0 +1,493 @@
+
+:root {
+  --color-purple: #c2188b;
+  --color-dark-purple: #8e1670;
+  --color-leaf-green: #69c442;
+  --color-dark-leaf-green: #4caf31;
+  --color-background: #f8f8f8;
+  --color-outline: #9b2ca0;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+body {
+  margin: none;
+  padding:none;
+  background-color: var(--color-background);
+  font-family: "Imprima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+h1{
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+}
+h2{
+  text-align: center;
+}
+h2, h3{
+  font-family: "Actor", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  
+}
+/* buttons buttons buttons */
+button{
+  cursor: pointer;
+}
+.buttondark{
+  background-color: var(--color-dark-purple) !important;
+  color: var(--color-background) !important;
+  border: solid white 1px !important;
+  
+}
+.buttondark:hover{
+  background-color: var(--color-purple) !important;
+  color: var(--color-background) !important;
+}
+.buttonsuccess{
+  background-color: var(--color-dark-leaf-green);
+  color: var(--color-background);
+
+}
+.buttonsuccess:hover{
+  background-color: var(--color-leaf-green) !important;
+  color: var(--color-background) !important;
+}
+/* navbar navbar */
+.navbar{
+  background-color: transparent !important;
+}
+.nav-link{
+  font-weight: bold;
+  font-size: 24px;
+  color: var(--color-dark-purple) !important;
+}
+.navbar-brand img{
+  width:40%;
+
+}
+
+section .container-fluid{
+  padding:3% 5%;
+}
+nav .container-fluid{
+  padding: 1% 5%;
+}
+.darkbackground{
+  background-color: var(--color-dark-purple);
+  color: white;
+}
+/* header homepage header */
+.header-background {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 2s ease-in-out;
+  /* background-blend-mode: overlay; */
+  
+
+}
+.header-gradient-background{
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    var(--color-dark-purple) 100%
+  );
+}
+
+/* about about section about section */
+.aboutrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 50px;
+
+}
+
+.aboutcontent {
+  background: white;
+  color: black;
+  min-height: 300px;
+  width: 500px;
+  position: absolute;
+  top: 100px;
+  right: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  
+}
+.aboutsecondcontent,.aboutcontent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aboutimage {
+  position: absolute;
+  left: 250px;
+  top:50px;
+  width: 500px;
+  min-height: 300px;
+  border-radius: 8px;
+}
+
+/* second grid display */
+.secondaboutrow{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 600px;
+}
+.aboutsecondimage{
+  position: absolute;
+  right: 250px;
+  bottom:50px;
+  width: 500px;
+  min-height: 600px;
+  object-fit: cover;
+  border-radius: 8px;
+  
+}
+.aboutsecondcontent{
+  background: white;
+  color: black;
+  min-height: 600px;
+  width: 500px;
+  position: absolute;
+  bottom: 0px;
+  left: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+
+/* MOBILE layout - override for responsiveness */
+@media (max-width: 900px) {
+ 
+
+  .aboutcontent,
+  .aboutimage, .aboutsecondcontent{
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
+  .aboutrow, .secondaboutrow{
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
+  .aboutsecondimage {
+    display: none;
+  }
+
+
+
+}
+
+/* Remove blue glow and focus box shadow for all AntD inputs */
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d9d9d9 !important; /* Optional: reset to default gray border */
+}
+
+/* Optional: Prevent padding shift if you're using Affix (prefix/suffix icons) */
+/* Remove focus and hover effects on all Ant Design inputs */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input:hover,
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:hover,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d9d9d9 !important; /* Reset to default or your custom color */
+}
+
+/* For TextArea */
+.ant-input-textarea,
+.ant-input-textarea:hover,
+.ant-input-textarea:focus,
+.ant-input-textarea-focused {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d9d9d9 !important;
+}
+
+/* For Select */
+.ant-select-selector,
+.ant-select-selector:hover,
+.ant-select-focused .ant-select-selector {
+  box-shadow: none !important;
+  border-color: #d9d9d9 !important;
+}
+/* Prevent transitions that may cause "jumps" */
+.ant-input,
+.ant-input-affix-wrapper {
+  transition: none !important;
+}
+.ant-input:hover,
+.ant-input:focus {
+  border-color: #aaa !important;
+}
+
+input,
+textarea,
+.ant-input,
+.ant-input-affix-wrapper input {
+  font-size: 16px !important;
+}
+.ant-input,
+.ant-input-affix-wrapper {
+  height: 40px !important; /* Or whatever height you want */
+  padding: 8px 12px !important;
+  line-height: 1.5 !important;
+}
+
+/* animation animation animation */
+.sectionAnimationLeft{
+  scroll-behavior: smooth;
+  animation: backInLeft;
+  animation-duration: 1.5s;
+}
+.sectionAnimationDown{
+  scroll-behavior: smooth;
+  animation:fadeInDownBig;
+  animation-duration: 1.2s;
+}
+
+.sectionAnimationUp{
+  scroll-behavior: smooth;
+  animation:fadeInUpBig;
+  animation-duration: 1.2s;
+
+}
+.sectionAnimationRight{
+  scroll-behavior: smooth;
+  animation: backInRight;
+  animation-duration: 1.2s;
+}
+
+
+/* admin css admin css */
+
+/* layoutgrid */
+.displaygrid {
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 0px;
+  height: 100vh;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  grid-auto-rows: minmax(10px, auto);
+  /* background-color: #fff; */
+   /* Auto rows with a minimum height of 100px */
+  
+  /* Define grid areas across rows */
+  grid-template-areas: 
+    "one second second second"
+    "one three three three"
+    "one three three three "
+    "one three three three "
+    "one three three three "
+    "one three three three "
+    "one three three three"
+    ;
+/* Empty cells represented by . */
+}
+@media (max-width:800px) {
+  .displaygrid{
+    grid-template-areas:
+    "second second second second"
+    "three three three three"
+    "three three three three "
+    "three three three three "
+    "three three three three "
+    "three three three three "
+    "three three three three" ;
+  }
+  .one {
+    display: none;
+  }
+}
+
+
+
+.one {
+  grid-area: one;
+
+}
+
+.second{
+  grid-area: second;
+}
+
+.three {
+  grid-area: three;
+  overflow-y: auto;
+}
+
+/* Remove blue glow and focus box shadow for all AntD inputs */
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d9d9d9 !important; /* Optional: reset to default gray border */
+}
+
+/* Optional: Prevent padding shift if you're using Affix (prefix/suffix icons) */
+/* Remove focus and hover effects on all Ant Design inputs */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input:hover,
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:hover,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d9d9d9 !important; /* Reset to default or your custom color */
+}
+
+/* For TextArea */
+.ant-input-textarea,
+.ant-input-textarea:hover,
+.ant-input-textarea:focus,
+.ant-input-textarea-focused {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d9d9d9 !important;
+}
+
+/* For Select */
+.ant-select-selector,
+.ant-select-selector:hover,
+.ant-select-focused .ant-select-selector {
+  box-shadow: none !important;
+  border-color: #d9d9d9 !important;
+}
+/* Prevent transitions that may cause "jumps" */
+.ant-input,
+.ant-input-affix-wrapper {
+  transition: none !important;
+}
+.ant-input:hover,
+.ant-input:focus {
+  border-color: #aaa !important;
+}
+
+input,
+textarea,
+.ant-input,
+.ant-input-affix-wrapper input {
+  font-size: 16px !important;
+}
+.ant-input,
+.ant-input-affix-wrapper {
+  height: 40px !important; /* Or whatever height you want */
+  padding: 8px 12px !important;
+  line-height: 1.5 !important;
+}
+
+
+
+/* Style the Input.Password wrapper */
+.ant-input-password {
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 6px !important;
+  padding: 0 !important; /* let inner input handle spacing */
+  height: 40px !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Style the actual password input inside */
+.ant-input-password input {
+  padding: 8px 12px !important;
+  font-size: 16px !important;
+  height: 100% !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove glow or shift on focus/hover */
+.ant-input-password:focus,
+.ant-input-password-focused,
+.ant-input-password:hover {
+  border-color: #d9d9d9 !important;
+  box-shadow: none !important;
+}
+
+/* Optional: fix autofill alignment */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+}
+.ant-input-password .ant-input-suffix {
+  padding-right: 8px !important; /* or more if you want more space */
+  display: flex;
+  align-items: center;
+}
+/* loading loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #198754 transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
