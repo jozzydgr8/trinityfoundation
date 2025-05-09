@@ -6,7 +6,7 @@ export type MenuItem = {
 
   export type contextType ={
     id:string
-    fileUrls?:{
+    files?:{
         imagePath: string
         url?:string,
     }[]
@@ -14,3 +14,20 @@ export type MenuItem = {
     title:string,
     date:string
 } 
+
+export type donorType = {
+  id: string;
+  name: string;
+  amount: number;
+  method:  'Stripe' | 'Flutterwave' | 'PayPal' | 'Bank Transfer'; // Adjust as needed
+  status: 'Successful' | 'Pending' | 'Failed'; // Extend if you use other statuses
+  date: string; // ISO format (e.g., "2025-04-25")
+  message?: string;
+  email: string;
+}
+
+export type subscribeType ={
+  id: string;
+  email: string;
+  date:string
+}

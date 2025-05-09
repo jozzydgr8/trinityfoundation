@@ -215,7 +215,7 @@ export const AdminUpload: React.FC = () => {
                       <span>By Trinity Foundation</span>
                     </div>
 
-                    <Paragraph>{article.description}</Paragraph>
+                    <Paragraph>{article.description.slice(0,100)}</Paragraph>
 
                     <Popconfirm
                       title="Are you sure you want to delete this event?"

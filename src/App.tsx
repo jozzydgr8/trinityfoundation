@@ -15,7 +15,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AdminUpload } from './Admin/AdminUpload';
 import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { contextType } from './Types/Types';
+import { contextType, donorType, subscribeType } from './Types/Types';
 import { UseDataContext } from './Context/UseDataContext';
 import { UseAuthContext } from './Context/UseAuthContext';
 import Session from './Pages/Session';
@@ -43,6 +43,8 @@ export const storage = getStorage();
 export const colRef = collection(db, 'articles');
 export const subRef = collection(db, 'subscribers');
 export const formRef = collection(db, 'forms');
+export const donorRef = collection(db, 'donations')
+
 
 function App() {
   const { dispatch, loading } = UseDataContext();
@@ -88,32 +90,7 @@ function App() {
     window.addEventListener('scroll', animation);
   }, []);
 
-  useEffect(() => {
-    dispatch({ type: 'loading', payload: true });
-
-    const unSubscribe = onSnapshot(colRef, (snapshot) => {
-      const data: contextType[] = snapshot.docs.map((doc) => {
-        const docData = doc.data();
-        return {
-          id: doc.id,
-          fileUrls: docData.fileUrls || [],
-          title: docData.title || '',
-          description: docData.description || '',
-          date: docData.date || '',
-        };
-      });
-
-      dispatch({ type: 'getData', payload: data });
-      console.log(data);
-      dispatch({ type: 'loading', payload: false });
-    }, (error) => {
-      console.error('Error fetching data:', error);
-      dispatch({ type: 'loading', payload: false });
-    });
-
-    return () => unSubscribe();
-  }, []);
-
+  // auth useeffect
   useEffect(() => {
     transmit({ type: 'loading', payload: true });
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -131,7 +108,98 @@ function App() {
     return () => unSubscribe();
   }, []);
 
-  console.log("Current user in component:", user);
+
+// data articles
+  useEffect(() => {
+    dispatch({ type: 'loading', payload: true });
+
+    const unSubscribe = onSnapshot(colRef, (snapshot) => {
+      const data: contextType[] = snapshot.docs.map((doc) => {
+        const docData = doc.data();
+        return {
+          id: doc.id,
+          files: docData.files|| [],
+          title: docData.title || '',
+          description: docData.description || '',
+          date: docData.date || '',
+        };
+      });
+
+      dispatch({ type: 'getData', payload: data });
+      console.log(data);
+      dispatch({ type: 'loading', payload: false });
+    }, (error) => {
+      console.error('Error fetching data:', error);
+      dispatch({ type: 'loading', payload: false });
+    });
+
+    return () => unSubscribe();
+  }, []);
+//subscription suvbred
+useEffect(() => {
+  dispatch({ type: 'loading', payload: true });
+  if(!user){
+    dispatch({ type: 'loading', payload: false });
+    return
+  }
+  const unSubscribe = onSnapshot(subRef, (snapshot) => {
+    const data: subscribeType[] = snapshot.docs.map((doc) => {
+      const docData = doc.data();
+      return {
+        id: doc.id,
+        
+        email: docData.email || '',
+        date: docData.date || '',
+      };
+    });
+
+    dispatch({ type: 'getSubscribers', payload: data });
+    console.log(data);
+    dispatch({ type: 'loading', payload: false });
+  }, (error) => {
+    console.error('Error fetching data:', error);
+    dispatch({ type: 'loading', payload: false });
+  });
+
+  return () => unSubscribe();
+}, [user]);
+
+
+useEffect(() => {
+  dispatch({ type: 'loading', payload: true });
+  if(!user){
+    dispatch({ type: 'loading', payload: false });
+    return
+  }
+  const unSubscribe = onSnapshot(donorRef, (snapshot) => {
+    const data: donorType[] = snapshot.docs.map((doc) => {
+      const docData = doc.data();
+      return {
+        id: doc.id,
+        name: docData.name,
+        amount: docData.amount,
+        method: docData.method,
+        status: docData.status,
+        date: docData.date,
+        message: docData.message,
+        email: docData.email
+      };
+    });
+
+    dispatch({ type: 'getDonors', payload: data });
+    console.log(data);
+    dispatch({ type: 'loading', payload: false });
+  }, (error) => {
+    console.error('Error fetching data:', error);
+    dispatch({ type: 'loading', payload: false });
+  });
+
+  return () => unSubscribe();
+}, [user]);
+
+
+
+
 
   if (loading || userloading) {
     return <Loading />;

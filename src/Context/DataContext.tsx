@@ -1,18 +1,28 @@
 import { createContext, useReducer } from "react";
-import { contextType } from "../Types/Types";
+import { contextType, donorType, subscribeType } from "../Types/Types";
 export type valueProps =  stateProps & {dispatch: React.Dispatch<actionProps>};
 type contextProps = {
     children:React.ReactNode
 }
 export type stateProps = {
     data:contextType[] | null,
-    loading:boolean
+    loading:boolean,
+    donors: donorType[] | null,
+    subscribers:subscribeType[] | null
 }
-type actionProps = dataAction | loadAction;
+type actionProps = dataAction | loadAction | donorAction | subscribeAction;
 
 type dataAction = {
     payload:contextType[] ,
     type:'getData' 
+}
+type donorAction = {
+    payload:donorType[],
+    type:'getDonors'
+}
+type subscribeAction = {
+    payload:subscribeType[],
+    type:'getSubscribers'
 }
 type loadAction = { 
     payload: boolean,
@@ -20,7 +30,9 @@ type loadAction = {
 }
 const initialState = {
     data:null,
-    loading:false
+    loading:false,
+    donors:null,
+    subscribers:null,
 }
 export const Context = createContext({}as valueProps)
 const reducer = (state:stateProps, action:actionProps) =>{
@@ -29,6 +41,10 @@ const reducer = (state:stateProps, action:actionProps) =>{
         return {...state, data:action.payload}
         case'loading':
         return {...state, loading:action.payload}
+        case'getDonors':
+        return {...state, donors:action.payload}
+        case'getSubscribers':
+        return {...state, subscribers:action.payload}
         default : return state
     }
 }

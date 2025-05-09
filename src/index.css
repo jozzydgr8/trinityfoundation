@@ -480,7 +480,7 @@ input:-webkit-autofill {
   height: 40px;
   border-radius: 50%;
   border: 3px solid;
-  border-color: #198754 transparent;
+  border-color: var(--color-dark-purple) transparent;
 }
 
 @keyframes rotation {
@@ -490,4 +490,27 @@ input:-webkit-autofill {
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+.carousel-indicators button {
+  width: 14px;  
+  height: 14px; 
+  border-radius: 50%; 
+  background-color: var(--color-dark-purple);
+  border: none; 
+  margin: 0 3px; 
+  transition: background-color 0.3s ease; 
+}
+
+.carousel-indicators button.active {
+  background-color: var(--color-purple); 
+}
+
+.carousel-indicators {
+  margin-top: 20px; 
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); /* Inverts white to black */
 }

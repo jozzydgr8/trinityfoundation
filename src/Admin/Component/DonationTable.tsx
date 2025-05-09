@@ -1,12 +1,13 @@
 import { Table} from "antd";
 import { useState } from "react";
 
-import { donationData } from "../../Shared/globals";
 import { SendMessage } from "./SendMessage";
+import { UseDataContext } from "../../Context/UseDataContext";
 
 export const DonationTable: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEmail, setSelectedEmail] = useState("");
+  const {donors} = UseDataContext();
 
   const columns = [
     {
@@ -36,7 +37,7 @@ export const DonationTable: React.FC = () => {
   return (
     <>
       <Table
-        dataSource={donationData}
+        dataSource={donors ?? []}
         columns={columns}
         pagination={{ pageSize: 5 }}
         rowKey={(record) => record.email} // Ensures a unique key

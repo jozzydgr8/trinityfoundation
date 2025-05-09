@@ -36,8 +36,8 @@ export const UploadFileStorage = () => {
   const handleFilesDelete = async (items: contextType | null, id: any) => {
     try {
       // Check if the items and fileUrls are not null or undefined
-      if (items && Array.isArray(items.fileUrls) && items.fileUrls.length > 0) {
-        const imagePaths = items.fileUrls.map((img) => img.imagePath).filter(Boolean);
+      if (items && Array.isArray(items.files) && items.files.length > 0) {
+        const imagePaths = items.files.map((img) => img.imagePath).filter(Boolean);
   
         // Loop through the image paths and delete them
         for (const imagePath of imagePaths) {

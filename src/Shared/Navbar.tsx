@@ -18,11 +18,12 @@ function Navbar() {
           <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation">Home</NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/trinityfoundation/#about">About Us</a>
-        </li>
-        <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation/news">News</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation/sendform">Volunteer</NavLink>
+        </li>
+        
         <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation/donate">Donate</NavLink>
         </li>
