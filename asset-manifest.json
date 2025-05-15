@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/trinityfoundation/static/css/main.f281630b.css",
-    "main.js": "/trinityfoundation/static/js/main.64cd00ec.js",
+    "main.css": "/trinityfoundation/static/css/main.ba2be772.css",
+    "main.js": "/trinityfoundation/static/js/main.8f38e046.js",
     "static/js/453.2e08463b.chunk.js": "/trinityfoundation/static/js/453.2e08463b.chunk.js",
     "static/media/trinitygroupimage.jpg": "/trinityfoundation/static/media/trinitygroupimage.a04d9439d30c8b1d611b.jpg",
     "static/media/trinitysingleimage.jpg": "/trinityfoundation/static/media/trinitysingleimage.86a266f1ccb49b231af1.jpg",
@@ -23,12 +23,12 @@
     "static/media/trinitychurchlogo.jpg": "/trinityfoundation/static/media/trinitychurchlogo.2f0b9eefc740043ccbc3.jpg",
     "static/media/supportpicture.jpg": "/trinityfoundation/static/media/supportpicture.202473e10f8133279026.jpg",
     "index.html": "/trinityfoundation/index.html",
-    "main.f281630b.css.map": "/trinityfoundation/static/css/main.f281630b.css.map",
-    "main.64cd00ec.js.map": "/trinityfoundation/static/js/main.64cd00ec.js.map",
+    "main.ba2be772.css.map": "/trinityfoundation/static/css/main.ba2be772.css.map",
+    "main.8f38e046.js.map": "/trinityfoundation/static/js/main.8f38e046.js.map",
     "453.2e08463b.chunk.js.map": "/trinityfoundation/static/js/453.2e08463b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f281630b.css",
-    "static/js/main.64cd00ec.js"
+    "static/css/main.ba2be772.css",
+    "static/js/main.8f38e046.js"
   ]
 }
