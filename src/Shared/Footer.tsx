@@ -16,6 +16,15 @@ function Footer() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
+  
+  const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(date);
+
+
   const handleSubscribe = async () => {
     const trimmedEmail = email.trim().toLowerCase();
     const isValidEmail = /\S+@\S+\.\S+/.test(trimmedEmail);
@@ -33,7 +42,7 @@ function Footer() {
         return;
       }
       // Step 2: Add new subscriber
-      const docRef = await addDoc(subRef, { email: trimmedEmail });
+      const docRef = await addDoc(subRef, { email: trimmedEmail, date:formatDate(new Date())});
       await axios.post('http://localhost:5000/subscribe', {
         subject: 'Welcome to Trinity Foundation Newsletter',
         message: `Thanks for subscribing...`,
@@ -136,7 +145,7 @@ function Footer() {
 
       {/* Footer Bottom */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
-        <p>© 2025 Trinity Foundation UK</p>
+        <p>© 2025 @ The Trinity Arms Foundation UK</p>
         <small style={{ color: '#ccc' }}>
           Website Created by <a href="https://jozzycodes.com/" target="_blank" rel="noopener noreferrer">jozzycodes</a>
         </small>

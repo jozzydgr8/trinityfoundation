@@ -23,6 +23,7 @@ import { ProtectedRoutes } from './Shared/ProtectedRoutes';
 import { GuestRoutes } from './Shared/GuestRoutes';
 import { Loading } from './Shared/Loading';
 import { initializeApp } from "firebase/app";
+import StripeSuccess from './Pages/StripeSuccess'
 
 
 // Your web app's Firebase configuration
@@ -213,10 +214,12 @@ useEffect(() => {
         <Route path='sendform' element={<SendMail />} />
         <Route path='news' element={<News />} />
         <Route path='session' element={<GuestRoutes user={user}><Session /></GuestRoutes>} />
+        <Route path='stripesuccess' element={<StripeSuccess/>}/>
       </Route>
       <Route path='/trinityfoundation/admin' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
         <Route index element={<Admin />} />
         <Route path='upload' element={<AdminUpload />} />
+        
       </Route>
     </>
   ));

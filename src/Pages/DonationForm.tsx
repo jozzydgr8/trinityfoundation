@@ -275,19 +275,49 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
           )}
 
           {currency === 'NGN' && (
-            <FlutterPay
-              price={formik.values.amount}
-              email={displayEmail}
-              name={displayName}
-              phone={displayPhone}
-            />
+            // <FlutterPay
+            //   price={formik.values.amount}
+            //   email={displayEmail}
+            //   name={displayName}
+            //   phone={displayPhone}
+            //   message={formik.values.comment}
+            //   currency={formik.values.currency}
+            // />
+            <>
+              Transfer to Account
+              <br/>
+              Account Number: 7069335046
+              <br/>
+              Bank: Opay
+              <br/>
+              Bank Name: Funmilola Fasanu
+              
+            </>
           )}
 
           {currency === 'USD' && (
             <div style={{ marginTop: '10px' }}>
-              <PayPal price={formik.values.amount} />
+              <PayPal 
+              price={formik.values.amount}
+              email={displayEmail}
+              name={displayName}
+              phone={displayPhone}
+              message={formik.values.comment}
+              currency={formik.values.currency} />
             </div>
           )}
+          {
+            currency === 'GBP' &&(
+              <div>
+                OR
+                <br/>
+                Transfer to: <br/>
+                Account Number: 13221385 <br/>
+                Bank: Zempler Bank <br/>
+                Sort Code: 087199
+              </div>
+            )
+          }
         </>
       )}
 

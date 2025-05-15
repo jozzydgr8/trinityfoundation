@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import { addDoc } from 'firebase/firestore';
+import { donorRef } from '../../App';
+import { formatDate } from '../../Shared/Hooks/FormatDate';
 
 declare global {
   interface Window {
@@ -8,9 +11,37 @@ declare global {
 
 type PayPalProps = {
   price: number;
+  email: string;
+  phone: string;
+  name: string;
+  currency:string,
+  message?: string;
+ 
 };
 
-const PayPal = ({ price }: PayPalProps) => {
+const handlePayment = async (order: any, email: string, currency:string, message?: string ) => {
+  try {
+    if (order.status === 'COMPLETED') {
+      await addDoc(donorRef, {
+        name: `${order.payer.name.given_name} ${order.payer.name.surname}`,
+        amount: order.purchase_units[0].amount.value,
+        method: 'PayPal',
+        status: order.status,
+        date: formatDate(new Date()),
+        message: message || '',
+        email: email,
+        currency:currency
+      });
+      console.log('Donation recorded successfully.');
+    } else {
+      console.log('Payment not completed:', order.status);
+    }
+  } catch (error) {
+    console.error('Error saving donation to Firestore:', error);
+  }
+};
+
+const PayPal = ({ price, message, email, currency }: PayPalProps) => {
   const paypalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,7 +68,7 @@ const PayPal = ({ price }: PayPalProps) => {
             return actions.order.create({
               purchase_units: [
                 {
-                  description: 'Donate',
+                  description: 'Donation to Trinity Foundation',
                   amount: {
                     currency_code: 'USD',
                     value: price.toString(),
@@ -48,7 +79,11 @@ const PayPal = ({ price }: PayPalProps) => {
           },
           onApprove: async (data: any, actions: any) => {
             const order = await actions.order.capture();
-            console.log('Order:', order);
+            console.log('PayPal order captured:', order);
+
+            // Call your payment handler
+            await handlePayment(order, email , currency, message);
+
             alert(`Transaction completed by ${order.payer.name.given_name}`);
           },
           onError: (err: any) => {
@@ -58,12 +93,11 @@ const PayPal = ({ price }: PayPalProps) => {
       }
     };
 
-    // Load script and then render
     paypalRef.current!.innerHTML = '';
     loadPayPalScript()
       .then(renderPayPalButtons)
       .catch((err) => console.error(err));
-  }, [price]);
+  }, [price, message, email]);
 
   return <div ref={paypalRef}></div>;
 };

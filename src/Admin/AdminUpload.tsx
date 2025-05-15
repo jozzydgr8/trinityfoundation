@@ -19,7 +19,7 @@ import {
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { UploadFileStorage } from "./Hooks/UploadHooks";
+import { UploadFileStorage } from "../Shared/Hooks/UploadHooks";
 import { addDoc, deleteDoc, doc } from "firebase/firestore";
 import { colRef, db } from "../App";
 import { FlatButton } from "../Shared/FlatButton";

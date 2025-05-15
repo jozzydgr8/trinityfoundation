@@ -25,12 +25,13 @@ export function Trustee() {
                   backgroundImage: `url(${data.profile_pic})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center center',
-                  backgroundSize: 'contain',
+                  backgroundSize: 'cover',
                   height: '200px',
                   width: '200px',
                   borderRadius: '50%',
                   margin: '0 auto',
                   border: '4px solid #ccc',
+                  backgroundColor:'#ccc'
                 }}
               ></div>
 

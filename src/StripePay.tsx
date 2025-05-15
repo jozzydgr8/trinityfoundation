@@ -5,7 +5,8 @@ type stripePropType ={
     currency: 'USD' | "GBP",
     email:string,
     name:string,
-    phone:string
+    phone:string,
+    
 }
 export const StripePay = ({price, currency, email, name, phone}:stripePropType)=>{
     const [loading, setLoading] = useState(false);

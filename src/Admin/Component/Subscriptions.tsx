@@ -13,7 +13,7 @@ export const Subscriptions: React.FC = () => {
   const columns = [
     {
       title: "Date",
-      dataIndex: "dateSubscribed",
+      dataIndex: "date",
       key: "column1",
     },
     {

@@ -12,7 +12,7 @@ export type MenuItem = {
     }[]
     description:string,
     title:string,
-    date:string
+    date: string
 } 
 
 export type donorType = {
@@ -20,7 +20,7 @@ export type donorType = {
   name: string;
   amount: number;
   method:  'Stripe' | 'Flutterwave' | 'PayPal' | 'Bank Transfer'; // Adjust as needed
-  status: 'Successful' | 'Pending' | 'Failed'; // Extend if you use other statuses
+  status: 'successful' | 'pending' | 'failed' | 'completed'; // Extend if you use other statuses
   date: string; // ISO format (e.g., "2025-04-25")
   message?: string;
   email: string;
