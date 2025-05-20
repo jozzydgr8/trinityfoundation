@@ -61,9 +61,9 @@ function Footer() {
   
 
   const links = [
-    { title: 'Privacy Policy', href: '/trinityfoundation' },
-    { title: 'Become a Volunteer', href: '/trinityfoundation/sendform' },
-    { title: 'Donate', href: '/trinityfoundation/donate' },
+    { title: 'Privacy Policy', href: '' },
+    { title: 'Become a Volunteer', href: '/sendform' },
+    { title: 'Donate', href: '/donate' },
   ];
 
   return (

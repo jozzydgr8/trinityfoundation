@@ -11,8 +11,8 @@ import { UseAuthContext } from '../Context/UseAuthContext';
 export const SideNav: React.FC = () => {
   // Define the menu items
   const items: MenuItem[] = [
-    { label: 'Dashboard', key: '/trinityfoundation/admin' , icon :<HomeOutlined/>},
-    {label:'upload', key:'/trinityfoundation/admin/upload', icon: <UploadOutlined/>},
+    { label: 'Dashboard', key: '/admin' , icon :<HomeOutlined/>},
+    {label:'upload', key:'/admin/upload', icon: <UploadOutlined/>},
     { label: 'SignOut', key: 'signOut', icon :<LogoutOutlined/> },
     { label: 'Help', key: 'help', icon :<QuestionCircleFilled/> },
     
@@ -48,6 +48,7 @@ export const SideNav: React.FC = () => {
       }
       if (key == 'help') {
       window.open('https://wa.link/ubp14t', '_blank');
+      return
       }
       
       navigate(key);

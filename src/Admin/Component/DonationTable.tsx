@@ -11,19 +11,31 @@ export const DonationTable: React.FC = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "donorName",
-      key: "donorName",
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+    },
+    {
+      title: "Method",
+      dataIndex: "method",
+      key: "method",
+      render: (text: string) => `${text.slice(0, 3)}...`,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
+      render: (text: string) => `${text.slice(0, 5)}...`,
     },
     {
-      title: "Amount",
+      title: "Amnt",
       dataIndex: "amount",
       key: "amount",
+    },
+    {
+      title:'Cur',
+      dataIndex:"currency",
+      key:"currency",
     },
   ];
 

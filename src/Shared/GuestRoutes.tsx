@@ -7,5 +7,5 @@ type proptype={
     children: ReactNode
 }
 export const GuestRoutes = ({children, user}:proptype)=>{
-   return !user ? <>{children}</> :<Navigate to={'/trinityfoundation/admin'}/>
+   return user?.uid !== process.env.REACT_APP_Admin ? <>{children}</> :<Navigate to={'/admin'}/>
 }

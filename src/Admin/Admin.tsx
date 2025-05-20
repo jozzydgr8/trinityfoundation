@@ -5,10 +5,12 @@ import { Subscriptions } from "./Component/Subscriptions";
 import { useNavigate } from "react-router-dom";
 import { SendMessage } from "./Component/SendMessage";
 import { useState } from "react";
-import { newsletterSubscribers } from "../Shared/globals";
+import { UseDataContext } from "../Context/UseDataContext";
+
 
 export const Admin = () => {
   const navigate = useNavigate();
+  const {subscribers} = UseDataContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]); // ⬅️ store multiple emails
@@ -25,8 +27,8 @@ export const Admin = () => {
   
 
   const handleSendNewsletter = () => {
-    const allEmails = newsletterSubscribers.map(subscriber => subscriber.email);
-    setSelectedEmails(allEmails); // store all emails
+    const allEmails = subscribers?.map(subscriber => subscriber.email);
+    setSelectedEmails(allEmails || []); // store all emails
     setIsModalOpen(true); // open the modal
   };
 
@@ -52,27 +54,24 @@ export const Admin = () => {
           <Col>
             <FlatButton 
               title="Upload Events" 
-              onClick={() => navigate('/trinityfoundation/admin/upload')} 
+              onClick={() => navigate('/admin/upload')} 
               className="buttonsuccess" 
             />
           </Col>
         </Row>
 
-        <div className="row">
-          <div className="col-md-6">
             <div style={styles.container}>
               <h3>Donations</h3>
               <DonationTable />
             </div>
-          </div>
-          <div className="col-md-6">
+          
+  
             <div style={styles.container}>
               <h3>Subscribed Users</h3>
               <Subscriptions />
             </div>
           </div>
-        </div>
-      </div>
+        
     </section>
   );
 };

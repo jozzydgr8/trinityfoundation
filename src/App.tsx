@@ -165,7 +165,7 @@ useEffect(() => {
   return () => unSubscribe();
 }, [user]);
 
-
+//donation useefecct
 useEffect(() => {
   dispatch({ type: 'loading', payload: true });
   if(!user){
@@ -183,7 +183,8 @@ useEffect(() => {
         status: docData.status,
         date: docData.date,
         message: docData.message,
-        email: docData.email
+        email: docData.email,
+        currency:docData.currency
       };
     });
 
@@ -208,7 +209,7 @@ useEffect(() => {
 
   const router = createBrowserRouter(createRoutesFromElements(
     <>
-      <Route path='/trinityfoundation' element={<Layout />}>
+      <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path='donate' element={<Donation />} />
         <Route path='sendform' element={<SendMail />} />
@@ -216,7 +217,7 @@ useEffect(() => {
         <Route path='session' element={<GuestRoutes user={user}><Session /></GuestRoutes>} />
         <Route path='stripesuccess' element={<StripeSuccess/>}/>
       </Route>
-      <Route path='/trinityfoundation/admin' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
+      <Route path='/admin' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
         <Route index element={<Admin />} />
         <Route path='upload' element={<AdminUpload />} />
         

@@ -1,6 +1,7 @@
 import { Modal, Form, Input, Button } from "antd";
 import axios from "axios";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 type proptype = {
@@ -16,15 +17,17 @@ type valueprops = {
 export const SendMessage = ({ selectedEmail, isModalOpen, setIsModalOpen }: proptype) => {
   const deliverNewsLetter = async(values:valueprops)=>{
     try{
-      const response = await axios.post("http://localhost:5000/send_newsletter", {
+      const response = await axios.post("https://trinityarms.vercel.app/send_newsletter", {
              
-              subject: values.subject,
-              message: values.message,
-              recipient_email: Array.isArray(selectedEmail) ? selectedEmail : [selectedEmail]
+        subject: values.subject,
+        message: values.message,
+        recipient_email: Array.isArray(selectedEmail) ? selectedEmail : [selectedEmail]
 
-            });
+      });
+      toast.success('Email sent Succesfully!');
     }catch(error){
-      console.error(error)
+      console.error(error);
+      toast.error('Something went wrong. Please try again.');
     }
   }
   const formik = useFormik({

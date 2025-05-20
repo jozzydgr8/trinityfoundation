@@ -157,7 +157,7 @@ export const News = () => {
 
               <div style={styles.icons}>
                 <UserOutlined />
-                <span>By Trinity Foundation</span>
+                <span>The Trinity Arms Foundation UK</span>
               </div>
 
               <Paragraph>{article.description.slice(0,100)}...</Paragraph>

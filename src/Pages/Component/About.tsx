@@ -1,5 +1,5 @@
 import demobackground from '../../assets/trinitysingleimage.jpg';
-import journeybackground from '../../assets/trinityjourney.jpg';
+import journeybackground from '../../assets/trinitygroceries.jpg';
 const styles = {
     content:{
         backgroundColor:'white'

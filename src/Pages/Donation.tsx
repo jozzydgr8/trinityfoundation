@@ -1,6 +1,6 @@
 import { Col, Row } from "antd"
 import DonationForm from "./DonationForm"
-import demo from '../assets/happykids.jpg'
+import demo from '../assets/trinitygift.jpg'
 
 export const Donation = ()=>{
     const styles= {

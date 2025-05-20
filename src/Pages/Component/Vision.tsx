@@ -28,13 +28,13 @@ export const Vision = ()=>{
                 <Row justify="center" align="middle" >
                 <Col >
                 <Space wrap size={[16, 16]} align="center" >
-                <div style={styles.clickable} className="buttondark" onClick={()=>navigate('/trinityfoundation/donate')}>
+                <div style={styles.clickable} className="buttondark" onClick={()=>navigate('/donate')}>
                     <DollarCircleOutlined /> Donate now
                 </div>
-                <div style={styles.clickable} className="buttondark" onClick={()=>navigate('/trinityfoundation/sendform')}>
+                <div style={styles.clickable} className="buttondark" onClick={()=>navigate('/sendform')}>
                     <UserAddOutlined /> Volunteer
                 </div>
-                <div style={styles.clickable} className="buttondark" onClick={()=>navigate('/trinityfoundation/sendform')}>
+                <div style={styles.clickable} className="buttondark" onClick={()=>navigate('/sendform')}>
                     <UsergroupAddOutlined/> Partnership
                 </div>
                 </Space>

@@ -7,5 +7,5 @@ type proptype={
     children: ReactNode
 }
 export const ProtectedRoutes = ({children, user}:proptype)=>{
-    return user ? <>{children}</> :<Navigate to={'/trinityfoundation/session'}/>
+    return user && user.uid === process.env.REACT_APP_Admin? <>{children}</> :<Navigate to={'/session'}/>
 }

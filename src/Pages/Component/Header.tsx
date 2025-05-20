@@ -59,9 +59,9 @@ export const Header = () => {
           registered in the united Kingdom committed to making a lasting impact both locally and beyond. 
           </p>
           <Space wrap={true} className="headerbutton">
-            <FlatButton title="Learn more" className="buttondark" onClick={()=>navigate('/trinityfoundation/sendform')}/>
-            <FlatButton title="Get involved" className="buttondark" onClick={()=>navigate('/trinityfoundation/sendform')}/>
-            <FlatButton title="Donate now" className="buttonsuccess" onClick={()=>navigate('/trinityfoundation/donate')}/>
+            <FlatButton title="Learn more" className="buttondark" onClick={()=>navigate('/sendform')}/>
+            <FlatButton title="Get involved" className="buttondark" onClick={()=>navigate('/sendform')}/>
+            <FlatButton title="Donate now" className="buttonsuccess" onClick={()=>navigate('/donate')}/>
           </Space>
           </div>
         </div>

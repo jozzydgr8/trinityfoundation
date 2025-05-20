@@ -24,6 +24,7 @@ export type donorType = {
   date: string; // ISO format (e.g., "2025-04-25")
   message?: string;
   email: string;
+  currency?:string;
 }
 
 export type subscribeType ={

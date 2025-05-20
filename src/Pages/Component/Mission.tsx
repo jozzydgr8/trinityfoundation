@@ -40,7 +40,7 @@ export const Mission = ()=>{
                         transformation for all.
                         </p>
                         <div>
-                            <FlatButton className="buttondark" title="Donate to this cause" onClick={()=>navigate('/trinityfoundation/donate')}/>
+                            <FlatButton className="buttondark" title="Donate to this cause" onClick={()=>navigate('/donate')}/>
                         </div>
                     </div>
                 </div>

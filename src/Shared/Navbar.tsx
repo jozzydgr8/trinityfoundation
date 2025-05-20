@@ -15,17 +15,17 @@ function Navbar() {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mx-auto">
         <li className="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation">Home</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation/news">News</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/news">News</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation/sendform">Volunteer</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/sendform">Volunteer</NavLink>
         </li>
         
         <li className="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/trinityfoundation/donate">Donate</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/donate">Donate</NavLink>
         </li>
        
 

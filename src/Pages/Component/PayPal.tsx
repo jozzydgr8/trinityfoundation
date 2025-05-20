@@ -21,7 +21,7 @@ type PayPalProps = {
 
 const handlePayment = async (order: any, email: string, currency:string, message?: string ) => {
   try {
-    if (order.status === 'COMPLETED') {
+    if (order.status === 'COMPLETE') {
       await addDoc(donorRef, {
         name: `${order.payer.name.given_name} ${order.payer.name.surname}`,
         amount: order.purchase_units[0].amount.value,
@@ -53,7 +53,7 @@ const PayPal = ({ price, message, email, currency }: PayPalProps) => {
         }
 
         const script = document.createElement('script');
-        script.src = `https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD`;
+        script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_Paypal_Client}YOUR_CLIENT_ID&currency=USD`;
         script.async = true;
         script.onload = () => resolve();
         script.onerror = () => reject(new Error('PayPal SDK could not be loaded.'));

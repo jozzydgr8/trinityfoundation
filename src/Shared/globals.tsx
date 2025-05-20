@@ -85,66 +85,8 @@ export const newsArticles = [
   }
 ];
 
-export const donationData = [
-  {
-    id: "1",
-    donorName: "John Doe",
-    amount: 5000,
-    method: "Paystack",
-    status: "Successful",
-    date: "2025-04-25",
-    message: "Keep up the good work!",
-    email: "johndoe@example.com",
-  },
-  {
-    id: "2",
-    donorName: "duracell Johnson",
-    amount: 2500,
-    method: "Bank Transfer",
-    status: "Successful",
-    date: "2025-04-23",
-    message: "",
-    email: "celldoe@example.com",
-  },
-  
-  {
-    id: "3",
-    donorName: "Michael Johnson",
-    amount: 2500,
-    method: "Bank Transfer",
-    status: "Successful",
-    date: "2025-04-23",
-    message: "",
-    email: "johndoe@example.com",
-  },
-]
 
-export const newsletterSubscribers = [
-  {
-    email: "jozzydgreat1@gmail.com",
-    dateSubscribed: "2025-04-25",
-  },
-  {
-    email: "janesmith@example.com",
-    dateSubscribed: "2025-04-24",
-  },
-  {
-    email: "michaelj@example.com",
-    dateSubscribed: "2025-04-23",
-  },
-  {
-    email: "emilyb@example.com",
-    dateSubscribed: "2025-04-22",
-  },
-  {
-    email: "danielw@example.com",
-    dateSubscribed: "2025-04-21",
-  },
-  {
-    email: "sarahm@example.com",
-    dateSubscribed: "2025-04-20",
-  },
-];
+
 
 
 export const checkEmailExists = async (ref:CollectionReference<DocumentData, DocumentData>, email:string) => {

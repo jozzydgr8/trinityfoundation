@@ -1,5 +1,4 @@
 import { Table } from "antd";
-import { newsletterSubscribers } from "../../Shared/globals";
 import { useState } from "react";
 import { SendMessage } from "./SendMessage";
 import { UseDataContext } from "../../Context/UseDataContext";

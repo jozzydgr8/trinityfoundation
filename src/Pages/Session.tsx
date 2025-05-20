@@ -44,7 +44,7 @@ export default function Session() {
         values.password
       );
       dispatch({ type: "getUser", payload: userCredential.user });
-      navigate('/trinityfoundation/admin');
+      navigate('/admin');
    
       return
     } catch (error) {
@@ -55,7 +55,6 @@ export default function Session() {
     }
   
   };
- 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -86,7 +85,7 @@ export default function Session() {
           <div style={{ maxWidth: "600px", width: "100%" }}>
             <div style={{ position: "relative", textAlign: "right" }}>
               <CloseOutlined
-                onClick={() => navigate("/trinityfoundation")}
+                onClick={() => navigate("/")}
                 style={{
                   fontSize: "24px",
                   padding: "10px",
@@ -148,17 +147,17 @@ export default function Session() {
             <div style={{ marginTop: "20px", fontSize: "14px" }}>
               <Text>
                 Don’t have an account?{" "}
-                <span
+                <a href="https://wa.link/ubp14t" target="_blank"
                   style={{
                     color: "#1890ff",
                     textDecoration: "underline",
                     cursor: "pointer",
                     fontWeight: 'bold'
                   }}
-                  onClick={() => navigate("/trinityfoundation")}
+                  onClick={() => navigate("/")}
                 >
                   contact Joshua
-                </span>
+                </a>
               </Text>
             </div>
           </div>
