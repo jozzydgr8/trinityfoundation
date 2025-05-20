@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import {QuestionCircleFilled, CreditCardOutlined, LogoutOutlined, HomeOutlined} from '@ant-design/icons'
+import {QuestionCircleFilled, CreditCardOutlined, LogoutOutlined, HomeOutlined, UploadOutlined} from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom';
 import { MenuItem } from '../Types/Types';
 import { signOut } from 'firebase/auth';
@@ -12,9 +12,9 @@ export const SideNav: React.FC = () => {
   // Define the menu items
   const items: MenuItem[] = [
     { label: 'Dashboard', key: '/trinityfoundation/admin' , icon :<HomeOutlined/>},
-    {label:'upload', key:'/trinityfoundation/admin/upload', icon: <CreditCardOutlined/>},
+    {label:'upload', key:'/trinityfoundation/admin/upload', icon: <UploadOutlined/>},
     { label: 'SignOut', key: 'signOut', icon :<LogoutOutlined/> },
-    { label: 'Help', key: '/trinityfoundation/admin/help', icon :<QuestionCircleFilled/> },
+    { label: 'Help', key: 'help', icon :<QuestionCircleFilled/> },
     
   ];
   const navigate = useNavigate();
@@ -46,6 +46,10 @@ export const SideNav: React.FC = () => {
         handleSignOut();
         return
       }
+      if (key == 'help') {
+      window.open('https://wa.link/ubp14t', '_blank');
+      }
+      
       navigate(key);
     }}
      items={menuItems} />

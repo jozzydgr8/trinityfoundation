@@ -3,7 +3,7 @@ import { Form, Input, Checkbox, Row, Col, Select } from 'antd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FlatButton } from '../Shared/FlatButton';
-import { FlutterPay } from '../FlutterPay';
+// import { FlutterPay } from '../FlutterPay';
 import PayPal from './Component/PayPal';
 import { StripePay } from '../StripePay';
 

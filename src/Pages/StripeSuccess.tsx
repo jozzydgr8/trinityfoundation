@@ -29,7 +29,7 @@ const StripeSuccess = () => {
           return;
         }
 
-        const response = await fetch(`http://localhost:5000/retrieve-session/${sessionId}`);
+        const response = await fetch(`https://trinityarms.vercel.app/retrieve-session/${sessionId}`);
         const session = await response.json();
 
         await setDoc(doc(donorRef, session.id), {

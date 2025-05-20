@@ -42,8 +42,8 @@ function Footer() {
         return;
       }
       // Step 2: Add new subscriber
-      const docRef = await addDoc(subRef, { email: trimmedEmail, date:formatDate(new Date())});
-      await axios.post('http://localhost:5000/subscribe', {
+       const docRef = await addDoc(subRef, { email: trimmedEmail, date:formatDate(new Date())});
+      await axios.post('https://trinityarms.vercel.app/subscribe', {
         subject: 'Welcome to Trinity Foundation Newsletter',
         message: `Thanks for subscribing...`,
         recipient_email: trimmedEmail,

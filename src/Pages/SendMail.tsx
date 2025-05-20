@@ -52,7 +52,7 @@ const AntdFormikForm = () => {
 
       const docRef = await addDoc(formRef,formData);
       if (!docRef?.id) throw new Error('Error saving data');
-      const response = await axios.post("http://localhost:5000/send_email", {
+      const response = await axios.post("https://trinityarms.vercel.app/send_email", {
        
         subject: 'New Form Submission from Website:',
         message: `
