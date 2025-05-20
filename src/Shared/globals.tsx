@@ -1,4 +1,3 @@
-import newImage from '../assets/crystalimg.jpg'
 import imageone from '../assets/trinitygrouptwoimage.jpg'
 import imagetwo from '../assets/trinitygroupimage.jpg'
 import funmiPic from '../assets/Olufunmilola.jpg'
@@ -50,40 +49,7 @@ export const trusteeData = [
 
 
 
- // const newImage = "https://example.com/path-to-your-default-image.jpg";
-
-export const newsArticles = [
-  {
-    title: "Foundation Launches New Health Initiative",
-    text: "The foundation announced a groundbreaking health program aimed at improving community wellness across underserved regions.",
-    date: "2025-04-25",
-    image: newImage
-  },
-  {
-    title: "Educational Outreach Expands to Rural Areas",
-    text: "Our team has extended educational services to rural communities, ensuring every child has access to quality learning resources.",
-    date: "2025-04-20",
-    image: newImage
-  },
-  {
-    title: "Annual Fundraiser Exceeds Expectations",
-    text: "Thanks to our generous donors, we surpassed our fundraising goals, enabling us to reach even more people in need.",
-    date: "2025-04-15",
-    image: newImage
-  },
-  {
-    title: "New Partnership with Local Hospitals",
-    text: "We are thrilled to announce a strategic partnership with regional hospitals to provide better healthcare solutions.",
-    date: "2025-04-10",
-    image: newImage
-  },
-  {
-    title: "Celebrating Volunteers: Heroes Behind the Scenes",
-    text: "On Volunteer Appreciation Day, we honor the incredible individuals who power our mission through their time and dedication.",
-    date: "2025-04-05",
-    image: newImage
-  }
-];
+ 
 
 
 
