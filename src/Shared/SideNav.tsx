@@ -23,6 +23,9 @@ export const SideNav: React.FC = () => {
       },{
         label:"Accept Admin",
         key:'/admin/settings/accept'
+      },{
+        label:'view admin users',
+        key:'/admin/settings/adminUsers'
       }
     ]},
     

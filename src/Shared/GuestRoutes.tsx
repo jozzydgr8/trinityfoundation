@@ -1,11 +1,24 @@
 import { User } from "firebase/auth"
 import { ReactNode } from "react"
 import { Navigate } from "react-router-dom"
+import { UseDataContext } from "../Context/UseDataContext"
 
-type proptype={
-    user:User | null,
-    children: ReactNode
+type PropType = {
+  user: User | null,
+  children: ReactNode
 }
-export const GuestRoutes = ({children, user}:proptype)=>{
-   return user?.uid !== process.env.REACT_APP_Admin ? <>{children}</> :<Navigate to={'/admin'}/>
+
+export const GuestRoutes = ({ user, children }: PropType) => {
+  const { adminUsers } = UseDataContext();
+
+  if (!user) return <>{children}</>;
+
+  const matchedUser = adminUsers?.find(u => u.email === user.email);
+
+  // If user is admin, redirect to /admin, else allow access to guest routes
+  if (matchedUser && matchedUser.admin === true) {
+    return <Navigate to="/admin" />;
+  }
+
+  return <>{children}</>;
 }

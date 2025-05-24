@@ -147,7 +147,7 @@ export default function Session() {
 
             <div style={{ marginTop: "20px", fontSize: "14px" }}>
               <Text>
-                Don’t have an account?{" "}
+                {/* Don’t have an account?{" "}
                 <a href="https://wa.link/ubp14t" target="_blank"
                   style={{
                     color: "#1890ff",
@@ -158,7 +158,7 @@ export default function Session() {
                   onClick={() => navigate("/")}
                 >
                   contact Joshua
-                </a>
+                </a> */}
                 <br/>
                 <span onClick={()=>handleReset(formik.values.email)}>Forgot Password?</span>
               </Text>

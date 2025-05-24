@@ -9,7 +9,7 @@ export const AuthHooks = () => {
 
   const handleReset = async (email: string) => {
     try {
-      await sendPasswordResetEmail(auth, email, actionCodeSettings);
+      await sendPasswordResetEmail(auth, email);
       alert('Password reset email sent.');
     } catch (error: any) {
       console.error("Reset error:", error.message);

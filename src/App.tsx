@@ -1,5 +1,4 @@
 
-import logo from './logo.svg';
 import { useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 import { Layout } from './Layout';
@@ -15,7 +14,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AdminUpload } from './Admin/AdminUpload';
 import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { contextType, donorType, subscribeType } from './Types/Types';
+import { adminType, contextType, donorType, subscribeType } from './Types/Types';
 import { UseDataContext } from './Context/UseDataContext';
 import { UseAuthContext } from './Context/UseAuthContext';
 import Session from './Pages/Session';
@@ -27,6 +26,7 @@ import StripeSuccess from './Pages/StripeSuccess'
 import ResetPasswordPage from './Pages/ResetPasswordPage';
 import UpdatePassword from './Pages/UpdatePassword';
 import AcceptAdmin from './Admin/AcceptAdmin';
+import { AdminUsers } from './Admin/AdminUsers';
 
 
 // Your web app's Firebase configuration
@@ -169,6 +169,36 @@ useEffect(() => {
   return () => unSubscribe();
 }, [user]);
 
+//admin collection useeffect
+useEffect(() => {
+  dispatch({ type: 'loading', payload: true });
+  if(!user){
+    dispatch({ type: 'loading', payload: false });
+    return
+  }
+  const unSubscribe = onSnapshot(userRef, (snapshot) => {
+    const data: adminType[] = snapshot.docs.map((doc) => {
+      const docData = doc.data();
+      return {
+        id: doc.id,
+        email: docData.email,
+        admin: docData.admin,
+   
+      };
+    });
+
+    dispatch({ type: 'getAdminUsers', payload: data });
+    console.log(data);
+    dispatch({ type: 'loading', payload: false });
+  }, (error) => {
+    console.error('Error fetching data:', error);
+    dispatch({ type: 'loading', payload: false });
+  });
+
+  return () => unSubscribe();
+}, [user]);
+
+
 //donation useefecct
 useEffect(() => {
   dispatch({ type: 'loading', payload: true });
@@ -228,6 +258,7 @@ useEffect(() => {
         <Route path='settings' element={<Outlet/>}>
           <Route path='updatepassword' element={<UpdatePassword/>}/>
           <Route path='accept' element={<AcceptAdmin/>}/>
+          <Route path='adminUsers' element={<AdminUsers/>}/>
         </Route>
       </Route>
     </>

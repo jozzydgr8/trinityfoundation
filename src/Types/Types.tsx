@@ -7,7 +7,14 @@ export type MenuItem = {
       key:string,
 
     }[]
-  };
+  }
+  export type adminType ={
+    id:string,
+    email:string,
+    admin: boolean,
+  }
+
+
 
   export type contextType ={
     id:string

@@ -19,13 +19,13 @@ export const DonationTable: React.FC = () => {
       title: "Method",
       dataIndex: "method",
       key: "method",
-      render: (text: string) => `${text.slice(0, 3)}...`,
+      render: (text: string) => `${text?.slice(0, 3)}...`,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      render: (text: string) => `${text.slice(0, 5)}...`,
+      render: (text: string) => `${text?.slice(0, 5)}...`,
     },
     {
       title: "Amnt",

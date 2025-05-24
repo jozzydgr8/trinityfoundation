@@ -6,11 +6,10 @@ import { FlatButton } from "../Shared/FlatButton";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../App";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../App";
+import { doc, setDoc } from "firebase/firestore";
 
 const { Title, Text } = Typography;
-const db = getFirestore(); // Firestore instance
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -111,7 +110,7 @@ export default function AcceptAdmin() {
             <br />
 
             {error && <Text type="danger">{error}</Text>}
-            {success && (
+            {!error && (
               <Text type="success">Admin account created successfully!</Text>
             )}
 
