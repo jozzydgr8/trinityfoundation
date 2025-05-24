@@ -1,7 +1,12 @@
 export type MenuItem = {
     label: React.ReactNode; // `label` can be a string or any ReactNode (e.g., JSX, string)
     key: string; // key is required for each menu item
-    icon: React.ReactNode
+    icon: React.ReactNode;
+    children?:{
+      label:string,
+      key:string,
+
+    }[]
   };
 
   export type contextType ={

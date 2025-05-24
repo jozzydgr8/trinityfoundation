@@ -8,10 +8,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import * as Yup from 'yup';
 import { auth } from "../App";
 import { UseAuthContext } from "../Context/UseAuthContext";
+import { AuthHooks } from "../Shared/Hooks/HandleReset";
 
 
 const { Text, Title } = Typography;
-
+const {handleReset} = AuthHooks()
 type formikType = {
   email: string;
   password: string;
@@ -158,6 +159,8 @@ export default function Session() {
                 >
                   contact Joshua
                 </a>
+                <br/>
+                <span onClick={()=>handleReset(formik.values.email)}>Forgot Password?</span>
               </Text>
             </div>
           </div>

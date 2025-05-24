@@ -1,7 +1,7 @@
 
 import logo from './logo.svg';
 import { useEffect } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 import { Layout } from './Layout';
 import HomePage from './Pages/HomePage';
 import { Donation } from './Pages/Donation';
@@ -24,6 +24,9 @@ import { GuestRoutes } from './Shared/GuestRoutes';
 import { Loading } from './Shared/Loading';
 import { initializeApp } from "firebase/app";
 import StripeSuccess from './Pages/StripeSuccess'
+import ResetPasswordPage from './Pages/ResetPasswordPage';
+import UpdatePassword from './Pages/UpdatePassword';
+import AcceptAdmin from './Admin/AcceptAdmin';
 
 
 // Your web app's Firebase configuration
@@ -44,7 +47,8 @@ export const storage = getStorage();
 export const colRef = collection(db, 'articles');
 export const subRef = collection(db, 'subscribers');
 export const formRef = collection(db, 'forms');
-export const donorRef = collection(db, 'donations')
+export const donorRef = collection(db, 'donations');
+export const userRef = collection(db,'users');
 
 
 function App() {
@@ -220,7 +224,11 @@ useEffect(() => {
       <Route path='/admin' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
         <Route index element={<Admin />} />
         <Route path='upload' element={<AdminUpload />} />
-        
+        <Route path='reset-password' element={<ResetPasswordPage/>}/>
+        <Route path='settings' element={<Outlet/>}>
+          <Route path='updatepassword' element={<UpdatePassword/>}/>
+          <Route path='accept' element={<AcceptAdmin/>}/>
+        </Route>
       </Route>
     </>
   ));
