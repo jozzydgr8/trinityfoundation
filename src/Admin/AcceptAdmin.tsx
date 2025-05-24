@@ -6,7 +6,7 @@ import { FlatButton } from "../Shared/FlatButton";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../App";
+import { auth, db, secondaryAuth } from "../App";
 import { doc, setDoc } from "firebase/firestore";
 
 const { Title, Text } = Typography;
@@ -21,7 +21,7 @@ type FormikValues = {
 
 export default function AcceptAdmin() {
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -42,7 +42,7 @@ export default function AcceptAdmin() {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
-        auth,
+        secondaryAuth,
         values.email,
         defaultPassword
       );
@@ -52,8 +52,10 @@ export default function AcceptAdmin() {
       await setDoc(doc(db, "users", user.uid), {
         email: values.email,
         admin: true,
+        userId:user.uid,
         createdAt: new Date().toISOString(),
       });
+      await secondaryAuth.signOut();
 
       setSuccess(true);
       resetForm();
@@ -110,7 +112,7 @@ export default function AcceptAdmin() {
             <br />
 
             {error && <Text type="danger">{error}</Text>}
-            {!error && (
+            {success && (
               <Text type="success">Admin account created successfully!</Text>
             )}
 

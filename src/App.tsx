@@ -49,6 +49,9 @@ export const subRef = collection(db, 'subscribers');
 export const formRef = collection(db, 'forms');
 export const donorRef = collection(db, 'donations');
 export const userRef = collection(db,'users');
+//secauth
+const secondaryApp = initializeApp(firebaseConfig, "Secondary");
+export const secondaryAuth = getAuth(secondaryApp);
 
 
 function App() {
