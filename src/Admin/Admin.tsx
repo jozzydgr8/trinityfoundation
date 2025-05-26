@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { SendMessage } from "./Component/SendMessage";
 import { useState } from "react";
 import { UseDataContext } from "../Context/UseDataContext";
+import { Volunteers } from "./Volunteers";
 
 
 export const Admin = () => {
@@ -69,6 +70,11 @@ export const Admin = () => {
             <div style={styles.container}>
               <h3>Subscribed Users</h3>
               <Subscriptions />
+            </div>
+
+            <div style={styles.container}>
+              <h3>Volunteers & Forms</h3>
+                <Volunteers/>
             </div>
           </div>
         

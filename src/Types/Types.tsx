@@ -15,7 +15,7 @@ export type MenuItem = {
   }
 
   export type formType = {
-      about:string
+    about:string
     address:string
     email:string
     firstName:string

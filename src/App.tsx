@@ -14,7 +14,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AdminUpload } from './Admin/AdminUpload';
 import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { adminType, contextType, donorType, subscribeType } from './Types/Types';
+import { adminType, contextType, donorType, formType, subscribeType } from './Types/Types';
 import { UseDataContext } from './Context/UseDataContext';
 import { UseAuthContext } from './Context/UseAuthContext';
 import Session from './Pages/Session';
@@ -237,7 +237,37 @@ useEffect(() => {
 }, [user]);
 
 
+//form useeffect
+useEffect(() => {
+  dispatch({ type: 'loading', payload: true });
+  if(!user){
+    dispatch({ type: 'loading', payload: false });
+    return
+  }
+  const unSubscribe = onSnapshot(formRef, (snapshot) => {
+    const data: formType[] = snapshot.docs.map((doc) => {
+      const docData = doc.data();
+      return {
+        id: doc.id,
+        email: docData.email || '',
+        about: docData.about || '',
+        address: docData.address || '',
+        firstName: docData.firstName || '',
+        lastName: docData.lastName || '',
 
+      };
+    });
+
+    dispatch({ type: 'getVolunteer', payload: data });
+    console.log(data);
+    dispatch({ type: 'loading', payload: false });
+  }, (error) => {
+    console.error('Error fetching data:', error);
+    dispatch({ type: 'loading', payload: false });
+  });
+
+  return () => unSubscribe();
+}, [user]);
 
 
   if (loading || userloading) {
