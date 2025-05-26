@@ -14,6 +14,13 @@ export type MenuItem = {
     admin: boolean,
   }
 
+  export type formType = {
+      about:string
+    address:string
+    email:string
+    firstName:string
+    lastName:string
+  }
 
 
   export type contextType ={

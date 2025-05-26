@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { adminType, contextType, donorType, subscribeType } from "../Types/Types";
+import { adminType, contextType, donorType, formType, subscribeType } from "../Types/Types";
 export type valueProps =  stateProps & {dispatch: React.Dispatch<actionProps>};
 type contextProps = {
     children:React.ReactNode
@@ -10,8 +10,9 @@ export type stateProps = {
     donors: donorType[] | null,
     subscribers:subscribeType[] | null,
     adminUsers: adminType[] | null,
+    volunteers: formType[] | null,
 }
-type actionProps = dataAction | loadAction | donorAction | subscribeAction | adminAction;
+type actionProps = dataAction | loadAction | donorAction | subscribeAction | adminAction | volunteeraction;
 
 type dataAction = {
     payload:contextType[] ,
@@ -33,12 +34,17 @@ type loadAction = {
     payload: boolean,
     type:'loading'
 }
+type volunteeraction = {
+    payload:formType[],
+    type:'getVolunteer'
+}
 const initialState = {
     data:null,
     loading:false,
     donors:null,
     subscribers:null,
     adminUsers:null,
+    volunteers:null
 }
 export const Context = createContext({}as valueProps)
 const reducer = (state:stateProps, action:actionProps) =>{
@@ -53,6 +59,8 @@ const reducer = (state:stateProps, action:actionProps) =>{
         return {...state, subscribers:action.payload}
         case 'getAdminUsers':
             return {...state, adminUsers:action.payload}
+        case 'getVolunteer':
+            return {...state, volunteers:action.payload}
         default : return state
     }
 }
