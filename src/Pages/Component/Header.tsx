@@ -4,17 +4,27 @@ import { FlatButton } from "../../Shared/FlatButton";
 import { Space } from "antd";
 import { useNavigate } from "react-router-dom";
 
+
 export const Header = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % backgroundimages.length);
-    }, 5000); 
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setFade(false);
 
-    return () => clearInterval(interval); 
-  }, []);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => 
+        (prevIndex + 1) % backgroundimages.length
+      );
+      setFade(true);
+    }, 1000);
+
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, []);
 
   useEffect(()=>{
     var container = document.querySelector('.headerWrite');
@@ -23,34 +33,46 @@ export const Header = () => {
     containerButton?.classList.add('sectionAnimationUp')
 },[])
 
-  const styles = {
-    container:{
-      color:'white',
-      height:"90vh"
-    },
-    content:{
-      display:"flex",
-      justifyContent:'center',
-      alignItems:'center',
-      height:"100%"
-    },
+  // const styles = {
+  //   container:{
+  //     color:'white',
+  //     height:"90vh"
+  //   },
+  //   content:{
+  //     display:"flex",
+  //     justifyContent:'center',
+  //     alignItems:'center',
+  //     height:"100%"
+  //   },
   
-  }
+  // }
 
   const currentBackground = backgroundimages[currentIndex].background;
   
   return (
-    <section>
-      <div
-        className="header-background"
-        style={{
-          backgroundImage: `url(${currentBackground})`
-        }}
-      >
-        <div className="header-gradient-background" >
+    <section id="hero" style={{position:'relative'}}>
+      <div className='container-fluid'
+      style={{
+          backgroundImage: `
+          linear-gradient(to top, var(--color-dark-purple) 0%, transparent 100%),
+          url(${currentBackground})
+        `,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+            opacity: fade ? 1 : 0,
+          transition: 'opacity 2s ease-in-out',
+          position: 'absolute',
+          inset:'0',
+        }}>
+        
+        <div style={{
+          position:'relative',
+          zIndex:'1',
+        }} >
 
-        <div className="container-fluid" style={styles.container}>
-          <div style={{...styles.content, flexDirection:'column'}}>
+        <div >
+          <div >
           <h1>
           Making a difference one heart, one life at a time.
           </h1>
@@ -66,7 +88,10 @@ export const Header = () => {
           </div>
         </div>
         </div>
+      
       </div>
+
+     
     </section>
   );
 };
