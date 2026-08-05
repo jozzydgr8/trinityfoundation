@@ -17,7 +17,7 @@ export function Trustee() {
                 <div className='col-md-4 mb-2' key={index}>
                   <div className='homeImage' style={{backgroundImage:`url(${data.profile_pic})`,
                   backgroundSize:"cover",
-                  backgroundPosition:'center',
+                  backgroundPosition:'center center',
                   backgroundRepeat:'no-repeat',
                   
                 }}>
