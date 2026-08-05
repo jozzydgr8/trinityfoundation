@@ -1,12 +1,12 @@
 import { Col, Row } from "antd"
-import eventOne from '../../assets/womenmeeting.jpg';
-import eventTwo from '../../assets/fellowshipevent.jpg'; 
-import eventThree from '../../assets/funmievent.jpg';
-import eventFour from '../../assets/dolapoevent.jpg';
-import eventFive from '../../assets/tinuevent.jpg';
-import eventSix from '../../assets/soulevent.jpg';
-import eventSeven from '../../assets/yewandeevent.jpg';
-import logoone from '../../assets/trinitychurchlogo.jpg';
+import eventOne from '../../../assets/womenmeeting.jpg';
+import eventTwo from '../../../assets/fellowshipevent.jpg'; 
+import eventThree from '../../../assets/funmievent.jpg';
+import eventFour from '../../../assets/dolapoevent.jpg';
+import eventFive from '../../../assets/tinuevent.jpg';
+import eventSix from '../../../assets/soulevent.jpg';
+import eventSeven from '../../../assets/yewandeevent.jpg';
+import logoone from '../../../assets/trinitychurchlogo.jpg';
 
 export const Events = () => {
   const styles = {

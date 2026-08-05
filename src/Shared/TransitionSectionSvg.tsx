@@ -6,11 +6,12 @@ export const TransitionSectionSvg = () => (
       display: "block",
       width: "100%",
       height: "120px",
+      transform: "rotate(180deg)",
     }}
   >
     <path
       d="M0,60 C240,120 480,0 720,20 960,40 1200,100 1440,60 L1440,0 L0,0 Z"
-      fill="#fff"
+      fill="var(--color-offwhite)"
     />
   </svg>
 );

@@ -1,4 +1,12 @@
 
+body {
+  margin: none;
+  padding:none;
+  background-color: var(--color-offwhite);
+  font-family: "Imprima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 :root {
   --color-purple: #c2188b;
   --color-dark-purple: #8e1670;
@@ -12,14 +20,7 @@ a{
   color: inherit;
   text-decoration: none;
 }
-body {
-  margin: none;
-  padding:none;
-  background-color: var(--color-offwhite);
-  font-family: "Imprima", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+
 h1{
   font-family: "Nunito Sans", sans-serif;
  font-weight: 900;
@@ -29,7 +30,7 @@ h1{
 
 .subheading{
   font-family: "Actor", sans-serif;
-  font-weight: 800;
+  font-weight: 600;
   font-style: normal;
   
 }
@@ -39,25 +40,43 @@ section >.container-fluid, footer >.container-fluid{
 nav .container-fluid{
   padding: 1% 5%;
 }
-.homeBadge, .homeBadgeParent{
-   color: var(--color-offwhite);
-  text-transform: uppercase;
-  font-size: 0.77rem;   
-  white-space: nowrap;
-  font-weight:bold;
-}
 .homeBadgeParent{
-  background-color: var(--color-purple-transparent );
- 
-  padding: 3px 12px;
+  background-color: var(--color-purple-transparent);
   border-radius: 20px;
+  padding: 3px 12px;
+}
+
+.homeBadgeParent, .homeBadgeParentAlt{
+  color: var(--color-purple);
+  text-transform: uppercase;
   margin-top: 8px;
-  
+  font-weight:bold;
+  vertical-align: middle;
   width: fit-content;
- 
-  
   
 }
+.homeBadge{
+   display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: var(--color-dark-leaf-green);
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  
+}
+.homeImage{
+  min-height: 500px;
+  border-radius: 10px;
+ }
+ 
+
+ @media (max-width:750px) {
+    .homeImage{
+      min-height:200px
+    }
+   
+ }
 p.subtopic {
     font-size: 20px; /* bigger than body text */
     font-weight: 300; /* slightly bolder, optional */
@@ -92,6 +111,10 @@ button{
   font-size: 1.4rem;
   border-radius: 0.5rem;
 }
+.btn-alternate, .btn-alternate:hover {
+    color: var(--color-dark-purple);
+  border: solid 2px var(--color-dark-purple);
+}
 /* navbar navbar */
 .navbar{
   background-color: transparent !important;
@@ -113,10 +136,16 @@ button{
 }
 /* header homepage header */
 #hero{
-  height: 60vh;
+  
   color:white;
 }
-/*  */
+
+/* service section service servoce */
+.service-card{
+  background-color: white;
+  border-radius: 10px;
+  padding:20px;
+}
 
 
 /* about about section about section */
@@ -126,31 +155,7 @@ button{
 
 
 /* MOBILE layout - override for responsiveness */
-@media (max-width: 900px) {
- 
 
-  .aboutcontent,
-  .aboutimage, .aboutsecondcontent{
-    position: static;
-    width: 100%;
-    max-width: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 0;
-  }
-  .aboutrow, .secondaboutrow{
-    position: static;
-    width: 100%;
-    height: 100%;
-  }
-  .aboutsecondimage {
-    display: none;
-  }
-
-
-
-}
 
 /* Remove blue glow and focus box shadow for all AntD inputs */
 .ant-input:focus,

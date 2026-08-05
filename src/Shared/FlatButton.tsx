@@ -2,7 +2,7 @@ import { JSX } from "react"
 
 type props = {
     title?:string,
-    onClick:()=>void,
+    onClick?:()=>void,
     className?:string,
     disabled?: boolean,
     children?: JSX.Element,

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { backgroundimages } from "../../Shared/globals";
-import { FlatButton } from "../../Shared/FlatButton";
+import { backgroundimages } from "../../../Shared/globals";
+import { FlatButton } from "../../../Shared/FlatButton";
 import { Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import {RightOutlined, HeartOutlined, TeamOutlined, SmileOutlined} from '@ant-design/icons'
-import { TransitionSectionSvg } from "../../Shared/TransitionSectionSvg";
+import { TransitionSectionSvg } from "../../../Shared/TransitionSectionSvg";
 
 
 export const Header = () => {
@@ -43,11 +43,12 @@ export const Header = () => {
   id="hero"
   style={{
     position: "relative",
-    minHeight: "100vh",
+    
+
     overflow: "hidden",
   }}
 >
-      <div className='container-fluid'
+      <div className='container-fluid d-flex align-items-center'
       style={{
           backgroundImage: `
           linear-gradient(to top, var(--color-dark-purple) 0%, transparent 100%),
@@ -56,10 +57,9 @@ export const Header = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-            opacity: fade ? 1 : 0,
-          transition: 'opacity 2s ease-in-out',
-          height:'100%'
-          
+//             filter: fade ? "blur(0px)" : "blur(8px)",
+          transition: "backgroundImage 2s ease",
+          minHeight:'100vh',
         }}>
         
         <div style={{
@@ -70,37 +70,38 @@ export const Header = () => {
         <div className='row' >
 
               <div className='col-md-8'>
-                <div className="heroBadge">
+                 <div className="heroBadge">
                                 
                   <span className='homeBadgeParent '> 
                       <span className='homeBadge'></span>
                           UK Registered Charity
                       </span>
                   </div>
-              <h1>
-              Making a difference <br/><span style={{color:'var(--color-leaf-green)'}}>one heart, one life at a time.</span>
-              </h1>
-              <p className="subtopic">
-              The Trinity Arms Foundation is a charity organisation 
-              registered in the united Kingdom committed to making a lasting impact both locally and beyond. 
-              </p>
-              <Space wrap={true} className="headerbutton">
-                <FlatButton title="Learn about our mission" className="buttondark btn-xl" onClick={()=>navigate('/sendform')}/>
-            
-                <FlatButton title="Support Our work" iconTwo={<HeartOutlined/>} icon={<RightOutlined /> } className="buttonsuccess btn-xl" onClick={()=>navigate('/donate')}/>
-              </Space>
-              
-
-              <div className="row heroBottom mt-4">
-                <div className="col-md-4 mb-2">
-                    <small style={{display:"flex", gap:'12px'}}><SmileOutlined/> Registered UK Charity</small>
-                </div>
-                <div className="col-md-4 mb-2">
-                    <small style={{display:"flex", gap:'12px'}}><TeamOutlined/> Community-driven support</small>
-
-                </div>
+                  <br/>
+                  <h1>
+                  Making a difference <br/><span style={{color:'var(--color-leaf-green)'}}>one heart, one life at a time.</span>
+                  </h1>
+                  <p className="subtopic">
+                  The Trinity Arms Foundation is a charity organisation 
+                  registered in the united Kingdom committed to making a lasting impact both locally and beyond. 
+                  </p>
+                  <Space wrap={true} className="headerbutton">
+                    <FlatButton title="Learn about our mission" className="buttondark btn-xl" onClick={()=>navigate('/sendform')}/>
                 
-              </div>
+                    <FlatButton title="Support Our work" iconTwo={<HeartOutlined/>} icon={<RightOutlined /> } className="buttonsuccess btn-xl" onClick={()=>navigate('/donate')}/>
+                  </Space>
+                  
+
+                  <div className="row heroBottom mt-4">
+                    <div className="col-md-4 mb-2">
+                        <small style={{display:"flex", gap:'12px'}}><SmileOutlined style={{color:'var(--color-leaf-green)'}}/> Registered UK Charity</small>
+                    </div>
+                    <div className="col-md-4 mb-2">
+                        <small style={{display:"flex", gap:'12px'}}><TeamOutlined style={{color:'var(--color-leaf-green)'}}/> Community-driven support</small>
+
+                    </div>
+                    
+                  </div>
 
               </div>
 

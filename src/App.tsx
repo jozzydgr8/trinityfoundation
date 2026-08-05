@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 import { Layout } from './Layout';
-import HomePage from './Pages/HomePage';
+import HomePage from './Pages/homepage/HomePage';
 import { Donation } from './Pages/Donation';
 import SendMail from './Pages/SendMail';
 import { ToastContainer } from "react-toastify";
