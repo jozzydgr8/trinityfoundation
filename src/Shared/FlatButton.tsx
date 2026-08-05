@@ -6,9 +6,11 @@ type props = {
     className?:string,
     disabled?: boolean,
     children?: JSX.Element,
+     icon?: JSX.Element,
+      iconTwo?: JSX.Element,
 }
-export const FlatButton = ({title, onClick, className, disabled, children}:props)=>{
+export const FlatButton = ({title, onClick, className, disabled, children, icon, iconTwo}:props)=>{
     return(
-        <button className={`btn btn-lg  ${className}`} onClick={onClick} disabled={disabled} >{title} {children}</button>
+        <button className={`btn btn-lg  ${className}`} onClick={onClick} disabled={disabled} >{iconTwo} {title} {children} {icon}</button>
     )
 }
