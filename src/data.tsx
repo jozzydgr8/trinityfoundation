@@ -5,6 +5,8 @@ import {
   BookOutlined,
   TeamOutlined,
   CompassOutlined,
+  InboxOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
 
 export const services = [
@@ -45,3 +47,31 @@ export const services = [
     icon: <CompassOutlined />,
   },
 ];
+
+export const impactStats = [
+  {
+    id: "food-parcels",
+    title: "Food Parcels",
+    description: "Distributed to families in need",
+    icon: <InboxOutlined />,
+  },
+  {
+    id: "community-hubs",
+    title: "Community Hubs",
+    description: "Active across the UK",
+    icon: <HomeOutlined />,
+  },
+  {
+    id: "volunteers",
+    title: "Volunteers",
+    description: "Dedicated to our mission",
+    icon: <TeamOutlined />,
+  },
+  {
+    id: "referral-partners",
+    title: "Referral Partners",
+    description: "Connecting people to support",
+    icon: <LinkOutlined />,
+  },
+];
+

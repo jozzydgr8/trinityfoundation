@@ -15,14 +15,10 @@ export function Trustee() {
             {
               trusteeData.map((data, index)=>(
                 <div className='col-md-4 mb-2' key={index}>
-                  <div className='homeImage' style={{backgroundImage:`url(${data.profile_pic})`,
-                  backgroundSize:"cover",
-                  backgroundPosition:'center center',
-                  backgroundRepeat:'no-repeat',
+                  {/* <img src={data.profile_pic} alt={data.name} className="homeImage"style={{width:'100%'}}  /> */}
+                  <div className='trusteeImage' style={{backgroundImage: `url(${data.profile_pic})`, backgroundPosition:'top',
+                backgroundSize: 'cover',}}></div>
                   
-                }}>
-
-                  </div>
                 </div>
               ))
             }

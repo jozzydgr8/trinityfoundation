@@ -1,6 +1,7 @@
 import { About } from "./component/About"
 import { Events } from "./component/Events"
 import { Header } from "./component/Header"
+import { Impact } from "./component/Impact"
 import { Mission } from "./component/Mission"
 import { Services } from "./component/Services"
 import { Trustee } from "./component/Trustee"
@@ -15,6 +16,7 @@ function HomePage() {
       {/* <Vision/> */}
       <Mission/>
       <Trustee/>
+      <Impact/>
       <Events/>
       
     </>

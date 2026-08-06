@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/Trinity_logo.png'
+import { FlatButton } from './FlatButton'
+import {HeartOutlined} from '@ant-design/icons'
 function Navbar() {
 
   return (
@@ -27,9 +29,16 @@ function Navbar() {
         <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/donate">Donate</NavLink>
         </li>
+          
        
 
       </ul>
+      <FlatButton 
+                title='make a difference' 
+                className=' buttonsuccess'
+                onClick={() => console.log('Hi, I’d like to get a free consultation...')}
+                iconTwo={<HeartOutlined />}
+              />
     </div>
   </div>
 </nav>
