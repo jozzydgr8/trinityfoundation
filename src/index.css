@@ -120,6 +120,9 @@ nav .container-fluid{
   min-height: 500px;
   border-radius: 10px;
  }
+ .marquee-image{
+   margin:10px 25px; width:250px; height:250px;
+ }
  
 
  @media (max-width:750px) {

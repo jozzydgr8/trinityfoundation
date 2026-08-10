@@ -7,52 +7,90 @@ import eventFive from '../../../assets/tinuevent.jpg';
 import eventSix from '../../../assets/soulevent.jpg';
 import eventSeven from '../../../assets/yewandeevent.jpg';
 import logoone from '../../../assets/trinitychurchlogo.jpg';
+import Marquee from "react-fast-marquee";
 
 export const Events = () => {
-  const styles = {
-    container: {
-      backgroundSize: 'contain',
-      height: '200px',
-      width: '100%',
-      borderRadius: '20px',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-    },
-  };
+  const events = [
+  eventOne,
+  eventTwo,
+  eventThree,
+  eventFour,
+  eventFive,
+  eventSix,
+  eventSeven,
+];
+
+const firstRow = events.slice(0, 4);
+const secondRow = events.slice(4, events.length);
+  // const styles = {
+  //   container: {
+  //     backgroundSize: 'contain',
+  //     height: '200px',
+  //     width: '100%',
+  //     borderRadius: '20px',
+  //     backgroundRepeat: 'no-repeat',
+  //     backgroundPosition: 'center',
+  //   },
+  // };
 
   return (
     <section >
       <div className="container-fluid">
-        <h2>Events</h2> <br/>
+        <div className="text-center">
+          <span className="homeBadgeParentAlt">our event</span>
+        
+          <h2 className="subheading" >Every event <span style={{color:'var(--color-navy)'}}>creates meaningful connections</span></h2> <br/>
+        </div>  
+        
+        
+  {/* First 4 events */}
+  <Marquee
+    speed={50}
+    direction="left"
+    pauseOnHover
+    gradient={false}
+  >
+    {firstRow.map((image, index) => (
+     
+        <img
+      key={index}
+      src={image}
+      alt="event"
+      className="marquee-image"
+    />
+      
+ 
+    ))}
+  </Marquee>
 
-        <Row gutter={[16, 24]}>
-          {[
-            eventOne,
-            eventTwo,
-            eventThree,
-            eventFour,
-            eventFive,
-            eventSix,
-            eventSeven,
-          ].map((image, index) => (
-            <Col xs={12} sm={12} md={8} lg={6} key={index}>
-              <div
-                style={{
-                  ...styles.container,
-                  backgroundImage: `url(${image})`,
-                }}
-              ></div>
-            </Col>
-          ))}
-        </Row>
+  {/* Remaining events */}
+  <div style={{ marginTop: "24px" }}>
+    <Marquee
+      speed={50}
+      direction="right"
+      pauseOnHover
+      gradient={false}
+    >
+      {secondRow.map((image, index) => (
+       <img
+      key={index}
+      src={image}
+      alt="event"
+      className="marquee-image"
+    />
+      ))}
+    </Marquee>
+  
+    </div>
 
-        <div style={{marginTop:"20px"}}>
+    {/* <div style={{marginTop:"20px"}}>
             <h2>In Partner with</h2>
             <Row align={'middle'} justify={'center'}>
                 {[logoone].map((image, index) => (
             <Col xs={12} sm={12} md={8} lg={6} key={index} style={{
               display:"flex",
               justifyContent:'center'}}>
+                
               <div
                 style={{
                   ...styles.container,
@@ -62,10 +100,8 @@ export const Events = () => {
                  
                 }}
               ></div>
-            </Col>
-          ))}
-            </Row>
-        </div>
+              </div> */}
+
         
       </div>
     </section>
