@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/Trinity_logo.png'
+import logo from '../assets/businessLogo.png'
 import { FlatButton } from './FlatButton'
 import {HeartOutlined} from '@ant-design/icons'
 function Navbar() {

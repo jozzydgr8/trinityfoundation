@@ -7,16 +7,16 @@ export const About = ()=>{
         <section id='about'>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 mb-4">
                         <div className='homeImage' style={{ backgroundImage: `url(${demobackground})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 ">
                         <div>
-                            <span className='homeBadgeParentAlt'>About our foundation</span>
+                            <span className='homeBadgeParentAlt '>About our foundation</span>
                             
                             <h2 className='subheading mt-4' >
                                 Compassion in action —<br/>
-                                <span style={{ color: 'var(--color-dark-purple)' }}>supporting people when it matters most</span>
+                                <span style={{ color: 'var(--color-navy)' }}>supporting people when it matters most</span>
                             </h2>
                             <br/>
                             <p >

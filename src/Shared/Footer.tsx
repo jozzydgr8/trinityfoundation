@@ -1,5 +1,5 @@
 import { Col, Form, Input, Row, Typography } from 'antd';
-import logo from '../assets/Trinity_logo.png';
+import logo from '../assets/businessLogo.png';
 import { InstagramOutlined, FacebookOutlined, LinkedinOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { FlatButton } from './FlatButton';
@@ -146,7 +146,7 @@ function Footer() {
       {/* Footer Bottom */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
         <p>© 2025 @ The Trinity Arms Foundation UK</p>
-        <small style={{ color: '#ccc' }}>
+        <small style={{ color: 'var(--color-navy)' }}>
           Website Created by <a href="https://jozzycodes.com/" target="_blank" rel="noopener noreferrer">jozzycodes</a>
         </small>
       </div>

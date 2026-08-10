@@ -6,8 +6,55 @@ body {
   font-family: "Imprima", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: var(--color-charcoal);
+
 }
 :root {
+  /* Primary Navy */
+  --color-navy-deep: #071A3D;
+  --color-navy: #0D2855;
+  --color-navy-midnight: #020D24;
+  --color-navy-transparent: rgba(7, 26, 61, 0.2);
+
+  /* Metallic Gold */
+  --color-gold: #C99A3A;
+  --color-gold-bright: #E0B95A;
+  --color-gold-dark: #9B6F1E;
+  --color-gold-champagne: #B8944E;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-gray-light: #F7F7F7;
+  --color-charcoal: #10141C;
+
+  /* Gradients */
+  --gradient-navy: linear-gradient(
+    180deg,
+    #0D2855 0%,
+    #071A3D 50%,
+    #020D24 100%
+  );
+
+  --gradient-gold: linear-gradient(
+    135deg,
+    #E0B95A 0%,
+    #C99A3A 45%,
+    #9B6F1E 100%
+  );
+
+  --gradient-gold-horizontal: linear-gradient(
+    90deg,
+    #9B6F1E 0%,
+    #E0B95A 50%,
+    #9B6F1E 100%
+  );
+
+  /* Brand */
+  --brand-primary: var(--color-navy-deep);
+  --brand-secondary: var(--color-gold);
+  --brand-accent: var(--color-gold-bright);
+  --brand-background: var(--color-white);
+
   --color-purple: #c2188b;
   --color-dark-purple: #8e1670;
   --color-purple-transparent: rgba(142, 22, 112, 0.2);
@@ -41,13 +88,17 @@ nav .container-fluid{
   padding: 1% 5%;
 }
 .homeBadgeParent{
-  background-color: var(--color-purple-transparent);
+  background-color: var(--color-navy-transparent);
   border-radius: 20px;
   padding: 3px 12px;
+  color: white;
+}
+.homeBadgeParentAlt{
+    color: var(--color-navy);
 }
 
 .homeBadgeParent, .homeBadgeParentAlt{
-  color: var(--color-purple);
+
   text-transform: uppercase;
   margin-top: 8px;
   font-weight:bold;
@@ -59,7 +110,7 @@ nav .container-fluid{
    display: inline-block;
   width: 12px;
   height: 12px;
-  background: var(--color-dark-leaf-green);
+  background: var(--color-gold-dark);
   border-radius: 50%;
   margin-right: 5px;
   vertical-align: middle;
@@ -91,22 +142,22 @@ button{
   cursor: pointer;
 }
 .buttondark{
-  background-color: var(--color-dark-purple) !important;
+  background-color: var(--color-navy) !important;
   color: var(--color-offwhite) !important;
   border: solid white 1px !important;
   
 }
 .buttondark:hover{
-  background-color: var(--color-purple) !important;
+  background-color: var(--color-navy) !important;
   color: var(--color-offwhite) !important;
 }
 .buttonsuccess{
-  background-color: var(--color-dark-leaf-green);
+  background-color: var(--color-gold);
   color: var(--color-offwhite);
 
 }
 .buttonsuccess:hover{
-  background-color: var(--color-leaf-green) !important;
+  background-color: var(--color-gold-bright) !important;
   color: var(--color-offwhite) !important;
 }
 .btn-xl {
@@ -115,8 +166,8 @@ button{
   border-radius: 0.5rem;
 }
 .btn-alternate, .btn-alternate:hover {
-    color: var(--color-dark-purple);
-  border: solid 2px var(--color-dark-purple);
+    color: var(--color-navy);
+  border: solid 2px var(--color-navy);
 }
 /* navbar navbar */
 .navbar{
@@ -125,16 +176,16 @@ button{
 .nav-link{
   font-weight: bold;
   font-size: 24px;
-  color: var(--color-dark-purple) !important;
+  color: var(--color-navy-deep) !important;
 }
 .navbar-brand img{
-  width:40%;
+  width:20%;
 
 }
 
 
 .darkbackground{
-  background-color: var(--color-dark-purple);
+  background-color: var(--color-navy-midnight);
   color: white;
 }
 /* header homepage header */

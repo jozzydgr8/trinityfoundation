@@ -1,5 +1,5 @@
-import imageone from '../assets/trinitygrouptwoimage.jpg'
-import imagetwo from '../assets/trinitygroupimage.jpg'
+import imageone from '../assets/groupImage.jpg'
+import imagetwo from '../assets/womenwithpackages.jpg'
 import funmiPic from '../assets/Olufunmilola.jpg'
 import dayoPic from '../assets/Dayo_otubu.jpg'
 import taiwoPic from '../assets/taiwo_diyaolu.jpg'

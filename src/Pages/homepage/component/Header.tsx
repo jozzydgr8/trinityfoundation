@@ -51,7 +51,7 @@ export const Header = () => {
       <div className='container-fluid d-flex align-items-center'
       style={{
           backgroundImage: `
-          linear-gradient(to top, var(--color-dark-purple) 0%, transparent 100%),
+          linear-gradient(to top, var(--color-navy-midnight) 0%, transparent 100%),
           url(${currentBackground})
         `,
           backgroundSize: 'cover',
@@ -79,7 +79,7 @@ export const Header = () => {
                   </div>
                   <br/>
                   <h1>
-                  Making a difference <br/><span style={{color:'var(--color-leaf-green)'}}>one heart, one life at a time.</span>
+                  Making a difference <br/><span style={{color:'var(--color-gold-dark)'}}>one heart, one life at a time.</span>
                   </h1>
                   <p className="subtopic">
                   The Trinity Arms Foundation is a charity organisation 
@@ -94,10 +94,10 @@ export const Header = () => {
 
                   <div className="row heroBottom mt-4">
                     <div className="col-md-4 mb-2">
-                        <small style={{display:"flex", gap:'12px'}}><SmileOutlined style={{color:'var(--color-leaf-green)'}}/> Registered UK Charity</small>
+                        <small style={{display:"flex", gap:'12px'}}><SmileOutlined style={{color:'var(--color-gold)'}}/> Registered UK Charity</small>
                     </div>
                     <div className="col-md-4 mb-2">
-                        <small style={{display:"flex", gap:'12px'}}><TeamOutlined style={{color:'var(--color-leaf-green)'}}/> Community-driven support</small>
+                        <small style={{display:"flex", gap:'12px'}}><TeamOutlined style={{color:'var(--color-gold)'}}/> Community-driven support</small>
 
                     </div>
                     

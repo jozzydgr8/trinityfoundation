@@ -18,9 +18,9 @@ export const Mission = ()=>{
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-7 mb-2">
-                        <p className='homeBadgeParentAlt' style={{color:'var(--color-leaf-green)'}}>Our Mission</p>
+                        <p className='homeBadgeParentAlt' style={{color:'var(--color-gold)'}}>Our Mission</p>
                         <h2 className='subheading'>Restoring dignity <br/>
-                            <span style={{color:'var(--color-leaf-green)'}}>Relieving poverty.</span> <br/>
+                            <span style={{color:'var(--color-gold)'}}>Relieving poverty.</span> <br/>
                             Creating hope.</h2><br/>
                         <p className="animate-up subtopic">
                         Our mission is simple but profound: to ensure that people experiencing financial hardship are not overlooked, forgotten, or left without options. We are committed to relieving poverty and its effects through practical, direct assistance that respects the dignity of every person we support.<br/><br/>

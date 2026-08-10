@@ -4,7 +4,7 @@ export const Services = ()=>{
         <section>
             <div className="container-fluid">
                 <div className='text-center'>
-                    <h2 className='subheading'>Practical support for <br/> <span style={{color:'var(--color-purple)'}}>everyday needs</span></h2>
+                    <h2 className='subheading'>Practical support for <br/> <span style={{color:'var(--color-navy)'}}>everyday needs</span></h2>
                 <p className='subtopic'>
                     We provide a range of essential services designed to meet immediate needs while helping people build stability and hope for the future.
                 </p>
@@ -14,7 +14,7 @@ export const Services = ()=>{
                         services.map((service, index)=>(
                             <div className="col-md-4 " key={index}>
                                 <div className='service-card mb-3'>
-                                    <div style={{width:"fit-content", fontSize: '2rem',color:'var(--color-dark-purple)', backgroundColor: 'var(--color-purple-transparent)', padding: '7px 15px', borderRadius: '10px' }}>{service.icon}</div>
+                                    <div style={{width:"fit-content", fontSize: '2rem',color:'var(--color-navy)', backgroundColor: 'var(--color-navy-transparent)', padding: '7px 15px', borderRadius: '10px' }}>{service.icon}</div>
                                     <br/>
                                     <h3 className='subheading'>{service.title}</h3>
                                     <p>{service.description}</p>
