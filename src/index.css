@@ -132,6 +132,9 @@ nav .container-fluid{
     .trusteeImage{
       min-height:370px
     }
+    .marquee-image{
+   width:150px; height:150px;
+  }
    
  }
 p.subtopic {
@@ -181,10 +184,15 @@ button{
   font-size: 24px;
   color: var(--color-navy-deep) !important;
 }
-.navbar-brand img{
-  width:20%;
-
+.navbar-brand{
+  width:10%;
 }
+@media (max-width:750px) {
+  .navbar-brand{
+  width:20%;
+}
+}
+
 
 
 .darkbackground{
@@ -192,9 +200,19 @@ button{
   color: white;
 }
 /* header homepage header */
-#hero{
+#hero, .sharedCtaContainer{
   
   color:white;
+}
+
+/* cta--cta--cta--cta */
+.sharedCtaContainer{
+  min-height: 350px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+ 
 }
 
 /* service section service servoce */

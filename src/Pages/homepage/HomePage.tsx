@@ -1,4 +1,5 @@
 import { About } from "./component/About"
+import { Cta } from "./component/Cta"
 import { Events } from "./component/Events"
 import { Header } from "./component/Header"
 import { Impact } from "./component/Impact"
@@ -11,6 +12,7 @@ function HomePage() {
   return (
     <>
       <Header/>
+      <Cta/>
       <About/>
       <Services/>
       {/* <Vision/> */}

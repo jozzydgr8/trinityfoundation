@@ -47,7 +47,7 @@ const secondRow = events.slice(4, events.length);
   <Marquee
     speed={50}
     direction="left"
-    pauseOnHover
+  
     gradient={false}
   >
     {firstRow.map((image, index) => (
@@ -68,7 +68,7 @@ const secondRow = events.slice(4, events.length);
     <Marquee
       speed={50}
       direction="right"
-      pauseOnHover
+    
       gradient={false}
     >
       {secondRow.map((image, index) => (
