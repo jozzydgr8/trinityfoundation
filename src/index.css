@@ -206,14 +206,27 @@ button{
 }
 
 /* cta--cta--cta--cta */
-.sharedCtaContainer{
+.sharedCtaContainer {
   min-height: 350px;
   border-radius: 10px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
- 
+
+  animation: subtleFloat 4s ease-in-out infinite;
 }
+
+@keyframes subtleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 
 /* service section service servoce */
 .service-card, .impact-card{
@@ -223,8 +236,10 @@ button{
 }
 
 
-/* about about section  section */
-
+/* achievement section  section */
+.achievement-item{
+  border-right: solid 1px gray;
+}
 
 
 

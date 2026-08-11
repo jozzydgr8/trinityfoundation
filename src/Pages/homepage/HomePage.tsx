@@ -1,4 +1,5 @@
 import { About } from "./component/About"
+import { Achievement } from "./component/Achievement"
 import { Cta } from "./component/Cta"
 import { Events } from "./component/Events"
 import { Header } from "./component/Header"
@@ -15,6 +16,7 @@ function HomePage() {
       <Cta/>
       <About/>
       <Services/>
+      <Achievement/>
       {/* <Vision/> */}
       <Mission/>
       <Trustee/>

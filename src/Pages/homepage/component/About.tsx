@@ -7,7 +7,7 @@ export const About = ()=>{
         <section id='about'>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 mb-4 animate-left">
                         <div className='homeImage' style={{ backgroundImage: `url(${demobackground})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                     </div>
                     <div className="col-md-6 ">
@@ -19,7 +19,7 @@ export const About = ()=>{
                                 <span style={{ color: 'var(--color-navy)' }}>supporting people when it matters most</span>
                             </h2>
                             <br/>
-                            <p >
+                            <p className='animate-up' >
                                 The Trinity Arms Foundation is a UK-registered charitable organisation dedicated to supporting individuals and families who are experiencing financial hardship and poverty. We believe that everyone deserves access to the essentials that make daily life possible — food, clothing, toiletries, and household items.
 
                                 Our approach is rooted in dignity and respect. We don't just provide material assistance — we listen, we guide, and we connect people with the services and support networks that can help them move forward. Every person who reaches out to us is treated with compassion, without judgement.
@@ -29,7 +29,8 @@ export const About = ()=>{
 
                             </p>
                             <br/>
-                            <FlatButton title='Learn More' icon={<RightOutlined/>} className='btn btn-alternate' />
+                            <FlatButton title='Learn More' icon={<RightOutlined/>} className='btn btn-alternate animate-up' />
+                            
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ export const Services = ()=>{
                 <div className="row">
                     {
                         services.map((service, index)=>(
-                            <div className="col-md-4 " key={index}>
+                            <div className="col-md-4 animate-up " key={index}>
                                 <div className='service-card mb-3'>
                                     <div style={{width:"fit-content", fontSize: '2rem',color:'var(--color-navy)', backgroundColor: 'var(--color-navy-transparent)', padding: '7px 15px', borderRadius: '10px' }}>{service.icon}</div>
                                     <br/>

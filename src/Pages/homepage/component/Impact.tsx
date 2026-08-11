@@ -20,7 +20,7 @@ export const Impact = ()=>{
                 <div className="row">
                     {
                         impactStats.map((data, index)=>(
-                            <div className='col-md-3' key={index}>
+                            <div className='col-md-3 animate-up' key={index}>
                                 <div className='impact-card mb-3 text-center'>
                                    <span style={{width:"fit-content", fontSize: '2rem',color:'var(--color-navy)', backgroundColor: 'var(--color-navy-transparent)', padding: '7px 15px', borderRadius: '10px' }}>{data.icon}</span>
                                     <h3 className='subheading mt-3' style={{color:'var(--color-navy)'}}>{data.title}</h3>

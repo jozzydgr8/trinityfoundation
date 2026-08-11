@@ -6,11 +6,18 @@ import eventFour from '../../../assets/dolapoevent.jpg';
 import eventFive from '../../../assets/tinuevent.jpg';
 import eventSix from '../../../assets/soulevent.jpg';
 import eventSeven from '../../../assets/yewandeevent.jpg';
+import eventEight from '../../../assets/eventImage.jpg';
+
+import eventEleven from '../../../assets/eventImageTwo.jpg';
+import eventTwelve from '../../../assets/eventImageThree.jpg';
+import eventThirteen from '../../../assets/eventImageFour.jpg';
+import eventFourteen from '../../../assets/eventImageFive.jpg';
 import logoone from '../../../assets/trinitychurchlogo.jpg';
 import Marquee from "react-fast-marquee";
 
+
 export const Events = () => {
-  const events = [
+const events = [
   eventOne,
   eventTwo,
   eventThree,
@@ -18,10 +25,17 @@ export const Events = () => {
   eventFive,
   eventSix,
   eventSeven,
+  eventEight,
+  eventEleven,
+  eventTwelve,
+  eventThirteen,
+  eventFourteen,
 ];
 
-const firstRow = events.slice(0, 4);
-const secondRow = events.slice(4, events.length);
+const middle = Math.ceil(events.length / 2);
+
+const firstRow = events.slice(0, middle);
+const secondRow = events.slice(middle);
   // const styles = {
   //   container: {
   //     backgroundSize: 'contain',

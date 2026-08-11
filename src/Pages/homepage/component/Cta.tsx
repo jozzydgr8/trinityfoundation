@@ -9,7 +9,7 @@ export const Cta = ()=>{
             <div className="container-fluid">
                 <div className="row d-flex justify-content-center">
                     
-                        <div className="col-md-4 ">
+                        <div className="col-md-4 animate-up mb-4 ">
                             <div className='h-100 sharedCtaContainer' style={{backgroundImage:`url(${womenImage})`}}>
                                 <div style={{backgroundColor:'rgba(7, 26, 61, 0.6)', height:"100%",padding:' 20px 40px',borderRadius:"10px"}}>
                                     <h2 className='subheading'>Become a Volunteer</h2>
@@ -30,7 +30,7 @@ export const Cta = ()=>{
 
 
 
-                        <div className="col-md-3">
+                        <div className="col-md-3 animate-up mb-4">
                             <div className='h-100 sharedCtaContainer' style={{backgroundColor:'var(--color-purple)',padding:' 20px 40px'}}>
                                 <div className='d-flex align-items-end' style={{border:'solid white 1px', height:'100%', borderRadius:'10px', padding:"20px"}}>
                                     <div>
@@ -50,7 +50,7 @@ export const Cta = ()=>{
 
 
 
-                        <div className="col-md-4">
+                        <div className="col-md-4 animate-up mb-4">
                             <div className='h-100 sharedCtaContainer' style={{backgroundImage:`url(${groupImage})`}}>
                                 <div style={{backgroundColor:'rgba(7, 26, 61, 0.6)', height:"100%", padding:' 20px 40px',borderRadius:"10px"}}>
                                     <h2 className='subheading'>Join Our Mission</h2>
