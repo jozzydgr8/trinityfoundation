@@ -6,7 +6,7 @@ import HomePage from './Pages/homepage/HomePage';
 import { Donation } from './Pages/Donation';
 import SendMail from './Pages/SendMail';
 import { ToastContainer } from "react-toastify";
-import { News } from './Pages/News';
+import { News } from './Pages/newspage/News';
 import { Admin } from './Admin/Admin';
 import AdminLayout from './Admin/AdminLayout';
 import { AdminUpload } from './Admin/AdminUpload';
@@ -31,7 +31,26 @@ import { AdminUsers } from './Admin/AdminUsers';
 function App() {
   const { dispatch, loading } = UseDataContext();
   const { user, dispatch: transmit, loading: userloading } = UseAuthContext();
-
+  
+  //useEffect to fetch blog from backend
+  useEffect(()=>{
+    const fetchData = async()=>{
+      try{
+        const response = await fetch('https://trinityarms.vercel.app/blog');
+        if(!response.ok){
+          throw Error('Failed to fetch data')
+        }
+        const json = await response.json();
+        console.log('blog',json);
+        dispatch({type:'getBlogs', payload:json});
+      }catch(error){
+        console.error('error fetching data', error)
+      }finally{
+        dispatch({type:'loading', payload:false})
+      }
+    }
+    fetchData();
+  },[])
   useEffect(() => {
     const animation = () => {
       var leftAnimate = document.querySelectorAll('.animate-left');

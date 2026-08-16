@@ -83,7 +83,7 @@ h1{
   
 }
 section >.container-fluid, footer >.container-fluid{
-  padding:5% 6%;
+  padding:3% 6%;
 }
 nav .container-fluid{
   padding: 1% 5%;
@@ -147,6 +147,11 @@ p.subtopic {
 /* buttons buttons buttons */
 button{
   cursor: pointer;
+  text-transform:capitalize;
+}
+.borderlessbtn{
+  color:var(--color-gold);
+  padding:0;
 }
 .buttondark{
   background-color: var(--color-navy) !important;

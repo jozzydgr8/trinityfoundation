@@ -16,7 +16,7 @@ type actionProps = blogAction | loadAction | donorAction | subscribeAction | adm
 
 type blogAction = {
     payload:Blog[] ,
-    type:'getblog' 
+    type:'getBlogs' 
 }
 type adminAction = {
     payload:adminType[],
@@ -49,7 +49,7 @@ const initialState = {
 export const Context = createContext({}as valueProps)
 const reducer = (state:stateProps, action:actionProps) =>{
     switch(action.type){
-        case'getblog':
+        case'getBlogs':
         return {...state, blog:action.payload}
         case'loading':
         return {...state, loading:action.payload}
