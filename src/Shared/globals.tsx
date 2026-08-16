@@ -1,8 +1,8 @@
 import imageone from '../assets/groupImage.jpg'
 import imagetwo from '../assets/womenwithpackages.jpg'
-import funmiPic from '../assets/Olufunmilola.jpg'
-import dayoPic from '../assets/Dayo_otubu.jpg'
-import taiwoPic from '../assets/taiwo_diyaolu.jpg'
+import funmiPic from '../assets/olufunmilola.png'
+import dayoPic from '../assets/Dayo_otubu.png'
+import taiwoPic from '../assets/taiwo_diyaolu.png'
 import { query, where, getDocs, CollectionReference, DocumentData } from 'firebase/firestore';
 
 export const backgroundimages = [

@@ -13,8 +13,9 @@ function HomePage() {
   return (
     <>
       <Header/>
+       <About/>
       <Cta/>
-      <About/>
+     
       <Services/>
       <Achievement/>
       {/* <Vision/> */}

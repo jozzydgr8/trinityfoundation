@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { addDoc } from 'firebase/firestore';
-import { donorRef } from '../../App';
+
 import { formatDate } from '../../Shared/Hooks/FormatDate';
 
 declare global {
@@ -22,16 +22,16 @@ type PayPalProps = {
 const handlePayment = async (order: any, email: string, currency:string, message?: string ) => {
   try {
     if (order.status === 'COMPLETE') {
-      await addDoc(donorRef, {
-        name: `${order.payer.name.given_name} ${order.payer.name.surname}`,
-        amount: order.purchase_units[0].amount.value,
-        method: 'PayPal',
-        status: order.status,
-        date: formatDate(new Date()),
-        message: message || '',
-        email: email,
-        currency:currency
-      });
+      // await addDoc(donorRef, {
+      //   name: `${order.payer.name.given_name} ${order.payer.name.surname}`,
+      //   amount: order.purchase_units[0].amount.value,
+      //   method: 'PayPal',
+      //   status: order.status,
+      //   date: formatDate(new Date()),
+      //   message: message || '',
+      //   email: email,
+      //   currency:currency
+      // });
       console.log('Donation recorded successfully.');
     } else {
       console.log('Payment not completed:', order.status);

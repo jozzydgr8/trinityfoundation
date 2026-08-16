@@ -20,8 +20,6 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { UploadFileStorage } from "../Shared/Hooks/UploadHooks";
-import { addDoc, deleteDoc, doc } from "firebase/firestore";
-import { colRef, db } from "../App";
 import { FlatButton } from "../Shared/FlatButton";
 import { UseDataContext } from "../Context/UseDataContext";
 
@@ -45,15 +43,15 @@ const formatDate = (date: Date) =>
 
 export const AdminUpload: React.FC = () => {
   const { uploadFilesToStorage, handleFilesDelete } = UploadFileStorage();
-  const { data } = UseDataContext();
+  const { blog } = UseDataContext();
   const [fileList, setFileList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const pageSize = 3;
   const startIndex = (currentPage - 1) * pageSize;
-  const paginatedArticles = data
-    ? data.slice(startIndex, startIndex + pageSize)
+  const paginatedArticles = blog
+    ? blog.slice(startIndex, startIndex + pageSize)
     : [];
 
   // Validate each file
@@ -97,38 +95,39 @@ export const AdminUpload: React.FC = () => {
   const formik = useFormik({
     initialValues: {
       title: "",
-      description: "",
+      excerpt: "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Title is required"),
-      description: Yup.string().required("Description is required"),
+      excerpt: Yup.string().required("excerpt is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
-      let filesData: { url: string; imagePath: string; }[] =[]
-      try {
+      console.log('onSUbmit for upload')
+      // let filesData: { url: string; imagePath: string; }[] =[]
+      // try {
         
-        if(fileList){
-           filesData = await uploadFilesToStorage(fileList);
-        }
+      //   if(fileList){
+      //      filesData = await uploadFilesToStorage(fileList);
+      //   }
        
-        const newArticle = {
-          title: values.title,
-          description: values.description,
-          date: formatDate(new Date()),
-          files: filesData,
-        };
+      //   const newArticle = {
+      //     title: values.title,
+      //     excerpt: values.excerpt,
+      //     date: formatDate(new Date()),
+      //     files: filesData,
+      //   };
 
-        const docRef = await addDoc(colRef, newArticle);
-        console.log("Document written with ID:", docRef.id);
-        message.success("Event added successfully!");
-        resetForm();
-        setFileList([]);
-      } catch (error) {
-        console.log(error);
-        message.error("Something went wrong!");
-      }
-      setLoading(false);
+      //   const docRef = await addDoc(colRef, newArticle);
+      //   console.log("Document written with ID:", docRef.id);
+      //   message.success("Event added successfully!");
+      //   resetForm();
+      //   setFileList([]);
+      // } catch (error) {
+      //   console.log(error);
+      //   message.error("Something went wrong!");
+      // }
+      // setLoading(false);
     },
   });
 
@@ -155,17 +154,17 @@ export const AdminUpload: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            label="Description"
-            validateStatus={formik.errors.description && formik.touched.description ? "error" : ""}
-            help={formik.touched.description && formik.errors.description}
+            label="excerpt"
+            validateStatus={formik.errors.excerpt && formik.touched.excerpt ? "error" : ""}
+            help={formik.touched.excerpt && formik.errors.excerpt}
           >
             <Input.TextArea
               rows={4}
-              name="description"
-              value={formik.values.description}
+              name="excerpt"
+              value={formik.values.excerpt}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              placeholder="Enter description"
+              placeholder="Enter excerpt"
             />
           </Form.Item>
 
@@ -196,7 +195,7 @@ export const AdminUpload: React.FC = () => {
         {/* Events Listing */}
         <div style={{ marginTop: "3rem" }}>
           <h2>News & Events</h2>
-          {data && data.length > 0 ? (
+          {blog && blog.length > 0 ? (
             <>
               <Row gutter={[16, 24]}>
                 {paginatedArticles.map((article, index) => (
@@ -207,7 +206,7 @@ export const AdminUpload: React.FC = () => {
 
                     <div style={styles.icons}>
                       <CalendarOutlined />
-                      <span>{article.date}</span>
+                      {/* <span>{article.date}</span> */}
                     </div>
 
                     <div style={styles.icons}>
@@ -215,11 +214,11 @@ export const AdminUpload: React.FC = () => {
                       <span>By Trinity Foundation</span>
                     </div>
 
-                    <Paragraph>{article.description.slice(0,100)}</Paragraph>
+                    <Paragraph>{article.excerpt.slice(0,100)}</Paragraph>
 
                     <Popconfirm
                       title="Are you sure you want to delete this event?"
-                      onConfirm={() => handleFilesDelete(article, article.id)}
+                      onConfirm={() => handleFilesDelete(article, article._id)}
                       okText="Yes"
                       cancelText="No"
                     >
@@ -235,12 +234,12 @@ export const AdminUpload: React.FC = () => {
                 ))}
               </Row>
 
-              {data.length > pageSize && (
+              {blog.length > pageSize && (
                 <div className="d-flex justify-content-center mt-4">
                   <Pagination
                     current={currentPage}
                     pageSize={pageSize}
-                    total={data.length}
+                    total={blog.length}
                     onChange={(page) => setCurrentPage(page)}
                   />
                 </div>

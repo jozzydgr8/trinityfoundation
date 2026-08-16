@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { getDocs, setDoc, query, where, doc } from 'firebase/firestore';
-import { donorRef } from '../App';
 import { formatDate } from '../Shared/Hooks/FormatDate';
 import { useLocation } from 'react-router-dom';
 
@@ -21,27 +19,27 @@ const StripeSuccess = () => {
       }
 
       try {
-        const q =  query(donorRef, where('stripeSessionId', '==', sessionId));
-        const querySnapshot = await getDocs(q);
+        // const q =  query(donorRef, where('stripeSessionId', '==', sessionId));
+        // const querySnapshot = await getDocs(q);
 
-        if (!querySnapshot.empty) {
-          console.log('ℹ️ Session already saved, skipping...');
-          return;
-        }
+        // if (!querySnapshot.empty) {
+        //   console.log('ℹ️ Session already saved, skipping...');
+        //   return;
+        // }
 
         const response = await fetch(`https://trinityarms.vercel.app/retrieve-session/${sessionId}`);
         const session = await response.json();
 
-        await setDoc(doc(donorRef, session.id), {
-          email: session.customer_details.email,
-          name: session.customer_details.name,
-          amount: session.amount_total,
-          stripeSessionId: session.id,
-          status: 'completed',
-          date: formatDate(new Date()),
-          method: 'Stripe',
-          currency: session.currency
-        });
+        // await setDoc(doc(donorRef, session.id), {
+        //   email: session.customer_details.email,
+        //   name: session.customer_details.name,
+        //   amount: session.amount_total,
+        //   stripeSessionId: session.id,
+        //   status: 'completed',
+        //   date: formatDate(new Date()),
+        //   method: 'Stripe',
+        //   currency: session.currency
+        // });
 
         console.log('✅ Payment saved to Firebase!');
       } catch (error) {

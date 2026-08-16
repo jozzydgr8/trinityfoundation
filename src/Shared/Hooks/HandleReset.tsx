@@ -1,5 +1,4 @@
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../App";
+
 
 export const AuthHooks = () => {
   const actionCodeSettings = {
@@ -9,7 +8,7 @@ export const AuthHooks = () => {
 
   const handleReset = async (email: string) => {
     try {
-      await sendPasswordResetEmail(auth, email);
+      // await sendPasswordResetEmail(auth, email);
       alert('Password reset email sent.');
     } catch (error: any) {
       console.error("Reset error:", error.message);

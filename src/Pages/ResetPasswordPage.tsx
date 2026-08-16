@@ -1,7 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
-import { auth } from "../App";
+
 
 const ResetPasswordPage = () => {
   const [searchParams] = useSearchParams();
@@ -14,29 +14,29 @@ const ResetPasswordPage = () => {
 
 
 
-  useEffect(() => {
-    const verifyCode = async () => {
-      try {
-        const email = await verifyPasswordResetCode(auth, oobCode);
-        setEmail(email);
-      } catch (err) {
-        setError("Invalid or expired reset link.");
-      }
-    };
+  // useEffect(() => {
+  //   const verifyCode = async () => {
+  //     try {
+  //       const email = await verifyPasswordResetCode(auth, oobCode);
+  //       setEmail(email);
+  //     } catch (err) {
+  //       setError("Invalid or expired reset link.");
+  //     }
+  //   };
 
-    if (oobCode) verifyCode();
-  }, [oobCode]);
+  //   if (oobCode) verifyCode();
+  // }, [oobCode]);
 
-  const handleReset = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await confirmPasswordReset(auth, oobCode, newPassword);
-      setSuccess(true);
-      setTimeout(() => navigate("/login"), 3000);
-    } catch (err) {
-      setError("Failed to reset password.");
-    }
-  };
+  // const handleReset = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   try {
+  //     await confirmPasswordReset(auth, oobCode, newPassword);
+  //     setSuccess(true);
+  //     setTimeout(() => navigate("/login"), 3000);
+  //   } catch (err) {
+  //     setError("Failed to reset password.");
+  //   }
+  // };
 
   return (
     <div>
@@ -45,7 +45,7 @@ const ResetPasswordPage = () => {
       {success ? (
         <p>Password has been reset. Redirecting to login...</p>
       ) : (
-        <form onSubmit={handleReset}>
+        <form onSubmit={()=>console.log('handlereset')}>
           <p>Reset password for: {email}</p>
           <input
             type="password"

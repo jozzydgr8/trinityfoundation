@@ -1,7 +1,5 @@
-import { colRef, storage } from "../../App";
-import { doc, deleteDoc } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
-import { contextType } from "../../Types/Types";
+
+import { Blog } from "../../Types/Types";
 
 // Simple unique ID generator (replaces uuid)
 const generateUniqueId = () => {
@@ -20,40 +18,40 @@ export const UploadFileStorage = () => {
         }
 
         const imagePath = `images/${file.name}-${generateUniqueId()}`; // Use custom ID
-        const storageRef = ref(storage, imagePath);
+        // const storageRef = ref(storage, imagePath);
 
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
-        return {
-          url: url,
-          imagePath: imagePath,
-        };
+        // await uploadBytes(storageRef, file);
+        // const url = await getDownloadURL(storageRef);
+        // return {
+        //   url: url,
+        //   imagePath: imagePath,
+        // };
       })
     );
     return filesData;
   };
 
-  const handleFilesDelete = async (items: contextType | null, id: any) => {
-    try {
-      // Check if the items and fileUrls are not null or undefined
-      if (items && Array.isArray(items.files) && items.files.length > 0) {
-        const imagePaths = items.files.map((img) => img.imagePath).filter(Boolean);
+  const handleFilesDelete = async (items: Blog | null, id: any) => {
+    // try {
+    //   // Check if the items and fileUrls are not null or undefined
+    //   if (items && Array.isArray(items.files) && items.files.length > 0) {
+    //     const imagePaths = items.files.map((img) => img.imagePath).filter(Boolean);
   
-        // Loop through the image paths and delete them
-        for (const imagePath of imagePaths) {
-          const fileStorage = ref(storage, imagePath);
-          await deleteObject(fileStorage);
-          console.log(`Image ${imagePath} deleted from storage`);
-        }
-      }
+    //     // Loop through the image paths and delete them
+    //     for (const imagePath of imagePaths) {
+    //       const fileStorage = ref(storage, imagePath);
+    //       await deleteObject(fileStorage);
+    //       console.log(`Image ${imagePath} deleted from storage`);
+    //     }
+    //   }
   
-      // Delete the document from Firestore
-      const docRef = doc(colRef, id);
-      await deleteDoc(docRef);
-      console.log('Document deleted from Firestore');
-    } catch (error) {
-      console.error('Error deleting images or document:', error);
-    }
+    //   // Delete the document from Firestore
+    //   // const docRef = doc(colRef, id);
+    //   // await deleteDoc(docRef);
+    //   console.log('Document deleted from Firestore');
+    // } catch (error) {
+    //   console.error('Error deleting images or document:', error);
+    // }
   };
   
 

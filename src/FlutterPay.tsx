@@ -1,7 +1,6 @@
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 import { FlatButton } from './Shared/FlatButton';
-import { addDoc } from 'firebase/firestore';
-import { donorRef } from './App';
+
 import { formatDate } from './Shared/Hooks/FormatDate';
 
 type flutterPayProps = {
@@ -40,16 +39,16 @@ export const FlutterPay = ({ price, name, phone, email, message, currency }: flu
     try {
       // Assuming response.status === 'successful' to be a successful payment
       if (response.status === 'COMPLETED') {
-        await addDoc(donorRef, {
-          name: response.customer.name,
-          amount: response.amount,
-          method: 'Flutterwave', // Payment method
-          status: response.status,
-          date: formatDate(new Date()), // Proper date format
-          message: message,
-          email: email,
-          currency:currency
-        });
+        // await addDoc(donorRef, {
+        //   name: response.customer.name,
+        //   amount: response.amount,
+        //   method: 'Flutterwave', // Payment method
+        //   status: response.status,
+        //   date: formatDate(new Date()), // Proper date format
+        //   message: message,
+        //   email: email,
+        //   currency:currency
+        // });
         closePaymentModal(); // Close the payment modal after success
       } else {
         console.log('Payment failed or was canceled:', response.status);

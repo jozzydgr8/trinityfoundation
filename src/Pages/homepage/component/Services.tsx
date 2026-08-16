@@ -3,7 +3,7 @@ export const Services = ()=>{
     return(
         <section>
             <div className="container-fluid">
-                <div className='text-center'>
+                <div className='text-center animate-up'>
                     <h2 className='subheading'>Practical support for <br/> <span style={{color:'var(--color-navy)'}}>everyday needs</span></h2>
                 <p className='subtopic'>
                     We provide a range of essential services designed to meet immediate needs while helping people build stability and hope for the future.

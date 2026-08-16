@@ -3,11 +3,9 @@ import { Formik } from "formik";
 import { Form, Input, Typography } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { FlatButton } from "../Shared/FlatButton";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { auth, db, secondaryAuth } from "../App";
-import { doc, setDoc } from "firebase/firestore";
+
 
 const { Title, Text } = Typography;
 
@@ -31,40 +29,41 @@ export default function AcceptAdmin() {
   ) => {
     setLoading(true);
     setError(null);
+    console.log('test')
 
-    const defaultPassword = process.env.REACT_APP_DEFAULT_ADMIN_PASSWORD;
+    // const defaultPassword = process.env.REACT_APP_DEFAULT_ADMIN_PASSWORD;
 
-    if (!defaultPassword) {
-      setError("Default password is not set.");
-      setLoading(false);
-      return;
-    }
+    // if (!defaultPassword) {
+    //   setError("Default password is not set.");
+    //   setLoading(false);
+    //   return;
+    // }
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        secondaryAuth,
-        values.email,
-        defaultPassword
-      );
+    // try {
+    //   const userCredential = await createUserWithEmailAndPassword(
+    //     secondaryAuth,
+    //     values.email,
+    //     defaultPassword
+    //   );
 
-      // Add user to Firestore
-      const user = userCredential.user;
-      await setDoc(doc(db, "users", user.uid), {
-        email: values.email,
-        admin: true,
-        userId:user.uid,
-        createdAt: new Date().toISOString(),
-      });
-      await secondaryAuth.signOut();
+    //   // Add user to Firestore
+    //   const user = userCredential.user;
+    //   await setDoc(doc(db, "users", user.uid), {
+    //     email: values.email,
+    //     admin: true,
+    //     userId:user.uid,
+    //     createdAt: new Date().toISOString(),
+    //   });
+    //   await secondaryAuth.signOut();
 
-      setSuccess(true);
-      resetForm();
-    } catch (err: any) {
-      console.error(err);
-      setError(err.message || "Failed to create account.");
-    } finally {
-      setLoading(false);
-    }
+    //   setSuccess(true);
+    //   resetForm();
+    // } catch (err: any) {
+    //   console.error(err);
+    //   setError(err.message || "Failed to create account.");
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (

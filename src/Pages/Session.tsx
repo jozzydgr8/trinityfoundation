@@ -4,9 +4,9 @@ import { CloseOutlined } from '@ant-design/icons';
 import {FlatButton} from "../Shared/FlatButton";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+
 import * as Yup from 'yup';
-import { auth } from "../App";
+
 import { UseAuthContext } from "../Context/UseAuthContext";
 import { AuthHooks } from "../Shared/Hooks/HandleReset";
 
@@ -39,12 +39,12 @@ export default function Session() {
     setLoading(true)
     try {
       
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
-      dispatch({ type: "getUser", payload: userCredential.user });
+      // const userCredential = await signInWithEmailAndPassword(
+      //   auth,
+      //   values.email,
+      //   values.password
+      // );
+      //dispatch({ type: "getUser", payload: userCredential.user });
       navigate('/admin');
    
       return

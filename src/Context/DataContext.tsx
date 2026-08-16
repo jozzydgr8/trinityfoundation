@@ -1,22 +1,22 @@
 import { createContext, useReducer } from "react";
-import { adminType, contextType, donorType, formType, subscribeType } from "../Types/Types";
+import { adminType, Blog, donorType, formType, subscribeType } from "../Types/Types";
 export type valueProps =  stateProps & {dispatch: React.Dispatch<actionProps>};
 type contextProps = {
     children:React.ReactNode
 }
 export type stateProps = {
-    data:contextType[] | null,
+    blog:Blog[] | null,
     loading:boolean,
     donors: donorType[] | null,
     subscribers:subscribeType[] | null,
     adminUsers: adminType[] | null,
     volunteers: formType[] | null,
 }
-type actionProps = dataAction | loadAction | donorAction | subscribeAction | adminAction | volunteeraction;
+type actionProps = blogAction | loadAction | donorAction | subscribeAction | adminAction | volunteeraction;
 
-type dataAction = {
-    payload:contextType[] ,
-    type:'getData' 
+type blogAction = {
+    payload:Blog[] ,
+    type:'getblog' 
 }
 type adminAction = {
     payload:adminType[],
@@ -39,7 +39,7 @@ type volunteeraction = {
     type:'getVolunteer'
 }
 const initialState = {
-    data:null,
+    blog:null,
     loading:false,
     donors:null,
     subscribers:null,
@@ -49,8 +49,8 @@ const initialState = {
 export const Context = createContext({}as valueProps)
 const reducer = (state:stateProps, action:actionProps) =>{
     switch(action.type){
-        case'getData':
-        return {...state, data:action.payload}
+        case'getblog':
+        return {...state, blog:action.payload}
         case'loading':
         return {...state, loading:action.payload}
         case'getDonors':

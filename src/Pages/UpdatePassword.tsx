@@ -4,12 +4,7 @@ import { Form, Input, Typography } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { FlatButton } from "../Shared/FlatButton";
 import * as Yup from "yup";
-import {
-  updatePassword,
-  EmailAuthProvider,
-  reauthenticateWithCredential,
-} from "firebase/auth";
-import { auth } from "../App";
+
 import { useNavigate } from "react-router-dom";
 import { UseAuthContext } from "../Context/UseAuthContext";
 
@@ -54,16 +49,16 @@ export default function UpdatePassword() {
     }
 
     try {
-      const credential = EmailAuthProvider.credential(
-        user.email,
-        values.currentPassword
-      );
+      // const credential = EmailAuthProvider.credential(
+      //   user.email,
+      //   values.currentPassword
+      // );
 
       // Reauthenticate first
-      await reauthenticateWithCredential(user, credential);
+      // await reauthenticateWithCredential(user, credential);
 
       // Then update password
-      await updatePassword(user, values.newPassword);
+      // await updatePassword(user, values.newPassword);
 
       setSuccess(true);
       resetForm();

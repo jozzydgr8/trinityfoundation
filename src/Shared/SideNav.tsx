@@ -3,8 +3,8 @@ import { Menu } from 'antd';
 import {QuestionCircleFilled, CreditCardOutlined, LogoutOutlined, HomeOutlined, UploadOutlined, SettingOutlined} from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom';
 import { MenuItem } from '../Types/Types';
-import { signOut } from 'firebase/auth';
-import { auth } from '../App';
+
+
 import { UseAuthContext } from '../Context/UseAuthContext';
 
 
@@ -39,7 +39,7 @@ export const SideNav: React.FC = () => {
   const handleSignOut = async()=>{
     dispatch({type:'loading', payload:true});
     try{
-      await signOut(auth);
+      // await signOut(auth);
       dispatch({type:'loading', payload:false});
     }catch(error){
       console.error(error);

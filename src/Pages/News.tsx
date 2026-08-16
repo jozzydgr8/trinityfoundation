@@ -3,16 +3,16 @@ import { Col, Row, Typography, Pagination } from "antd";
 import { CalendarOutlined, UserOutlined } from "@ant-design/icons";
 import { FlatButton } from "../Shared/FlatButton";
 import { UseDataContext } from "../Context/UseDataContext";
-import { contextType } from "../Types/Types";
+import { Blog } from "../Types/Types";
 
 const { Title, Paragraph } = Typography;
 
 export const News = () => {
-  const { data } = UseDataContext();
+  const { blog:data } = UseDataContext();
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 3;
-  const [featured, setFeatured] = useState<contextType | null>(null);
+  const [featured, setFeatured] = useState<Blog | null>(null);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -20,26 +20,26 @@ export const News = () => {
     }
   }, [data]);
 
-  const handleIndicatorClick = (index: number) => setActiveIndex(index);
+  // const handleIndicatorClick = (index: number) => setActiveIndex(index);
 
-  const handleNext = () => {
-    if (!data?.[0]?.files) return;
-    setActiveIndex((prev) =>
-      prev === data[0].files!.length - 1 ? 0 : prev + 1
-    );
-  };
+  // const handleNext = () => {
+  //   if (!data?.[0]?.featuredImage) return;
+  //   setActiveIndex((prev) =>
+  //     prev === data[0].featuredImage!.length - 1 ? 0 : prev + 1
+  //   );
+  // };
 
-  const handlePrev = () => {
-    if (!data?.[0]?.files) return;
-    setActiveIndex((prev) =>
-      prev === 0 ? data[0].files!.length - 1 : prev - 1
-    );
-  };
+  // const handlePrev = () => {
+  //   if (!data?.[0]?.featuredImage) return;
+  //   setActiveIndex((prev) =>
+  //     prev === 0 ? data[0].featuredImage!.length - 1 : prev - 1
+  //   );
+  // };
 
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedArticles = data ? data.slice(startIndex, startIndex + pageSize) : [];
 
-  const handleReadMore = (article: contextType) => {
+  const handleReadMore = (article: Blog) => {
     setFeatured(article);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -80,13 +80,13 @@ export const News = () => {
         {/* Featured Section */}
         <div className="row mb-5">
           <div className="col-md-6">
-            <div
+            {/* <div
               id="carouselExampleIndicators"
               className="carousel slide"
               data-bs-ride="carousel"
             >
               <div className="carousel-indicators">
-                {featured?.files?.map((_, index) => (
+                {featured?.featuredImage?.map((_, index) => (
                   <button
                     key={index}
                     type="button"
@@ -98,7 +98,7 @@ export const News = () => {
                 ))}
               </div>
               <div className="carousel-inner">
-                {featured?.files?.map((item, index) => (
+                {featured?.featuredImage?.map((item, index) => (
                   <div
                     key={index}
                     className={`carousel-item ${activeIndex === index ? "active" : ""}`}
@@ -121,7 +121,7 @@ export const News = () => {
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
               </button>
-            </div>
+            </div> */}
           </div>
 
           <div className="col-md-6">
@@ -137,7 +137,7 @@ export const News = () => {
                 }}>
                 <Title>{featured.title}</Title>
                 <br/> 
-                <Paragraph>{featured.description}</Paragraph>
+                <Paragraph>{featured.excerpt}</Paragraph>
                 </div>
               </>
             )}
@@ -145,7 +145,7 @@ export const News = () => {
         </div>
 
         {/* News Articles List */}
-        <Row gutter={[16, 24]}>
+        {/* <Row gutter={[16, 24]}>
           {paginatedArticles.map((article, index) => (
             <Col key={index} lg={8} md={12} sm={24}>
               <Title level={4} style={{ marginTop: "1rem" }}>{article.title}</Title>
@@ -169,7 +169,7 @@ export const News = () => {
               />
             </Col>
           ))}
-        </Row>
+        </Row> */}
 
         {/* Pagination */}
         {data && data.length > pageSize && (

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FlatButton } from './FlatButton';
 import { useState } from 'react';
 import { addDoc } from 'firebase/firestore';
-import {  subRef } from '../App';
+
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { checkEmailExists } from './globals';
@@ -35,14 +35,14 @@ function Footer() {
   
     setLoading(true);
     try {  
-      const emailExists = await checkEmailExists(subRef, trimmedEmail);
-      if (emailExists) {
-        toast.info('This email is already subscribed.');
-        setLoading(false);
-        return;
-      }
+      // const emailExists = await checkEmailExists(subRef, trimmedEmail);
+      // if (emailExists) {
+      //   toast.info('This email is already subscribed.');
+      //   setLoading(false);
+      //   return;
+      // }
       // Step 2: Add new subscriber
-       const docRef = await addDoc(subRef, { email: trimmedEmail, date:formatDate(new Date())});
+      //  const docRef = await addDoc(subRef, { email: trimmedEmail, date:formatDate(new Date())});
       await axios.post('https://trinityarms.vercel.app/subscribe', {
         subject: 'Welcome to Trinity Foundation Newsletter',
         message: `Thanks for subscribing...`,

@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { addDoc } from "firebase/firestore";
-import { formRef } from "../App";
+
 import { checkEmailExists } from "../Shared/globals";
 
 const validationSchema = Yup.object({
@@ -43,15 +43,15 @@ const AntdFormikForm = () => {
       about:values.about
     }
     try {
-      const emailExists = await checkEmailExists(formRef, trimmedEmail);
-      if (emailExists) {
-        toast.info('You have already submitted a form.');
-        setLoading(false);
-        return;
-      }
+      // const emailExists = await checkEmailExists(formRef, trimmedEmail);
+      // if (emailExists) {
+      //   toast.info('You have already submitted a form.');
+      //   setLoading(false);
+      //   return;
+      // }
 
-      const docRef = await addDoc(formRef,formData);
-      if (!docRef?.id) throw new Error('Error saving data');
+      // const docRef = await addDoc(formRef,formData);
+      // if (!docRef?.id) throw new Error('Error saving data');
       const response = await axios.post("https://trinityarms.vercel.app/send_email", {
        
         subject: 'New Form Submission from Website:',

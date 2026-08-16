@@ -22,17 +22,21 @@ export type MenuItem = {
     lastName:string
   }
 
+  export type Blog = {
+  _id: string;
+  title: string;
+  featuredImage: string;
+  category:
+    string;
+  excerpt: string;
+  featured: boolean;
+  readingTime: string;
+  createdAt: string;
+  likes?:number;
+  shareCount?:number;
+};
 
-  export type contextType ={
-    id:string
-    files?:{
-        imagePath: string
-        url?:string,
-    }[]
-    description:string,
-    title:string,
-    date: string
-} 
+  
 
 export type donorType = {
   id: string;
