@@ -55,7 +55,7 @@ export const Admin = () => {
           <Col>
             <FlatButton 
               title="Upload Events" 
-              onClick={() => navigate('/admin/upload')} 
+              onClick={() => navigate('/admin_jctbdil1$/upload')} 
               className="buttonsuccess" 
             />
           </Col>

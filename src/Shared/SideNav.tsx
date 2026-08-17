@@ -11,40 +11,37 @@ import { UseAuthContext } from '../Context/UseAuthContext';
 export const SideNav: React.FC = () => {
   // Define the menu items
   const items: MenuItem[] = [
-    { label: 'Dashboard', key: '/admin' , icon :<HomeOutlined/>},
-    {label:'upload', key:'/admin/upload', icon: <UploadOutlined/>},
+    { label: 'Dashboard', key: '/admin_jctbdil1$' , icon :<HomeOutlined/>},
+    {label:'upload', key:'/admin_jctbdil1$/upload', icon: <UploadOutlined/>},
     { label: 'SignOut', key: 'signOut', icon :<LogoutOutlined/> },
     { label: 'Help', key: 'help', icon :<QuestionCircleFilled/> },
     {label:'settings', key:'settings', icon : <SettingOutlined/>, children:[
       {
         label:"Update Password",
-        key:'/admin/settings/updatepassword'
+        key:'/admin_jctbdil1$/settings/updatepassword'
 
       },{
         label:"Accept Admin",
-        key:'/admin/settings/accept'
+        key:'/admin_jctbdil1$/settings/accept'
       },{
         label:'view admin users',
-        key:'/admin/settings/adminUsers'
+        key:'/admin_jctdbil1$/settings/adminUsers'
       }
     ]},
     
   ];
   const navigate = useNavigate();
-  const{dispatch}=UseAuthContext();
+  const{dispatch, user}=UseAuthContext();
 
   // Map the items array to the format required by the Menu component
   const menuItems = items
 
   const handleSignOut = async()=>{
-    dispatch({type:'loading', payload:true});
-    try{
-      // await signOut(auth);
-      dispatch({type:'loading', payload:false});
-    }catch(error){
-      console.error(error);
-      dispatch({type:'loading', payload:false});
-    }
+    
+  if (!user){ return}
+    localStorage.removeItem('user');
+    dispatch({type:'logout'});
+ 
   }
 
   return (

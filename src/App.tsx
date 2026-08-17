@@ -12,7 +12,7 @@ import AdminLayout from './Admin/AdminLayout';
 import { AdminUpload } from './Admin/AdminUpload';
 import { UseDataContext } from './Context/UseDataContext';
 import { UseAuthContext } from './Context/UseAuthContext';
-import Session from './Pages/Session';
+import Session from './Admin/pages/Session';
 import { ProtectedRoutes } from './Shared/ProtectedRoutes';
 import { GuestRoutes } from './Shared/GuestRoutes';
 import { Loading } from './Shared/Loading';
@@ -31,7 +31,7 @@ import { SingleNewsPage } from './Pages/newspage/subpage/SingleNewsPage';
 
 function App() {
   const { dispatch, loading } = UseDataContext();
-  const { user, dispatch: transmit, loading: userloading } = UseAuthContext();
+  const { user, dispatch: handle, loading: userloading } = UseAuthContext();
   
   //useEffect to fetch blog from backend
   useEffect(()=>{
@@ -92,6 +92,35 @@ function App() {
     window.addEventListener('scroll', animation);
   }, []);
 
+
+   //useffect for authentication
+useEffect(() => {
+  handle({ type: 'loading', payload: true });
+
+  const data = localStorage.getItem('user');
+  if (data) {
+    try {
+      const parsed = JSON.parse(data);
+      const now = new Date().getTime();
+      const expiryDays = 3;
+      const expiryTime = expiryDays * 24 * 60 * 60 * 1000; // days to ms
+
+      if (now - parsed.savedAt < expiryTime) {
+        // Not expired
+        handle({ type: 'getUser', payload: parsed.user });
+      } else {
+        // Expired
+        localStorage.removeItem('user');
+      }
+    } catch (e) {
+      console.error('Failed to parse user data:', e);
+      localStorage.removeItem('user');
+    }
+  }
+
+  handle({ type: 'loading', payload: false });
+}, [handle]);
+
   
 
 //admin collection useeffect
@@ -121,7 +150,7 @@ function App() {
         <Route path='session' element={<GuestRoutes user={user}><Session /></GuestRoutes>} />
         <Route path='stripesuccess' element={<StripeSuccess/>}/>
       </Route>
-      <Route path='/admin' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
+      <Route path='/admin_jctbdil1$' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
         <Route index element={<Admin />} />
         <Route path='upload' element={<AdminUpload />} />
         <Route path='reset-password' element={<ResetPasswordPage/>}/>

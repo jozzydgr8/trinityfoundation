@@ -22,6 +22,13 @@ export type MenuItem = {
     lastName:string
   }
 
+  export type User = {
+    _id: string,
+    email:string,
+    token?:string,
+    admin?:true
+}
+
   export type Blog = {
   _id: string;
   title: string;

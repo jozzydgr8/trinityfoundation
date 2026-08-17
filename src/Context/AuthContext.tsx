@@ -1,6 +1,5 @@
 import { createContext, useReducer } from "react";
-import { User } from "firebase/auth";
-
+import { User } from "../Types/Types";
 type stateType = {
     user: User | null;
     loading: boolean;
@@ -26,8 +25,11 @@ type loadAction = {
     type: "loading";
     payload: boolean;
 };
+type logout={
+    type:'logout'
+}
 
-type actionType = userAction | loadAction;
+type actionType = userAction | loadAction | logout;
 
 export const AuthContext = createContext({} as valueProps);
 
@@ -37,6 +39,8 @@ const reducer = (state: stateType, action: actionType) => {
             return { ...state, user: action.payload, loading: false };
         case "loading":
             return { ...state, loading: action.payload };
+        case "logout":
+            return {...state, user:null, loading:false}
         default:
             return state;
     }
