@@ -1,64 +1,197 @@
-import React from 'react';
-import { Menu } from 'antd';
-import {QuestionCircleFilled, CreditCardOutlined, LogoutOutlined, HomeOutlined, UploadOutlined, SettingOutlined} from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom';
-import { MenuItem } from '../Types/Types';
-
-
-import { UseAuthContext } from '../Context/UseAuthContext';
-
+import React from "react";
+import { NavLink } from "react-router-dom";
+import {
+  QuestionCircleFilled,
+  LogoutOutlined,
+  HomeOutlined,
+  UploadOutlined,
+  SettingOutlined,
+  LockOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { UseAuthContext } from "../Context/UseAuthContext";
 
 export const SideNav: React.FC = () => {
-  // Define the menu items
-  const items: MenuItem[] = [
-    { label: 'Dashboard', key: '/admin_jctbdil1$' , icon :<HomeOutlined/>},
-    {label:'upload', key:'/admin_jctbdil1$/upload', icon: <UploadOutlined/>},
-    { label: 'SignOut', key: 'signOut', icon :<LogoutOutlined/> },
-    { label: 'Help', key: 'help', icon :<QuestionCircleFilled/> },
-    {label:'settings', key:'settings', icon : <SettingOutlined/>, children:[
-      {
-        label:"Update Password",
-        key:'/admin_jctbdil1$/settings/updatepassword'
+  const { dispatch, user } = UseAuthContext();
 
-      },{
-        label:"Accept Admin",
-        key:'/admin_jctbdil1$/settings/accept'
-      },{
-        label:'view admin users',
-        key:'/admin_jctdbil1$/settings/adminUsers'
-      }
-    ]},
-    
-  ];
-  const navigate = useNavigate();
-  const{dispatch, user}=UseAuthContext();
+  const handleNavLinkClick = () => {
+    const dismissButton = document.querySelector(
+      "#offcanvasNavbar [data-bs-dismiss='offcanvas']"
+    ) as HTMLElement | null;
 
-  // Map the items array to the format required by the Menu component
-  const menuItems = items
+    if (dismissButton) {
+      dismissButton.click();
+    }
+  };
 
-  const handleSignOut = async()=>{
-    
-  if (!user){ return}
-    localStorage.removeItem('user');
-    dispatch({type:'logout'});
- 
-  }
+  const handleSignOut = () => {
+    if (!user) return;
+
+    localStorage.removeItem("user");
+    dispatch({ type: "logout" });
+  };
+
+  const handleHelp = () => {
+    handleNavLinkClick();
+    window.open("https://wa.link/ubp14t", "_blank");
+  };
 
   return (
-    <Menu
-    style={{height: '100%'}}
-    onClick={({key})=>{
-      if(key == 'signOut'){
-        handleSignOut();
-        return
-      }
-      if (key == 'help') {
-      window.open('https://wa.link/ubp14t', '_blank');
-      return
-      }
-      
-      navigate(key);
-    }}
-     items={menuItems} />
+    <nav className="navbar bg-body-tertiary" data-bs-theme="light">
+      <div className="container-fluid">
+        {/* Brand */}
+        <NavLink className="navbar-brand" to="/admin_jctbdil1$">
+          <h2>TTAF Admin</h2>
+        </NavLink>
+
+        {/* Toggle button */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Offcanvas */}
+        <div
+          className="offcanvas offcanvas-end"
+          tabIndex={-1}
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          {/* Header */}
+          <div className="offcanvas-header">
+            <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
+              TTAF
+            </h5>
+
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          {/* Body */}
+          <div className="offcanvas-body">
+            <ul className="navbar-nav flex-grow-1 pe-3">
+              {/* Dashboard */}
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  to="/admin_jctbdil1$"
+                  onClick={handleNavLinkClick}
+                >
+                  <HomeOutlined className="me-2" />
+                  Dashboard
+                </NavLink>
+              </li>
+
+              {/* Upload */}
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  to="/admin_jctbdil1$/upload"
+                  onClick={handleNavLinkClick}
+                >
+                  <UploadOutlined className="me-2" />
+                  Upload
+                </NavLink>
+              </li>
+
+              {/* Settings dropdown */}
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <SettingOutlined className="me-2" />
+                  Settings
+                </a>
+
+                <ul className="dropdown-menu">
+                  {/* Update Password */}
+                  <li>
+                    <NavLink
+                      className="dropdown-item"
+                      to="/admin_jctbdil1$/settings/updatepassword"
+                      onClick={handleNavLinkClick}
+                    >
+                      <LockOutlined className="me-2" />
+                      Update Password
+                    </NavLink>
+                  </li>
+
+                  {/* Accept Admin */}
+                  <li>
+                    <NavLink
+                      className="dropdown-item"
+                      to="/admin_jctbdil1$/settings/accept"
+                      onClick={handleNavLinkClick}
+                    >
+                      <UserOutlined className="me-2" />
+                      Accept Admin
+                    </NavLink>
+                  </li>
+
+                  {/* Admin Users */}
+                  <li>
+                    <NavLink
+                      className="dropdown-item"
+                      to="/admin_jctbdil1$/settings/adminUsers"
+                      onClick={handleNavLinkClick}
+                    >
+                      <UserOutlined className="me-2" />
+                      View Admin Users
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+
+              {/* Help */}
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="nav-link border-0 bg-transparent w-100 text-start"
+                  onClick={handleHelp}
+                >
+                  <QuestionCircleFilled className="me-2" />
+                  Help
+                </button>
+              </li>
+
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+
+              {/* Sign Out */}
+              {user && (
+                <li className="nav-item">
+                  <button
+                    type="button"
+                    className="nav-link border-0 bg-transparent w-100 text-start"
+                    onClick={() => {
+                      handleNavLinkClick();
+                      handleSignOut();
+                    }}
+                  >
+                    <LogoutOutlined className="me-2" />
+                    Sign Out
+                  </button>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
