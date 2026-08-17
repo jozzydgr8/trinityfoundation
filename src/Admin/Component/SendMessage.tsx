@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { UseAuthContext } from "../../Context/UseAuthContext";
 
 type proptype = {
   selectedEmail: string | string[];
@@ -15,21 +16,50 @@ type valueprops = {
 }
 
 export const SendMessage = ({ selectedEmail, isModalOpen, setIsModalOpen }: proptype) => {
-  const deliverNewsLetter = async(values:valueprops)=>{
-    try{
-      const response = await axios.post("https://trinityarms.vercel.app/send_newsletter", {
-             
-        subject: values.subject,
-        message: values.message,
-        recipient_email: Array.isArray(selectedEmail) ? selectedEmail : [selectedEmail]
+  const {user}=UseAuthContext();
+  const deliverNewsLetter = async (values: valueprops) => {
+    console.log(selectedEmail)
+  try {
+    const response = await fetch(
+      "https://trinityarms.vercel.app/message/send_newsletter",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+        body: JSON.stringify({
+          subject: values.subject,
+          message: values.message,
+          recipient_email: Array.isArray(selectedEmail)
+            ? selectedEmail
+            : [selectedEmail],
+        }),
+      }
+    );
 
-      });
-      toast.success('Email sent Succesfully!');
-    }catch(error){
-      console.error(error);
-      toast.error('Something went wrong. Please try again.');
+    // fetch doesn't throw on 400/500 errors, so check manually
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(
+        errorData?.message || `Request failed with status ${response.status}`
+      );
     }
+
+    const data = await response.json();
+
+    toast.success("Email sent successfully!");
+    console.log(data);
+  } catch (error) {
+    console.error("Newsletter error:", error);
+    toast.error(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
   }
+};
+
   const formik = useFormik({
     initialValues: {
       subject: "",

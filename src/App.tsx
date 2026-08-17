@@ -121,6 +121,33 @@ useEffect(() => {
   handle({ type: 'loading', payload: false });
 }, [handle]);
 
+
+//useEffect to fetch subscribers
+useEffect(()=>{
+  const fetchSubscribers = async()=>{
+    if(!user){
+      return handle({type:"loading", payload:false})
+    }
+    try{
+      const response = await fetch('https://trinityarms.vercel.app/subscribe',{
+      headers:{
+        'Authorization': `Bearer ${user?.token}`
+      }
+    })
+    if(!response.ok){
+      throw Error('an error occured')
+    }
+    const json = await response.json();
+    console.log('subscribers',json)
+    dispatch({type:'getSubscribers', payload:json})
+    }catch(error){
+      console.error(error)
+    }
+  }
+  fetchSubscribers();
+},[user, handle, dispatch]);
+
+
   
 
 //admin collection useeffect
