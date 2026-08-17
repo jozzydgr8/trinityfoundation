@@ -21,6 +21,7 @@ import ResetPasswordPage from './Pages/ResetPasswordPage';
 import UpdatePassword from './Pages/UpdatePassword';
 import AcceptAdmin from './Admin/AcceptAdmin';
 import { AdminUsers } from './Admin/AdminUsers';
+import { SingleNewsPage } from './Pages/newspage/subpage/SingleNewsPage';
 
 
 
@@ -113,7 +114,10 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path='donate' element={<Donation />} />
         <Route path='sendform' element={<SendMail />} />
-        <Route path='news' element={<News />} />
+        <Route path='news' element={<Outlet/>} >
+          <Route index element={<News/>}/>
+          <Route path=':id' element={<SingleNewsPage/>}/>
+        </Route>
         <Route path='session' element={<GuestRoutes user={user}><Session /></GuestRoutes>} />
         <Route path='stripesuccess' element={<StripeSuccess/>}/>
       </Route>

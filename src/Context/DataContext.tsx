@@ -12,12 +12,26 @@ export type stateProps = {
     adminUsers: adminType[] | null,
     volunteers: formType[] | null,
 }
-type actionProps = blogAction | loadAction | donorAction | subscribeAction | adminAction | volunteeraction;
+type actionProps = blogAction | loadAction | donorAction | subscribeAction | adminAction | volunteeraction | deleteBlogProps | addBlogProps | updateBlogProps;
 
 type blogAction = {
     payload:Blog[] ,
     type:'getBlogs' 
 }
+type updateBlogProps = {
+  type: "updateBlog";
+  payload: Blog;
+};
+type addBlogProps = {
+    type:'addBlog',
+    payload: Blog
+  }
+  
+  type deleteBlogProps ={
+  type:'deleteBlog',
+  payload:string
+}
+
 type adminAction = {
     payload:adminType[],
     type:'getAdminUsers'
@@ -61,6 +75,12 @@ const reducer = (state:stateProps, action:actionProps) =>{
             return {...state, adminUsers:action.payload}
         case 'getVolunteer':
             return {...state, volunteers:action.payload}
+        case "deleteBlog":
+            return { ...state, blog: state.blog?.filter((blog) => blog._id !== action.payload) ?? null };
+        case "updateBlog":
+            return { ...state, blog: state.blog?.map((blog) => (blog._id === action.payload._id ? action.payload : blog) ) ?? null };
+        case "addBlog":
+            return { ...state, blog: [...(state.blog || []), action.payload] };
         default : return state
     }
 }

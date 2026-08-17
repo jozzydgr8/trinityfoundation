@@ -80,6 +80,7 @@ h1{
   font-family: "Actor", sans-serif;
   font-weight: 700;
   font-style: normal;
+  text-transform: capitalize;
   
 }
 section >.container-fluid, footer >.container-fluid{

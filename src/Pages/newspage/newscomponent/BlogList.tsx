@@ -60,7 +60,7 @@ export const BlogList = () => {
 
                                                         <br /> <br />
                                                         
-                                                        <NavLink to={`/blog/${blog._id}`}>
+                                                        <NavLink to={`/news/${blog._id}`}>
                                                             <FlatButton 
                                                                 title="read more" 
                                                                 icon={<RightOutlined />} 

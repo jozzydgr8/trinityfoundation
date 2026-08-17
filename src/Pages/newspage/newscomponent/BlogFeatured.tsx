@@ -20,7 +20,7 @@ export const BlogFeatured = ()=>{
     return(
         <section id='blogFeatured'>
             <div className="container-fluid">
-                <h2 className="subheading mb-4" style={{color:"var(--color-navy)"}}>Featured Article</h2>
+                <h2 className="subheading mb-4" style={{color:"var(--color-navy)"}}>Featured News</h2>
                
                     {
                         featuredBlog && (
@@ -48,7 +48,7 @@ export const BlogFeatured = ()=>{
 
                                 </div>
                                 <div>
-                                    <NavLink to={`/blog/${featuredBlog._id}`}>
+                                    <NavLink to={`/news/${featuredBlog._id}`}>
                                         <FlatButton title='read full article' className='borderlessbtn btn' icon={<RightOutlined/>}/>
                                     </NavLink>
                                 </div>
