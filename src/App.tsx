@@ -50,7 +50,7 @@ function App() {
       }
     }
     fetchData();
-  },[])
+  },[dispatch])
   useEffect(() => {
     const animation = () => {
       var leftAnimate = document.querySelectorAll('.animate-left');
@@ -169,7 +169,7 @@ useEffect(()=>{
     }
   }
   fetchAuthorities();
-},[user])
+},[user, dispatch, handle])
   
 
 //admin collection useeffect
@@ -207,7 +207,7 @@ useEffect(()=>{
     }
   }
   fetchVolunteer();
-},[user])
+},[user, dispatch, handle])
   
 
 //admin collection useeffect

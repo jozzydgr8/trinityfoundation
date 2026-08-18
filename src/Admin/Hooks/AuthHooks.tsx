@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { UseAuthContext } from "../../Context/UseAuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 type resetpassword = {
     email:string | null,

@@ -9,7 +9,6 @@ import {
   Popconfirm,
   Empty,
   Upload,
-  Button,
 } from "antd";
 import {
   CalendarOutlined,
@@ -21,7 +20,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import type { UploadFile } from "antd/es/upload/interface";
 
-import { UploadFileStorage } from "../Shared/Hooks/UploadHooks";
 import { FlatButton } from "../Shared/FlatButton";
 import { UseDataContext } from "../Context/UseDataContext";
 import { BlogHooks } from "./Hooks/BlogHooks";
@@ -38,7 +36,7 @@ const styles = {
 };
 
 export const AdminUpload: React.FC = () => {
-  const { uploadFilesToStorage, handleFilesDelete } = UploadFileStorage();
+
   const { blog } = UseDataContext();
   const {postBlog, deleteBlog} = BlogHooks();
 
