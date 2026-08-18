@@ -1,7 +1,6 @@
 import { User } from "../Types/Types"
 import { ReactNode } from "react"
-import { Navigate } from "react-router-dom"
-import { UseDataContext } from "../Context/UseDataContext"
+import { Navigate } from "react-router-dom";
 
 type proptype={
     user:User | null,
@@ -9,7 +8,7 @@ type proptype={
 }
 export const ProtectedRoutes = ({children, user}:proptype)=>{
     if(!user){
-       return <Navigate to={'/session'}/>
+       return <Navigate to={'/admin_jctbdil1$/session'}/>
     }
     return  <>{children}</> 
 }

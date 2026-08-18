@@ -1,6 +1,6 @@
 import { Table} from "antd";
 import { useState } from "react";
-
+import { formatDate } from "../../Shared/Hooks/FormatDate";
 import { SendMessage } from "./SendMessage";
 import { UseDataContext } from "../../Context/UseDataContext";
 
@@ -12,8 +12,9 @@ export const DonationTable: React.FC = () => {
   const columns = [
     {
       title: "Date",
-      dataIndex: "date",
+      dataIndex: "createdAt",
       key: "date",
+      render: (createdAt: string) => formatDate({ createdAt }),
     },
     {
       title: "Method",

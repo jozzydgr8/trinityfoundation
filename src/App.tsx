@@ -17,8 +17,7 @@ import { ProtectedRoutes } from './Shared/ProtectedRoutes';
 import { GuestRoutes } from './Shared/GuestRoutes';
 import { Loading } from './Shared/Loading';
 import StripeSuccess from './Pages/StripeSuccess'
-import ResetPasswordPage from './Pages/ResetPasswordPage';
-import UpdatePassword from './Pages/UpdatePassword';
+import { ResetPassword } from './Admin/pages/ResetPassword';
 import AcceptAdmin from './Admin/AcceptAdmin';
 import { AdminUsers } from './Admin/AdminUsers';
 import { SingleNewsPage } from './Pages/newspage/subpage/SingleNewsPage';
@@ -235,15 +234,16 @@ useEffect(()=>{
           <Route index element={<News/>}/>
           <Route path=':id' element={<SingleNewsPage/>}/>
         </Route>
-        <Route path='session' element={<GuestRoutes user={user}><Session /></GuestRoutes>} />
+       
         <Route path='stripesuccess' element={<StripeSuccess/>}/>
       </Route>
-      <Route path='/admin_jctbdil1$' element={<ProtectedRoutes user={user}><AdminLayout /></ProtectedRoutes>}>
-        <Route index element={<Admin />} />
+      <Route path='/admin_jctbdil1$' element={<AdminLayout />}>
+        <Route index element={<ProtectedRoutes user={user}><Admin /></ProtectedRoutes>} />
         <Route path='upload' element={<AdminUpload />} />
-        <Route path='reset-password' element={<ResetPasswordPage/>}/>
+        <Route path='reset-password' element={<ResetPassword/>}/>
+         <Route path='session' element={<GuestRoutes user={user}><Session /></GuestRoutes>} />
         <Route path='settings' element={<Outlet/>}>
-          <Route path='updatepassword' element={<UpdatePassword/>}/>
+          
           <Route path='accept' element={<AcceptAdmin/>}/>
           <Route path='adminUsers' element={<AdminUsers/>}/>
         </Route>

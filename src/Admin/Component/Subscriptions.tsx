@@ -2,6 +2,7 @@ import { Table } from "antd";
 import { useState } from "react";
 import { SendMessage } from "./SendMessage";
 import { UseDataContext } from "../../Context/UseDataContext";
+import { formatDate } from "../../Shared/Hooks/FormatDate";
 
 export const Subscriptions: React.FC = () => {
   const {subscribers} = UseDataContext();
@@ -12,15 +13,15 @@ export const Subscriptions: React.FC = () => {
   const columns = [
     {
       title: "Date",
-      dataIndex: "date",
+      dataIndex: "createdAt",
       key: "column1",
+      render: (createdAt: string) => formatDate({ createdAt }),
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "column2",
     },
-    
   ];
   const handleRowClick = (record: any) => {
     setSelectedEmail(record.email);

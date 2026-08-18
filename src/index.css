@@ -153,6 +153,7 @@ button{
 .borderlessbtn{
   color:var(--color-gold);
   padding:0;
+  border: none;
 }
 .buttondark{
   background-color: var(--color-navy) !important;
