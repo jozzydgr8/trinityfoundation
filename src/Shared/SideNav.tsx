@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
-  QuestionCircleFilled,
+
   LogoutOutlined,
   HomeOutlined,
   UploadOutlined,
   SettingOutlined,
-  LockOutlined,
+
   UserOutlined,
 } from "@ant-design/icons";
 import { UseAuthContext } from "../Context/UseAuthContext";
