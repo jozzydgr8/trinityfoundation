@@ -89,7 +89,7 @@ export const Volunteers = () => {
             <Descriptions.Item label="Last Name">{selectedVolunteer.lastName}</Descriptions.Item>
             <Descriptions.Item label="Email">{selectedVolunteer.email}</Descriptions.Item>
             <Descriptions.Item label="Address">{selectedVolunteer.address}</Descriptions.Item>
-            <Descriptions.Item label="About">{selectedVolunteer.about}</Descriptions.Item>
+            <Descriptions.Item label="About">{selectedVolunteer.about?.slice(0,10)}</Descriptions.Item>
           </Descriptions>
         )}
       </Modal>

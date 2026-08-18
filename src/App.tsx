@@ -148,6 +148,67 @@ useEffect(()=>{
 },[user, handle, dispatch]);
 
 
+//use effect to fetch authorities
+useEffect(()=>{
+  const fetchAuthorities = async()=>{
+    if(!user){
+      return handle({type:"loading", payload:false})
+    }
+    try{
+      const response = await fetch('https://trinityarms.vercel.app/user/getusers',{
+      headers:{
+        'Authorization': `Bearer ${user?.token}`
+      }
+    })
+    if(!response.ok){
+      throw Error('an error occured')
+    }
+    const json = await response.json();
+    dispatch({type:'getAdminUsers', payload:json})
+    }catch(error){
+      console.error(error)
+    }
+  }
+  fetchAuthorities();
+},[user])
+  
+
+//admin collection useeffect
+
+
+
+
+
+
+
+
+
+ 
+
+
+  //use effect to fetch volunteer
+useEffect(()=>{
+  const fetchVolunteer = async()=>{
+    if(!user){
+      return handle({type:"loading", payload:false})
+    }
+    try{
+      const response = await fetch('https://trinityarms.vercel.app/volunteers',{
+      headers:{
+        'Authorization': `Bearer ${user?.token}`
+      }
+    })
+    if(!response.ok){
+      throw Error('an error occured')
+    }
+    const json = await response.json();
+    dispatch({type:'getVolunteer', payload:json})
+    }catch(error){
+      console.error(error)
+    }
+  }
+  fetchVolunteer();
+},[user])
   
 
 //admin collection useeffect

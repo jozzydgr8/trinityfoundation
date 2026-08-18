@@ -6,7 +6,7 @@ export const AdminUsers = ()=>{
         <section>
             <div className="container-fluid">
                 {adminUsers?.map(admin=>(
-                    <div key={admin.id}>{admin.email}</div>
+                    <div key={admin._id}>{admin.email}</div>
                 ))}
             </div>
         </section>

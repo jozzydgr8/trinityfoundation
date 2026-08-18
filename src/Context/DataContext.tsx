@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { adminType, Blog, Donation, Volunteer, subscribeType } from "../Types/Types";
+import { User, Blog, Donation, Volunteer, subscribeType } from "../Types/Types";
 export type valueProps =  stateProps & {dispatch: React.Dispatch<actionProps>};
 type contextProps = {
     children:React.ReactNode
@@ -9,10 +9,10 @@ export type stateProps = {
     loading:boolean,
     donors: Donation[] | null,
     subscribers:subscribeType[] | null,
-    adminUsers: adminType[] | null,
+    adminUsers: User[] | null,
     volunteers: Volunteer[] | null,
 }
-type actionProps = blogAction | loadAction | donorAction | subscribeAction | adminAction | volunteeraction | deleteBlogProps | addBlogProps | updateBlogProps;
+type actionProps = blogAction | loadAction | donorAction | subscribeAction | adminAction | deleteadminProps|createadminProps| volunteeraction | deleteBlogProps | addBlogProps | updateBlogProps;
 
 type blogAction = {
     payload:Blog[] ,
@@ -33,9 +33,18 @@ type addBlogProps = {
 }
 
 type adminAction = {
-    payload:adminType[],
+    payload:User[],
     type:'getAdminUsers'
 }
+type deleteadminProps ={
+  type:'deleteadmin',
+  payload:string
+}
+type createadminProps = {
+  type:'createadmin',
+  payload:User
+}
+
 type donorAction = {
     payload:Donation[],
     type:'getDonors'
@@ -73,6 +82,16 @@ const reducer = (state:stateProps, action:actionProps) =>{
         return {...state, subscribers:action.payload}
         case 'getAdminUsers':
             return {...state, adminUsers:action.payload}
+        case "deleteadmin":
+            return {
+            ...state,
+            admin: state.adminUsers?.filter((p) => p.email !== action.payload) ?? null,
+            };
+        case "createadmin":
+            return {
+            ...state,
+            admin: [action.payload, ...(state.adminUsers ?? [])],
+            };
         case 'getVolunteer':
             return {...state, volunteers:action.payload}
         case "deleteBlog":

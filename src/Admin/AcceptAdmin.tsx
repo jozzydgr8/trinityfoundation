@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Formik } from "formik";
 import { Form, Input, Typography } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { FlatButton } from "../Shared/FlatButton";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { UseDataContext } from "../Context/UseDataContext";
+import { UseAuthContext } from "../Context/UseAuthContext";
 
 
 const { Title, Text } = Typography;
@@ -22,49 +25,64 @@ export default function AcceptAdmin() {
   const [error, setError] = useState<string | null>('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const{dispatch} = UseDataContext();
+  const {user} = UseAuthContext();
 
   const handleCreateAccount = async (
-    values: FormikValues,
-    { resetForm }: any
-  ) => {
-    setLoading(true);
-    setError(null);
-    console.log('test')
+  values: FormikValues,
+  { resetForm }: any
+) => {
+  setLoading(true);
+  setError(null);
+  setSuccess(false);
 
-    // const defaultPassword = process.env.REACT_APP_DEFAULT_ADMIN_PASSWORD;
+  try {
+    const response = await fetch(
+      "https://trinityarms.vercel.app/user/createUser",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+        body: JSON.stringify({
+          type: "createadmin",
+          email: values.email.trim().toLowerCase(),
+        }),
+      }
+    );
 
-    // if (!defaultPassword) {
-    //   setError("Default password is not set.");
-    //   setLoading(false);
-    //   return;
-    // }
+    const data = await response.json();
 
-    // try {
-    //   const userCredential = await createUserWithEmailAndPassword(
-    //     secondaryAuth,
-    //     values.email,
-    //     defaultPassword
-    //   );
+    if (!response.ok) {
+      throw new Error(
+        data?.message || "Failed to create admin account."
+      );
+    }
 
-    //   // Add user to Firestore
-    //   const user = userCredential.user;
-    //   await setDoc(doc(db, "users", user.uid), {
-    //     email: values.email,
-    //     admin: true,
-    //     userId:user.uid,
-    //     createdAt: new Date().toISOString(),
-    //   });
-    //   await secondaryAuth.signOut();
+    console.log("Admin created:", data);
+    dispatch({type:'createadmin',payload:data});
 
-    //   setSuccess(true);
-    //   resetForm();
-    // } catch (err: any) {
-    //   console.error(err);
-    //   setError(err.message || "Failed to create account.");
-    // } finally {
-    //   setLoading(false);
-    // }
-  };
+    setSuccess(true);
+
+    toast.success("Admin account created successfully!");
+
+    resetForm();
+  } catch (error) {
+    console.error("Error creating admin:", error);
+
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Failed to create admin account.";
+
+    setError(message);
+
+    toast.error(message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <Formik
@@ -93,7 +111,7 @@ export default function AcceptAdmin() {
           <div style={{ maxWidth: "600px", width: "100%" }}>
             <div style={{ position: "relative", textAlign: "right" }}>
               <CloseOutlined
-                onClick={() => navigate("/admin")}
+                onClick={() => navigate("/admin_jctbdil1$")}
                 style={{
                   fontSize: "24px",
                   padding: "10px",

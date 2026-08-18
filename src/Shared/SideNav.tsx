@@ -31,10 +31,7 @@ export const SideNav: React.FC = () => {
     dispatch({ type: "logout" });
   };
 
-  const handleHelp = () => {
-    handleNavLinkClick();
-    window.open("https://wa.link/ubp14t", "_blank");
-  };
+ 
 
   return (
     <nav className="navbar bg-body-tertiary" data-bs-theme="light">
@@ -118,17 +115,8 @@ export const SideNav: React.FC = () => {
                 </a>
 
                 <ul className="dropdown-menu">
-                  {/* Update Password */}
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/admin_jctbdil1$/settings/updatepassword"
-                      onClick={handleNavLinkClick}
-                    >
-                      <LockOutlined className="me-2" />
-                      Update Password
-                    </NavLink>
-                  </li>
+                  
+                  
 
                   {/* Accept Admin */}
                   <li>
@@ -156,17 +144,7 @@ export const SideNav: React.FC = () => {
                 </ul>
               </li>
 
-              {/* Help */}
-              <li className="nav-item">
-                <button
-                  type="button"
-                  className="nav-link border-0 bg-transparent w-100 text-start"
-                  onClick={handleHelp}
-                >
-                  <QuestionCircleFilled className="me-2" />
-                  Help
-                </button>
-              </li>
+              
 
               <li>
                 <hr className="dropdown-divider" />
