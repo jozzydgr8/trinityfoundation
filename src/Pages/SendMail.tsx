@@ -81,7 +81,7 @@ const AntdFormikForm = () => {
 
       resetForm();
 
-      navigate("/trinityfoundation");
+      navigate("/");
     } catch (error) {
       console.error(
         "Error submitting volunteer application:",
