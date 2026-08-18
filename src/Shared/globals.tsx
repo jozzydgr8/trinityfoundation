@@ -3,7 +3,7 @@ import imagetwo from '../assets/womenwithpackages.jpg'
 import funmiPic from '../assets/olufunmilola.png'
 import dayoPic from '../assets/Dayo_otubu.png'
 import taiwoPic from '../assets/taiwo_diyaolu.png'
-import { query, where, getDocs, CollectionReference, DocumentData } from 'firebase/firestore';
+
 
 export const backgroundimages = [
    {
@@ -54,12 +54,6 @@ export const trusteeData = [
 
 
 
-
-export const checkEmailExists = async (ref:CollectionReference<DocumentData, DocumentData>, email:string) => {
-  const q = query(ref, where('email', '==', email));
-  const querySnapshot = await getDocs(q);
-  return !querySnapshot.empty;
-};
 
 
   

@@ -6,7 +6,7 @@ import { SendMessage } from "./Component/SendMessage";
 
 interface Volunteer {
   key?: number;
-  about: string;
+  about?: string;
   address: string;
   email: string;
   firstName: string;

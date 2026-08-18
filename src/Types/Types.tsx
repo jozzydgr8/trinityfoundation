@@ -14,13 +14,13 @@ export type MenuItem = {
     admin: boolean,
   }
 
-  export type formType = {
-    about:string
-    address:string
-    email:string
-    firstName:string
-    lastName:string
-  }
+  // export type formType = {
+  //   about:string
+  //   address:string
+  //   email:string
+  //   firstName:string
+  //   lastName:string
+  // }
 
   export type User = {
     _id: string,
@@ -28,6 +28,41 @@ export type MenuItem = {
     token?:string,
     admin?:true
 }
+
+export type Donation = {
+  _id: string;
+
+  name: string;
+  email?: string;
+  phone?: string;
+
+  anonymous: boolean;
+
+  amount: number;
+  currency: 'USD' | 'GBP' | 'NGN';
+
+  comment?: string;
+
+  paymentMethod:
+    | 'Stripe'
+    | 'PayPal'
+    | 'Bank Transfer';
+
+  paymentStatus:
+    | 'pending'
+    | 'completed'
+    | 'failed'
+    | 'cancelled';
+
+  transactionId?: string;
+
+  stripeSessionId?: string;
+
+  paypalOrderId?: string;
+
+  createdAt: string;
+  updatedAt: string;
+};
 
   export type Blog = {
   _id: string;
@@ -45,17 +80,17 @@ export type MenuItem = {
 
   
 
-export type donorType = {
-  id: string;
-  name: string;
-  amount: number;
-  method:  'Stripe' | 'Flutterwave' | 'PayPal' | 'Bank Transfer'; // Adjust as needed
-  status: 'successful' | 'pending' | 'failed' | 'completed'; // Extend if you use other statuses
-  date: string; // ISO format (e.g., "2025-04-25")
-  message?: string;
+export type Volunteer = {
+  _id: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  currency?:string;
-}
+  address: string;
+  about?: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 
 export type subscribeType ={
   id: string;

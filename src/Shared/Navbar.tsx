@@ -42,7 +42,7 @@ export const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a href={`/dontate`} className="nav-link active">
+              <a href={`/donate`} className="nav-link active">
                     donate
               </a>
             </li>

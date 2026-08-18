@@ -4,11 +4,11 @@ import { InstagramOutlined, FacebookOutlined, LinkedinOutlined } from '@ant-desi
 import { Link } from 'react-router-dom';
 import { FlatButton } from './FlatButton';
 import { useState } from 'react';
-import { addDoc } from 'firebase/firestore';
+
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { checkEmailExists } from './globals';
+
 
 const { Title, Paragraph } = Typography;
 
@@ -16,13 +16,7 @@ function Footer() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
-  
-  const formatDate = (date: Date) =>
-    new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }).format(date);
+
 
 
   const handleSubscribe = async () => {
@@ -44,9 +38,7 @@ function Footer() {
       // Step 2: Add new subscriber
       //  const docRef = await addDoc(subRef, { email: trimmedEmail, date:formatDate(new Date())});
       await axios.post('https://trinityarms.vercel.app/subscribe', {
-        subject: 'Welcome to Trinity Foundation Newsletter',
-        message: `Thanks for subscribing...`,
-        recipient_email: trimmedEmail,
+        email: trimmedEmail
       });
   
       setEmail('');
@@ -137,7 +129,7 @@ function Footer() {
           >
             <FacebookOutlined />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" style={{ marginLeft: '16px' }}>
+          <a href="/" target="_blank" rel="noopener noreferrer" style={{ marginLeft: '16px' }}>
             <LinkedinOutlined />
           </a>
         </div>

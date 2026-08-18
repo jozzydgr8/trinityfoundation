@@ -2,57 +2,48 @@ import React, { useState } from 'react';
 import { Form, Input, Checkbox, Row, Col, Select } from 'antd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
 import { FlatButton } from '../Shared/FlatButton';
-// import { FlutterPay } from '../FlutterPay';
 import PayPal from './Component/PayPal';
 import { StripePay } from '../StripePay';
 
 const { Option } = Select;
 
-const styles = {
-  content: {
-    display: 'flex',
-    fontSize: '18px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 30,
-   
-  },
-};
+type Currency = 'GBP' | 'USD' | 'NGN';
 
 const currencyOptions = [
-  { label: '£ GBP', value: 'GBP' },
-  { label: '$ USD', value: 'USD' },
-  { label: '₦ NGN', value: 'NGN' },
-  
+  { label: '£ GBP', value: 'GBP' as Currency },
+  { label: '$ USD', value: 'USD' as Currency },
+  { label: '₦ NGN', value: 'NGN' as Currency },
 ];
 
-const currencyPresets: Record<string, number[]> = {
+const currencyPresets: Record<Currency, number[]> = {
   NGN: [5000, 10000, 20000, 50000, 100000],
   USD: [10, 25, 50, 100, 250],
   GBP: [10, 25, 50, 100, 250],
 };
 
-const DonationForm = () => {
-  const [currency, setCurrency] = useState<'GBP' | 'USD' | 'NGN'>('GBP');
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(5000);
-  const [customAmount, setCustomAmount] = useState('');
+const getCurrencySymbol = (currency: Currency) => {
+  switch (currency) {
+    case 'GBP':
+      return '£';
+    case 'USD':
+      return '$';
+    case 'NGN':
+      return '₦';
+    default:
+      return '';
+  }
+};
 
-  const getCurrencySymbol = () => {
-    switch (currency) {
-      
-      case 'GBP': return '£';
-      case 'USD': return '$';
-      case 'NGN': return '₦';
-      
-      default: return '';
-    }
-  };
+const DonationForm = () => {
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(10);
+  const [customAmount, setCustomAmount] = useState('');
 
   const formik = useFormik({
     initialValues: {
-      amount: 5000,
-      currency: currency,
+      amount: 10,
+      currency: 'GBP' as Currency,
       firstName: '',
       lastName: '',
       email: '',
@@ -60,108 +51,186 @@ const DonationForm = () => {
       anonymous: false,
       comment: '',
     },
+
     validationSchema: Yup.object({
-      amount: Yup.number().required('Required').min(1, 'Amount must be greater than zero'),
+      amount: Yup.number()
+        .required('Amount is required')
+        .min(1, 'Amount must be greater than zero'),
+
       firstName: Yup.string().when('anonymous', {
         is: false,
         then: (schema) => schema.required('First name is required'),
         otherwise: (schema) => schema.notRequired(),
       }),
+
       lastName: Yup.string().when('anonymous', {
         is: false,
         then: (schema) => schema.required('Last name is required'),
         otherwise: (schema) => schema.notRequired(),
       }),
-      email: Yup.string().email('Invalid email address').when('anonymous', {
+
+      email: Yup.string().when('anonymous', {
         is: false,
-        then: (schema) => schema.required('Email is required'),
+        then: (schema) =>
+          schema
+            .email('Invalid email address')
+            .required('Email is required'),
         otherwise: (schema) => schema.notRequired(),
       }),
+
       phone: Yup.string().when('anonymous', {
         is: false,
         then: (schema) => schema.required('Phone number is required'),
         otherwise: (schema) => schema.notRequired(),
       }),
     }),
-    validateOnMount: true, // ✅ Add this line
+
+    validateOnMount: true,
+
     onSubmit: (values) => {
       console.log('Form Submitted:', values);
     },
   });
-  
-  
 
-const displayName = formik.values.anonymous ? 'Anonymous' : `${formik.values.firstName} ${formik.values.lastName}`;
-const displayEmail = formik.values.anonymous ? 'anonymous@donor.com' : formik.values.email;
-const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
+  const currency = formik.values.currency;
 
+  const currencySymbol = getCurrencySymbol(currency);
 
-  const handleAmountSelect = (value: number) => {
-    setSelectedAmount(value);
+  const displayName = formik.values.anonymous
+    ? 'Anonymous'
+    : `${formik.values.firstName} ${formik.values.lastName}`.trim();
+
+  const displayEmail = formik.values.anonymous
+    ? 'anonymous@donor.com'
+    : formik.values.email;
+
+  const displayPhone = formik.values.anonymous
+    ? ''
+    : formik.values.phone;
+
+  /**
+   * Select one of the preset donation amounts
+   */
+  const handleAmountSelect = (amount: number) => {
+    setSelectedAmount(amount);
     setCustomAmount('');
-    formik.setFieldValue('amount', value);
+
+    formik.setFieldValue('amount', amount);
   };
 
-  const handleCustomAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseFloat(e.target.value) || 0;
+  /**
+   * Enter a custom donation amount
+   */
+  const handleCustomAmountChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = e.target.value;
+
+    setCustomAmount(value);
     setSelectedAmount(null);
-    setCustomAmount(e.target.value);
-    formik.setFieldValue('amount', val);
+
+    const amount = value === '' ? 0 : Number(value);
+
+    formik.setFieldValue('amount', amount);
   };
+
+  /**
+   * Change currency
+   *
+   * When currency changes, automatically select
+   * the first preset amount for that currency.
+   */
+  const handleCurrencyChange = (value: Currency) => {
+    const defaultAmount = currencyPresets[value][0];
+
+    formik.setFieldValue('currency', value);
+    formik.setFieldValue('amount', defaultAmount);
+
+    setSelectedAmount(defaultAmount);
+    setCustomAmount('');
+  };
+
+ 
 
   return (
     <Form
       layout="vertical"
       onFinish={formik.handleSubmit}
-      style={{ maxWidth: 600, margin: '0 auto' }}
+      style={{
+        maxWidth: 600,
+        margin: '0 auto',
+      }}
     >
-      {/* Currency Selector */}
+      {/* =========================
+          CURRENCY
+      ========================== */}
+
       <Form.Item label="Select Currency">
         <Select
           value={currency}
-          onChange={(val:   'GBP'| 'USD' |'NGN' ) => {
-            setCurrency(val);
-            const defaultAmount = currencyPresets[val][0];
-            setSelectedAmount(defaultAmount);
-            setCustomAmount('');
-            formik.setFieldValue('amount', defaultAmount);
-            formik.setFieldValue('currency', val);
-          }}
+          onChange={handleCurrencyChange}
           style={{ width: 200 }}
         >
           {currencyOptions.map((option) => (
-            <Option key={option.value} value={option.value}>
+            <Option
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </Option>
           ))}
         </Select>
       </Form.Item>
 
-      {/* Amount Buttons */}
-      <Form.Item label={`Donation Amount (${getCurrencySymbol()})`}>
+      {/* =========================
+          DONATION AMOUNT
+      ========================== */}
+
+      <Form.Item
+        label={`Donation Amount (${currencySymbol})`}
+        validateStatus={
+          formik.touched.amount && formik.errors.amount
+            ? 'error'
+            : ''
+        }
+        help={
+          formik.touched.amount
+            ? formik.errors.amount
+            : undefined
+        }
+      >
         <Row gutter={[8, 8]}>
-          {currencyPresets[currency].map((amt) => (
-            <Col key={amt}>
+          {currencyPresets[currency].map((amount) => (
+            <Col key={amount}>
               <FlatButton
-                title={`${getCurrencySymbol()}${amt.toLocaleString()}`}
-                onClick={() => handleAmountSelect(amt)}
-                className={selectedAmount === amt ? 'buttondark' : ''}
+                title={`${currencySymbol}${amount.toLocaleString()}`}
+                onClick={() => handleAmountSelect(amount)}
+                className={
+                  selectedAmount === amount
+                    ? 'buttondark'
+                    : ''
+                }
               />
             </Col>
           ))}
+
           <Col>
             <Input
-              placeholder={`Custom ${getCurrencySymbol()} amount`}
+              placeholder={`Custom ${currencySymbol} amount`}
               value={customAmount}
               onChange={handleCustomAmountChange}
               type="number"
-              style={{ width: 150 }}
+              min={1}
+              style={{ width: 180 }}
             />
           </Col>
         </Row>
       </Form.Item>
 
-      {/* Anonymous */}
+      {/* =========================
+          ANONYMOUS DONATION
+      ========================== */}
+
       <Form.Item>
         <Checkbox
           name="anonymous"
@@ -186,7 +255,10 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
         </Checkbox>
       </Form.Item>
 
-      {/* Personal Info (conditionally rendered) */}
+      {/* =========================
+          PERSONAL INFORMATION
+      ========================== */}
+
       {!formik.values.anonymous && (
         <>
           <Form.Item label="Personal Info">
@@ -199,10 +271,15 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.firstName && formik.errors.firstName && (
-                  <div style={{ color: 'red' }}>{formik.errors.firstName}</div>
-                )}
+
+                {formik.touched.firstName &&
+                  formik.errors.firstName && (
+                    <div style={{ color: 'red' }}>
+                      {formik.errors.firstName}
+                    </div>
+                  )}
               </Col>
+
               <Col span={12}>
                 <Input
                   placeholder="Last Name"
@@ -211,12 +288,18 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.lastName && formik.errors.lastName && (
-                  <div style={{ color: 'red' }}>{formik.errors.lastName}</div>
-                )}
+
+                {formik.touched.lastName &&
+                  formik.errors.lastName && (
+                    <div style={{ color: 'red' }}>
+                      {formik.errors.lastName}
+                    </div>
+                  )}
               </Col>
             </Row>
           </Form.Item>
+
+          {/* EMAIL */}
 
           <Form.Item>
             <Input
@@ -227,10 +310,16 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.email && formik.errors.email && (
-              <div style={{ color: 'red' }}>{formik.errors.email}</div>
-            )}
+
+            {formik.touched.email &&
+              formik.errors.email && (
+                <div style={{ color: 'red' }}>
+                  {formik.errors.email}
+                </div>
+              )}
           </Form.Item>
+
+          {/* PHONE */}
 
           <Form.Item>
             <Input
@@ -241,15 +330,21 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.phone && formik.errors.phone && (
-              <div style={{ color: 'red' }}>{formik.errors.phone}</div>
-            )}
-          </Form.Item>
 
+            {formik.touched.phone &&
+              formik.errors.phone && (
+                <div style={{ color: 'red' }}>
+                  {formik.errors.phone}
+                </div>
+              )}
+          </Form.Item>
         </>
       )}
 
-      {/* Comment */}
+      {/* =========================
+          COMMENT
+      ========================== */}
+
       <Form.Item>
         <Input.TextArea
           name="comment"
@@ -260,68 +355,110 @@ const displayPhone = formik.values.anonymous ? '' : formik.values.phone;
         />
       </Form.Item>
 
-      {/* Payment Button */}
-      
-      {(formik.isValid || formik.values.anonymous) && (
+      {/* =========================
+          PAYMENT OPTIONS
+      ========================== */}
+
+      {formik.isValid && (
         <>
-          {(currency === 'USD' || currency === 'GBP') && (
-            <StripePay
+          {/* =====================
+              USD
+          ====================== */}
+
+          {currency === 'USD' && (
+            <>
+              {/* STRIPE */}
+
+              <StripePay
               price={formik.values.amount}
               currency={currency}
               email={displayEmail}
               name={displayName}
               phone={displayPhone}
+              comment={formik.values.comment}
             />
-          )}
 
-          {currency === 'NGN' && (
-            // <FlutterPay
-            //   price={formik.values.amount}
-            //   email={displayEmail}
-            //   name={displayName}
-            //   phone={displayPhone}
-            //   message={formik.values.comment}
-            //   currency={formik.values.currency}
-            // />
-            <>
-              Transfer to Account
-              <br/>
-              Account Number: 7069335046
-              <br/>
-              Bank: Opay
-              <br/>
-              Bank Name: Funmilola Fasanu
-              
+
+              {/* PAYPAL */}
+
+              <div style={{ marginTop: 10 }}>
+                <PayPal
+                  price={formik.values.amount}
+                  email={displayEmail}
+                  name={displayName}
+                  phone={displayPhone}
+                  message={formik.values.comment}
+                  currency={currency}
+                />
+              </div>
             </>
           )}
 
-          {currency === 'USD' && (
-            <div style={{ marginTop: '10px' }}>
-              <PayPal 
+          {/* =====================
+              GBP
+          ====================== */}
+
+          {currency === 'GBP' && (
+            <>
+              {/* STRIPE */}
+
+              <StripePay
               price={formik.values.amount}
+              currency={currency}
               email={displayEmail}
               name={displayName}
               phone={displayPhone}
-              message={formik.values.comment}
-              currency={formik.values.currency} />
-            </div>
-          )}
-          {
-            currency === 'GBP' &&(
-              <div>
-                OR
-                <br/>
-                Transfer to: <br/>
-                Account Number: 13221385 <br/>
-                Bank: Zempler Bank <br/>
+              comment={formik.values.comment}
+            />
+
+
+              {/* BANK TRANSFER */}
+
+              <div style={{ marginTop: 20 }}>
+                <strong>OR</strong>
+
+                <br />
+
+                Transfer to:
+
+                <br />
+
+                Account Number: 13221385
+
+                <br />
+
+                Bank: Zempler Bank
+
+                <br />
+
                 Sort Code: 087199
               </div>
-            )
-          }
+            </>
+          )}
+
+          {/* =====================
+              NGN
+          ====================== */}
+
+          {currency === 'NGN' && (
+            <div style={{ marginTop: 20 }}>
+              <strong>Transfer to Account</strong>
+
+              <br />
+
+              Account Number: 7069335046
+
+              <br />
+
+              Bank: Opay
+
+              <br />
+
+              Account Name:  Funmilola Fasanu
+            </div>
+          )}
         </>
       )}
-
-      
     </Form>
   );
 };

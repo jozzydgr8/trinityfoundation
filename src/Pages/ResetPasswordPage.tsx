@@ -1,6 +1,6 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
+
 
 
 const ResetPasswordPage = () => {

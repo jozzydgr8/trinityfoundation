@@ -54,7 +54,7 @@ export const DonationTable: React.FC = () => {
         dataSource={donors ?? []}
         columns={columns}
         pagination={{ pageSize: 5 }}
-        rowKey={(record) => record.email} // Ensures a unique key
+        rowKey={(record) => record.name} // Ensures a unique key
         onRow={(record) => ({
           onClick: () => handleRowClick(record),
         })}
