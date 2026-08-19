@@ -1,6 +1,7 @@
 import businessLogo from '../assets/businessLogo.png'
 import { FlatButton } from './FlatButton'
-import {HeartOutlined} from '@ant-design/icons'
+import {HeartOutlined} from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
 
 export const Navbar = () => {
@@ -27,36 +28,36 @@ export const Navbar = () => {
           <ul className="navbar-nav mx-auto">
 
             <li className="nav-item">
-              <a href={`/`} className="nav-link active">
+              <NavLink to={`/`} className="nav-link active">
                    Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a href={`/news`} className="nav-link active">
+              <NavLink to={`/news`} className="nav-link active">
                     News
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a href={`/sendform`} className="nav-link active">
+              <NavLink to={`/sendform`} className="nav-link active">
                     volunteer
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a href={`/donate`} className="nav-link active">
+              <NavLink to={`/donate`} className="nav-link active">
                     donate
-              </a>
+              </NavLink>
             </li>
             
            
           </ul>
-          <FlatButton
+          <NavLink to={'/donate'}>
+            <FlatButton
             title="make a difference"
             className="buttonsuccess"
-            onClick={() =>
-              console.log("Hi, I’d like to get a free consultation...")
-            }
+            
             iconTwo={<HeartOutlined />}
           />
+          </NavLink>
         </div>
       </div>
     </nav>

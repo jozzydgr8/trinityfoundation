@@ -15,6 +15,7 @@ export type MenuItem = {
     email:string,
     token?:string,
     admin?:true
+    superadmin?:true,
 }
 
 export type Donation = {

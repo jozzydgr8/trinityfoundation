@@ -163,6 +163,7 @@ useEffect(()=>{
       throw Error('an error occured')
     }
     const json = await response.json();
+    console.log('admin', json)
     dispatch({type:'getAdminUsers', payload:json})
     }catch(error){
       console.error(error)

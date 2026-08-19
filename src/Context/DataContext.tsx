@@ -70,39 +70,96 @@ const initialState = {
     volunteers:null
 }
 export const Context = createContext({}as valueProps)
-const reducer = (state:stateProps, action:actionProps) =>{
-    switch(action.type){
-        case'getBlogs':
-        return {...state, blog:action.payload}
-        case'loading':
-        return {...state, loading:action.payload}
-        case'getDonors':
-        return {...state, donors:action.payload}
-        case'getSubscribers':
-        return {...state, subscribers:action.payload}
-        case 'getAdminUsers':
-            return {...state, adminUsers:action.payload}
-        case "deleteadmin":
-            return {
-            ...state,
-            admin: state.adminUsers?.filter((p) => p.email !== action.payload) ?? null,
-            };
-        case "createadmin":
-            return {
-            ...state,
-            admin: [action.payload, ...(state.adminUsers ?? [])],
-            };
-        case 'getVolunteer':
-            return {...state, volunteers:action.payload}
-        case "deleteBlog":
-            return { ...state, blog: state.blog?.filter((blog) => blog._id !== action.payload) ?? null };
-        case "updateBlog":
-            return { ...state, blog: state.blog?.map((blog) => (blog._id === action.payload._id ? action.payload : blog) ) ?? null };
-        case "addBlog":
-            return { ...state, blog: [...(state.blog || []), action.payload] };
-        default : return state
-    }
-}
+const reducer = (state: stateProps, action: actionProps) => {
+  switch (action.type) {
+    case "getBlogs":
+      return {
+        ...state,
+        blog: action.payload,
+      };
+
+    case "loading":
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
+    case "getDonors":
+      return {
+        ...state,
+        donors: action.payload,
+      };
+
+    case "getSubscribers":
+      return {
+        ...state,
+        subscribers: action.payload,
+      };
+
+    case "getAdminUsers":
+      return {
+        ...state,
+        adminUsers: action.payload,
+      };
+
+    case "deleteadmin":
+      return {
+        ...state,
+        adminUsers:
+          state.adminUsers?.filter(
+            (admin) => admin._id !== action.payload
+          ) ?? null,
+      };
+
+    case "createadmin":
+      return {
+        ...state,
+        adminUsers: [
+          action.payload,
+          ...(state.adminUsers ?? []),
+        ],
+      };
+
+    case "getVolunteer":
+      return {
+        ...state,
+        volunteers: action.payload,
+      };
+
+    case "deleteBlog":
+      return {
+        ...state,
+        blog:
+          state.blog?.filter(
+            (blog) => blog._id !== action.payload
+          ) ?? null,
+      };
+
+    case "updateBlog":
+      return {
+        ...state,
+        blog:
+          state.blog?.map((blog) =>
+            blog._id === action.payload._id
+              ? action.payload
+              : blog
+          ) ?? null,
+      };
+
+    case "addBlog":
+      return {
+        ...state,
+        blog: [
+          ...(state.blog || []),
+          action.payload,
+        ],
+      };
+
+    default:
+      return state;
+  }
+};
+
 export const DataContext = ({children}:contextProps)=>{
     const [state, dispatch] = useReducer(reducer, initialState)
     return <Context.Provider value={{...state, dispatch}}>

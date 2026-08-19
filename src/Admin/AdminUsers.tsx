@@ -1,4 +1,4 @@
-import { DeleteOutlined } from "@ant-design/icons";
+import {  DeleteOutlined } from "@ant-design/icons";
 import { message, Popconfirm, Spin } from "antd";
 import { useState } from "react";
 import { UseDataContext } from "../Context/UseDataContext";
@@ -25,22 +25,32 @@ export const AdminUsers = () => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error("An error occurred while deleting the user");
-      }
-
       const json = await response.json();
+
+        if (!response.ok) {
+      throw new Error(
+        json.error || "An error occurred while deleting the user"
+      );
+    }
+
+      
 
       dispatch({
         type: "deleteadmin",
-        payload: json,
+        payload: id
       });
 
       message.success("Admin user deleted successfully");
     } catch (error) {
-      console.error("Error deleting admin:", error);
-      message.error("Failed to delete admin user");
-    } finally {
+  console.error("Error deleting admin:", error);
+
+  message.error(
+    error instanceof Error
+      ? error.message
+      : "Failed to delete admin user"
+  );
+}
+ finally {
       setDeletingId(null);
     }
   };
@@ -64,7 +74,9 @@ export const AdminUsers = () => {
             >
               <span>{admin.email}</span>
 
-              <Popconfirm
+              {
+                !admin.superadmin &&
+                <Popconfirm
                 title="Delete admin user?"
                 description="Are you sure you want to delete this admin user?"
                 okText="Yes"
@@ -85,6 +97,7 @@ export const AdminUsers = () => {
                   />
                 )}
               </Popconfirm>
+              }
             </div>
           );
         })}
