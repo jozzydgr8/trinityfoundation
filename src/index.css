@@ -238,11 +238,15 @@ button{
 
 /* service section service servoce */
 .service-card, .impact-card{
-  background-color: white;
-  border-radius: 10px;
+  
   padding:20px;
 }
 
+.product-card,.service-card, .impact-card{
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+}
 
 /* achievement section  section */
 
