@@ -86,3 +86,15 @@ export type subscribeType ={
   email: string;
   date:string
 }
+
+export interface Product {
+  _id: string;
+  title: string;
+  link: string;
+  featuredImage: string;
+  description: string;
+  image_id: string;
+  createdAt: string;
+  updatedAt: string;
+  category: string;
+}

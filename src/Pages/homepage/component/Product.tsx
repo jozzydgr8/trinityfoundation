@@ -1,8 +1,9 @@
-import { products } from "../../../data"
+import { UseDataContext } from "../../../Context/UseDataContext"
 import { FlatButton } from "../../../Shared/FlatButton"
 import {ArrowRightOutlined} from '@ant-design/icons'
 
 export const Product = ()=>{
+    const {products} = UseDataContext();
     return(
         <section id="products">
             <div className="container-fluid">
@@ -14,13 +15,13 @@ export const Product = ()=>{
                 <br/>
                 <div className="row justify-content-center g-4" >
                     {
-                    products.map((data, index)=>(
+                    products && products.map((data, index)=>(
                      <div
                         className="col-md-4 d-flex flex-column align-items-center animate-up mb-3 "
                         key={index}
                         >
                             <div className="h-100 product-card">
-                                <div style={{backgroundImage:`url(${data.image})`,
+                                <div style={{backgroundImage:`url(${data.featuredImage})`,
                             backgroundSize: "cover",
                                 height: "500px",
                                 backgroundPosition: "center center",

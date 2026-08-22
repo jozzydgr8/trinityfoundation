@@ -21,6 +21,7 @@ import { ResetPassword } from './Admin/pages/ResetPassword';
 import AcceptAdmin from './Admin/AcceptAdmin';
 import { AdminUsers } from './Admin/AdminUsers';
 import { SingleNewsPage } from './Pages/newspage/subpage/SingleNewsPage';
+import { AdminProduct } from './Admin/AdminProduct';
 
 
 
@@ -50,7 +51,32 @@ function App() {
       }
     }
     fetchData();
-  },[dispatch])
+  },[dispatch]);
+
+
+  //useEffect to fetchProduct
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      try{
+        const response = await fetch('https://trinityarms.vercel.app/product');
+        if(!response.ok){
+          throw Error('Failed to fetch data')
+        }
+        const json = await response.json();
+        console.log('product',json);
+        dispatch({type:'getProducts', payload:json});
+      }catch(error){
+        console.error('error fetching data', error)
+      }finally{
+        dispatch({type:'loading', payload:false})
+      }
+    }
+    fetchData();
+  },[dispatch]);
+
+
+
   useEffect(() => {
     const animation = () => {
       var leftAnimate = document.querySelectorAll('.animate-left');
@@ -250,6 +276,7 @@ useEffect(()=>{
       >
         <Route index element={<Admin />} />
         <Route path="upload" element={<AdminUpload />} />
+        <Route path='product' element={<AdminProduct/>}/>
         <Route path="reset-password" element={<ResetPassword />} />
 
         <Route path="settings">

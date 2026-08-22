@@ -59,6 +59,15 @@ export const Admin = () => {
               className="buttonsuccess" 
             />
           </Col>
+
+
+          <Col>
+            <FlatButton 
+              title="Upload Product" 
+              onClick={() => navigate('/admin_jctbdil1$/product')} 
+              className="buttonsuccess" 
+            />
+          </Col>
         </Row>
 
             <div style={styles.container}>
