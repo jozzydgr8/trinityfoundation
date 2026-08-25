@@ -123,7 +123,7 @@ nav .container-fluid{
   border-radius: 10px;
  }
  .marquee-image{
-   margin:10px 25px; width:150px; height:150px;
+   margin:10px 25px; width:250px; height:250px;
  }
  
 
@@ -135,7 +135,7 @@ nav .container-fluid{
       min-height:370px
     }
     .marquee-image{
-   width:100px; height:100px;
+   width:200px; height:200px;
   }
    
  }

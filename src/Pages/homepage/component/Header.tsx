@@ -74,7 +74,7 @@ export const Header = () => {
                                 
                   <span className='homeBadgeParent '> 
                       <span className='homeBadge'></span>
-                          UK Registered Charity
+                          UK Registered Charity - 1212048
                       </span>
                   </div>
                   <br/>

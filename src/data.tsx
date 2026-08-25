@@ -8,7 +8,7 @@ import {
   InboxOutlined,
   LinkOutlined,
 } from "@ant-design/icons";
-import bookBusines from './assets/quiet-strength-book-business.jpg'
+
 
 export const services = [
   {
@@ -76,12 +76,3 @@ export const impactStats = [
   },
 ];
 
-export const products = [
-  {
-    image:bookBusines,
-    category:'book',
-    description:'The Quiet Strength is a powerful memoir of resilience, healing, faith, and freedom. Through her deeply personal journey, Funmilola Fasanu Otubu explores the silent battles many women face and how God’s love can lead us from fear and self-doubt into healing, purpose, and renewed strength.',
-    title:'The Quiet Strength',
-    link:'https://amzn.eu/d/0bKvubeu'
-  }
-]

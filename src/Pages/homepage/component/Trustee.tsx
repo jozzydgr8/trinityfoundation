@@ -6,7 +6,8 @@ export function Trustee() {
       <div className="container-fluid">
 
         <div className="text-center mb-4">
-        <span className='homeBadgeParentAlt'>Our Trustees</span>
+        <span className="homeBadgeParentAlt">Founders & Visionaries</span>
+
         <h2 className="subheading">
         Experienced Leaders Driving Our Vision Forward
         </h2>
