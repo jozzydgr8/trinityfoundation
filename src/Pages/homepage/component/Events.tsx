@@ -12,6 +12,7 @@ import eventEleven from '../../../assets/eventImageTwo.jpg';
 import eventTwelve from '../../../assets/eventImageThree.jpg';
 import eventThirteen from '../../../assets/eventImageFour.jpg';
 import eventFourteen from '../../../assets/eventImageFive.jpg';
+import eventFifteen from '../../../assets/silenceEvent.jpeg';
 import logoone from '../../../assets/trinitychurchlogo.jpg';
 import Marquee from "react-fast-marquee";
 
@@ -30,6 +31,7 @@ const events = [
   eventTwelve,
   eventThirteen,
   eventFourteen,
+  eventFifteen
 ];
 
 const middle = Math.ceil(events.length / 2);
