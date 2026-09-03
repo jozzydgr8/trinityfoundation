@@ -86,7 +86,7 @@ h1{
 section >.container-fluid, footer >.container-fluid{
   padding:3% 6%;
 }
-nav .container-fluid{
+nav .container-fluid, .crumbs{
   padding: 1% 5%;
 }
 .homeBadgeParent{
@@ -250,7 +250,14 @@ button{
 
 /* achievement section  section */
 
-
+.fund-image{
+  width:15%;
+}
+@media (max-width: 800px) {
+  .fund-image{
+    width:30%;
+  }
+}
 
 
 

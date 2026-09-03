@@ -4,6 +4,7 @@ import { InstagramOutlined, FacebookOutlined, LinkedinOutlined } from '@ant-desi
 import { Link } from 'react-router-dom';
 import { FlatButton } from './FlatButton';
 import { useState } from 'react';
+import fundImage from '../assets/community-fund.jpg';
 
 
 import axios from 'axios';
@@ -132,6 +133,9 @@ function Footer() {
           <a href="/" target="_blank" rel="noopener noreferrer" style={{ marginLeft: '16px' }}>
             <LinkedinOutlined />
           </a>
+        </div>
+        <div>
+              <img src={fundImage} alt="Community Fund" className='fund-image' style={{ marginTop: '20px' }} />
         </div>
       </div>
 

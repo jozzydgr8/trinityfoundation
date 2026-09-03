@@ -251,21 +251,51 @@ useEffect(()=>{
     return <Loading />;
   }
 
-  const router = createBrowserRouter(createRoutesFromElements(
+  const router = createBrowserRouter(
+  createRoutesFromElements(
     <>
-      <Route path='/' element={<Layout />}>
+      <Route
+        path="/"
+        element={<Layout />}
+        handle={{ breadcrumb: "Home" }}
+      >
         <Route index element={<HomePage />} />
-        <Route path='donate' element={<Donation />} />
-        <Route path='sendform' element={<SendMail />} />
-        <Route path='news' element={<Outlet/>} >
-          <Route index element={<News/>}/>
-          <Route path=':id' element={<SingleNewsPage/>}/>
+
+        <Route
+          path="donate"
+          element={<Donation />}
+          handle={{ breadcrumb: "Donate" }}
+        />
+
+        <Route
+          path="sendform"
+          element={<SendMail />}
+          handle={{ breadcrumb: "Send Form" }}
+        />
+
+        <Route
+          path="news"
+          element={<Outlet />}
+          handle={{ breadcrumb: "News" }}
+        >
+          <Route index element={<News />} />
+
+          <Route
+            path=":id"
+            element={<SingleNewsPage />}
+            handle={{
+              breadcrumb: ({ params }:any) => params.id,
+            }}
+          />
         </Route>
-       
-        <Route path='stripesuccess' element={<StripeSuccess/>}/>
+
+        <Route
+          path="stripesuccess"
+          element={<StripeSuccess />}
+          handle={{ breadcrumb: "Payment Successful" }}
+        />
       </Route>
 
-      
       <Route
         path="/admin_jctbdil1$"
         element={
@@ -273,15 +303,43 @@ useEffect(()=>{
             <AdminLayout />
           </ProtectedRoutes>
         }
+        handle={{ breadcrumb: "Admin" }}
       >
         <Route index element={<Admin />} />
-        <Route path="upload" element={<AdminUpload />} />
-        <Route path='product' element={<AdminProduct/>}/>
-        <Route path="reset-password" element={<ResetPassword />} />
 
-        <Route path="settings">
-          <Route path="accept" element={<AcceptAdmin />} />
-          <Route path="adminUsers" element={<AdminUsers />} />
+        <Route
+          path="upload"
+          element={<AdminUpload />}
+          handle={{ breadcrumb: "Upload" }}
+        />
+
+        <Route
+          path="product"
+          element={<AdminProduct />}
+          handle={{ breadcrumb: "Products" }}
+        />
+
+        <Route
+          path="reset-password"
+          element={<ResetPassword />}
+          handle={{ breadcrumb: "Reset Password" }}
+        />
+
+        <Route
+          path="settings"
+          handle={{ breadcrumb: "Settings" }}
+        >
+          <Route
+            path="accept"
+            element={<AcceptAdmin />}
+            handle={{ breadcrumb: "Accept" }}
+          />
+
+          <Route
+            path="adminUsers"
+            element={<AdminUsers />}
+            handle={{ breadcrumb: "Admin Users" }}
+          />
         </Route>
       </Route>
 
@@ -294,7 +352,9 @@ useEffect(()=>{
         }
       />
     </>
-  ));
+  )
+);
+
   return (
     <div className="App">
       <>
